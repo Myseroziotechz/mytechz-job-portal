@@ -135,12 +135,28 @@
 
 .signup-text {
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(160, 32, 240, 0.05);
+  border-radius: 8px;
+  border: 2px dashed rgba(160, 32, 240, 0.2);
 }
 
 .signup-text a {
   color: #a020f0;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.signup-text a:hover {
+  background: #a020f0;
+  color: white;
+  text-decoration: none;
 }
 
 .role-selection {

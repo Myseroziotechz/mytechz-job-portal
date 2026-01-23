@@ -198,12 +198,29 @@ nav {
   transition: all 0.2s ease;
 }
 
+.register-link {
+  background: #4A90E2;
+  border-color: #4A90E2;
+}
+
+.register-link .register-btn {
+  color: white;
+}
+
 .login-link:hover,
 .register-link:hover {
   background: #4A90E2;
-  color: white;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.login-link:hover .login-btn {
+  color: white;
+}
+
+.register-link:hover {
+  background: #357ABD;
+  border-color: #357ABD;
 }
 
 .theme-toggle-btn {

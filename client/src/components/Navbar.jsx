@@ -161,9 +161,14 @@ useEffect(() => {
 
         <div className="line"></div>
         {!isLoggedIn && (
-        <div className="login-link tablet-hide-login">
-          <Link to="/login" className="login-btn">Login</Link>
-        </div>
+        <>
+          <div className="register-link tablet-hide-register">
+            <Link to="/register" className="register-btn">Sign Up</Link>
+          </div>
+          <div className="login-link tablet-hide-login">
+            <Link to="/login" className="login-btn">Login</Link>
+          </div>
+        </>
        )}
         
         <div className="log-icon-div">
