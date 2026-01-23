@@ -1,31 +1,31 @@
 @echo off
-echo ========================================
-echo Collecting Django Static Files
-echo ========================================
-
-cd /d "%~dp0"
-
+echo ═══════════════════════════════════════════════════════════════════
+echo    DJANGO ADMIN - COLLECT STATIC FILES AND DEPLOY
+echo ═══════════════════════════════════════════════════════════════════
 echo.
-echo Collecting static files...
+
+echo [1/3] Installing whitenoise (if not installed)...
+pip install whitenoise==6.6.0
+echo.
+
+echo [2/3] Collecting static files...
 python manage.py collectstatic --noinput
-
-echo.
-echo ========================================
-echo Static files collected successfully!
-echo ========================================
-echo.
-echo Now committing and pushing to trigger Render deployment...
 echo.
 
+echo [3/3] Committing and pushing to trigger Render deployment...
 cd ..
 git add .
-git commit -m "Enable whitenoise and collect static files for Django admin"
+git commit -m "Update Django admin static files configuration"
 git push origin main
-
 echo.
-echo ========================================
-echo Done! Render will redeploy automatically.
+
+echo ═══════════════════════════════════════════════════════════════════
+echo    ✅ DEPLOYMENT TRIGGERED!
+echo ═══════════════════════════════════════════════════════════════════
+echo.
+echo Render will automatically deploy your changes.
 echo Wait 2-3 minutes, then visit:
 echo https://mytechz-job-portal.onrender.com/admin
-echo ========================================
-pause
+echo.
+echo Press any key to exit...
+pause >nul
