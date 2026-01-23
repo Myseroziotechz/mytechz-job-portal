@@ -325,3 +325,161 @@
     font-size: 16px;
   }
 }
+
+
+/* ===== PROFESSIONAL DARK MODE - PROFILE DROPDOWN ===== */
+:root.dark .profile-dropdown-overlay {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+:root.dark .profile-dropdown-panel {
+  background: #121826 !important;
+  border-color: #1F2655 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+:root.dark .dropdown-profile-section {
+  background: linear-gradient(135deg, rgba(91, 124, 250, 0.05) 0%, rgba(91, 124, 250, 0.01) 100%) !important;
+  border-bottom-color: #1F2655 !important;
+}
+
+:root.dark .dropdown-avatar-wrapper {
+  border-color: #5B7CFA !important;
+  box-shadow: 0 4px 12px rgba(91, 124, 250, 0.25) !important;
+}
+
+:root.dark .dropdown-avatar-placeholder {
+  background: linear-gradient(135deg, #5B7CFA 0%, #7A8DFF 100%) !important;
+}
+
+:root.dark .dropdown-profile-name {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .dropdown-profile-education {
+  color: #8A90B2 !important;
+}
+
+:root.dark .dropdown-view-profile {
+  color: #5B7CFA !important;
+}
+
+:root.dark .dropdown-view-profile:hover {
+  color: #7A8DFF !important;
+}
+
+:root.dark .dropdown-performance-card {
+  background: #161B2E !important;
+  border-color: #1F2655 !important;
+}
+
+:root.dark .performance-metric-value {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .performance-metric-label {
+  color: #8A90B2 !important;
+}
+
+:root.dark .dropdown-menu-item {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .dropdown-menu-item:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .dropdown-divider {
+  background: #1F2655 !important;
+}
+
+:root.dark .dropdown-logout-btn {
+  color: #E74C3C !important;
+}
+
+:root.dark .dropdown-logout-btn:hover {
+  background: rgba(231, 76, 60, 0.08) !important;
+}
+
+
+/* ===== RESPONSIVE DARK MODE - PROFILE DROPDOWN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root.dark .profile-dropdown-panel {
+    width: 340px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root.dark .profile-dropdown-panel {
+    width: 320px !important;
+    max-width: 90vw !important;
+  }
+
+  :root.dark .dropdown-profile-section {
+    padding: 20px 16px !important;
+  }
+
+  :root.dark .dropdown-avatar-wrapper {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  :root.dark .dropdown-profile-name {
+    font-size: 17px !important;
+  }
+
+  :root.dark .dropdown-profile-education {
+    font-size: 13px !important;
+  }
+
+  :root.dark .dropdown-performance-card {
+    padding: 14px !important;
+  }
+
+  :root.dark .performance-metric-value {
+    font-size: 22px !important;
+  }
+
+  :root.dark .performance-metric-label {
+    font-size: 12px !important;
+  }
+
+  :root.dark .dropdown-menu-item {
+    font-size: 15px !important;
+    padding: 14px 20px !important;
+  }
+
+  :root.dark .dropdown-logout-btn {
+    font-size: 15px !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  :root.dark .profile-dropdown-panel {
+    width: 300px !important;
+  }
+
+  :root.dark .dropdown-profile-section {
+    padding: 18px 14px !important;
+  }
+
+  :root.dark .dropdown-avatar-wrapper {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  :root.dark .dropdown-profile-name {
+    font-size: 16px !important;
+  }
+
+  :root.dark .dropdown-menu-item {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+  }
+}

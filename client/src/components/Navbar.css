@@ -1247,3 +1247,310 @@ nav {
 .dropdown-content.mobile-open {
   display: block;
 }
+
+
+/* ===== PROFESSIONAL DARK MODE - NAVBAR ===== */
+:root.dark nav {
+  background-color: #0E1117 !important;
+  border-bottom: 1px solid #1E254A !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+:root.dark .sector2 li a {
+  color: #DADFF5 !important;
+}
+
+:root.dark .sector2 li a:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .sector2 li a.active {
+  color: #5B7CFA !important;
+}
+
+:root.dark .dropdown-content {
+  background: #161B2E !important;
+  border: 1px solid #1F2655 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+:root.dark .dropdown-content li a {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .dropdown-content li a:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .login-link {
+  border-color: #5B7CFA !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .login-link:hover {
+  background: #5B7CFA !important;
+  color: #FFFFFF !important;
+}
+
+:root.dark .register-link {
+  background: linear-gradient(135deg, #5B7CFA 0%, #7A8DFF 100%) !important;
+  border: none !important;
+}
+
+:root.dark .register-link:hover {
+  background: linear-gradient(135deg, #6C8CFF 0%, #8A9DFF 100%) !important;
+}
+
+:root.dark .theme-toggle-btn {
+  background: rgba(91, 124, 250, 0.08) !important;
+  border-color: #2A316B !important;
+  color: #B0B6D3 !important;
+}
+
+:root.dark .theme-toggle-btn:hover {
+  background: rgba(91, 124, 250, 0.12) !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .line {
+  background: #1E254A !important;
+}
+
+/* ===== PROFESSIONAL DARK MODE - SIDEBAR ===== */
+:root.dark .naukri-sidebar {
+  background: #0E1117 !important;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+:root.dark .naukri-sidebar-header {
+  background: linear-gradient(135deg, rgba(91, 124, 250, 0.05) 0%, rgba(91, 124, 250, 0.01) 100%) !important;
+  border-bottom-color: #1F2655 !important;
+}
+
+:root.dark .naukri-close-btn {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #E6E9F2 !important;
+}
+
+:root.dark .naukri-close-btn:hover {
+  background: rgba(91, 124, 250, 0.15) !important;
+}
+
+:root.dark .naukri-avatar-wrapper {
+  border-color: #5B7CFA !important;
+  box-shadow: 0 4px 12px rgba(91, 124, 250, 0.25) !important;
+}
+
+:root.dark .naukri-avatar-placeholder {
+  background: linear-gradient(135deg, #5B7CFA 0%, #7A8DFF 100%) !important;
+}
+
+:root.dark .naukri-profile-name {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .naukri-profile-email {
+  color: #8A90B2 !important;
+}
+
+:root.dark .naukri-view-profile {
+  color: #5B7CFA !important;
+}
+
+:root.dark .naukri-view-profile:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #7A8DFF !important;
+}
+
+:root.dark .naukri-nav-item {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .naukri-nav-item i {
+  color: #5B7CFA !important;
+}
+
+:root.dark .naukri-nav-item:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  border-left-color: #5B7CFA !important;
+}
+
+:root.dark .naukri-nav-item.active,
+:root.dark .naukri-nav-item[aria-current="page"] {
+  background: rgba(91, 124, 250, 0.12) !important;
+  border-left-color: #5B7CFA !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .naukri-nav-item.active i,
+:root.dark .naukri-nav-item[aria-current="page"] i {
+  color: #5B7CFA !important;
+}
+
+:root.dark .naukri-sidebar-footer {
+  border-top-color: #1F2655 !important;
+}
+
+:root.dark .naukri-divider {
+  background: #1F2655 !important;
+}
+
+:root.dark .naukri-logout-btn {
+  color: #E74C3C !important;
+}
+
+:root.dark .naukri-logout-btn:hover {
+  background: rgba(231, 76, 60, 0.08) !important;
+  border-left-color: #E74C3C !important;
+}
+
+
+/* ===== RESPONSIVE DARK MODE - NAVBAR ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root.dark nav {
+    padding: 0 2vw !important;
+  }
+
+  :root.dark .sector2 li {
+    font-size: 16px !important;
+  }
+
+  :root.dark .login-link,
+  :root.dark .register-link {
+    padding: 0 20px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root.dark nav {
+    min-height: 60px !important;
+    padding: 0 4vw !important;
+  }
+
+  :root.dark .logo-img-div-nav {
+    padding-left: 10px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
+
+  :root.dark #logo-text {
+    font-size: 20px !important;
+  }
+
+  :root.dark .sector2 {
+    display: none !important;
+  }
+
+  :root.dark .login-link,
+  :root.dark .register-link {
+    height: 36px !important;
+    padding: 0 16px !important;
+    font-size: 15px !important;
+  }
+
+  :root.dark .theme-toggle-btn {
+    padding: 6px 10px !important;
+    font-size: 16px !important;
+  }
+
+  :root.dark .menu-icondiv {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  :root.dark nav {
+    padding: 0 3vw !important;
+  }
+
+  :root.dark .logo-img-div-nav {
+    height: 90px !important;
+    width: 90px !important;
+  }
+
+  :root.dark #logo-text {
+    font-size: 18px !important;
+  }
+
+  :root.dark .login-link,
+  :root.dark .register-link {
+    padding: 0 14px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* ===== RESPONSIVE DARK MODE - SIDEBAR ===== */
+
+/* Mobile Sidebar */
+@media (max-width: 767px) {
+  :root.dark .naukri-sidebar {
+    width: 280px !important;
+  }
+
+  :root.dark .naukri-sidebar-header {
+    padding: 24px 20px !important;
+  }
+
+  :root.dark .naukri-avatar-wrapper {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  :root.dark .naukri-profile-name {
+    font-size: 17px !important;
+  }
+
+  :root.dark .naukri-profile-email {
+    font-size: 13px !important;
+  }
+
+  :root.dark .naukri-nav-item {
+    font-size: 16px !important;
+    padding: 14px 20px !important;
+    margin: 4px 12px !important;
+  }
+
+  :root.dark .naukri-nav-item i {
+    font-size: 22px !important;
+  }
+
+  :root.dark .naukri-logout-btn {
+    font-size: 16px !important;
+    padding: 14px 20px !important;
+    margin: 0 12px !important;
+  }
+}
+
+/* Small Mobile Sidebar */
+@media (max-width: 480px) {
+  :root.dark .naukri-sidebar {
+    width: 260px !important;
+  }
+
+  :root.dark .naukri-sidebar-header {
+    padding: 20px 16px !important;
+  }
+
+  :root.dark .naukri-avatar-wrapper {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  :root.dark .naukri-profile-name {
+    font-size: 16px !important;
+  }
+
+  :root.dark .naukri-nav-item {
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+  }
+}

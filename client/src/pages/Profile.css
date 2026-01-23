@@ -1609,3 +1609,233 @@
     font-size: 36px;
   }
 }
+
+
+/* ===== PROFESSIONAL DARK MODE - PROFILE PAGE ===== */
+:root.dark .profile-container {
+  background: #0E1117 !important;
+}
+
+:root.dark .profile-sidebar {
+  background: #121826 !important;
+  border-right-color: #1F2655 !important;
+}
+
+:root.dark .profile-nav-item {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .profile-nav-item:hover {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .profile-nav-item.active {
+  background: rgba(91, 124, 250, 0.12) !important;
+  color: #5B7CFA !important;
+  border-left-color: #5B7CFA !important;
+}
+
+:root.dark .profile-content {
+  background: #0E1117 !important;
+}
+
+:root.dark .profile-section {
+  background: #161B2E !important;
+  border-color: #1F2655 !important;
+}
+
+:root.dark .profile-section:hover {
+  border-color: #2A316B !important;
+}
+
+:root.dark .section-header h3 {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .section-content p,
+:root.dark .section-content span,
+:root.dark .section-content div {
+  color: #B0B6D3 !important;
+}
+
+:root.dark .skill-chip,
+:root.dark .tag-chip {
+  background: #22296B !important;
+  color: #C7D2FF !important;
+  border-color: #2A316B !important;
+}
+
+:root.dark .edit-btn,
+:root.dark .save-btn {
+  background: transparent !important;
+  border-color: #5B7CFA !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .edit-btn:hover,
+:root.dark .save-btn:hover {
+  background: #5B7CFA !important;
+  color: #FFFFFF !important;
+}
+
+:root.dark .profile-completion-ring {
+  stroke: #5B7CFA !important;
+}
+
+:root.dark .profile-strength-widget {
+  background: #161B2E !important;
+  border-color: #1F2655 !important;
+}
+
+:root.dark .missing-detail {
+  color: #8A90B2 !important;
+}
+
+:root.dark .activity-metric-card {
+  background: #161B2E !important;
+  border-color: #1F2655 !important;
+}
+
+:root.dark .activity-metric-card:hover {
+  background: #1B2140 !important;
+  border-color: #5B7CFA !important;
+}
+
+:root.dark .metric-value {
+  color: #E6E9F2 !important;
+}
+
+:root.dark .metric-label {
+  color: #8A90B2 !important;
+}
+
+:root.dark .action-card {
+  background: #161B2E !important;
+  border-color: #1F2655 !important;
+}
+
+:root.dark .action-card:hover {
+  background: #1B2140 !important;
+}
+
+:root.dark .job-item {
+  background: #1B2140 !important;
+  border-color: #2A316B !important;
+}
+
+:root.dark .job-item:hover {
+  background: #22296B !important;
+  border-color: #5B7CFA !important;
+}
+
+:root.dark input[type="text"],
+:root.dark input[type="email"],
+:root.dark input[type="tel"],
+:root.dark input[type="url"],
+:root.dark textarea,
+:root.dark select {
+  background: #0E1117 !important;
+  border-color: #2A316B !important;
+  color: #E6E9F2 !important;
+}
+
+:root.dark input:focus,
+:root.dark textarea:focus,
+:root.dark select:focus {
+  border-color: #5B7CFA !important;
+  box-shadow: 0 0 0 3px rgba(91, 124, 250, 0.1) !important;
+}
+
+:root.dark ::placeholder {
+  color: #7A80A8 !important;
+}
+
+
+/* ===== RESPONSIVE DARK MODE - PROFILE PAGE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root.dark .profile-sidebar {
+    width: 240px !important;
+  }
+
+  :root.dark .profile-nav-item {
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+  }
+
+  :root.dark .profile-section {
+    padding: 20px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root.dark .profile-container {
+    flex-direction: column !important;
+  }
+
+  :root.dark .profile-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #1F2655 !important;
+  }
+
+  :root.dark .profile-nav-item {
+    font-size: 16px !important;
+    padding: 14px 20px !important;
+  }
+
+  :root.dark .profile-content {
+    padding: 16px !important;
+  }
+
+  :root.dark .profile-section {
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  :root.dark .section-header h3 {
+    font-size: 18px !important;
+  }
+
+  :root.dark .skill-chip,
+  :root.dark .tag-chip {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+  }
+
+  :root.dark .activity-metric-card {
+    padding: 16px !important;
+  }
+
+  :root.dark .metric-value {
+    font-size: 24px !important;
+  }
+
+  :root.dark .metric-label {
+    font-size: 13px !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  :root.dark .profile-content {
+    padding: 12px !important;
+  }
+
+  :root.dark .profile-section {
+    padding: 14px !important;
+  }
+
+  :root.dark .section-header h3 {
+    font-size: 17px !important;
+  }
+
+  :root.dark input,
+  :root.dark textarea,
+  :root.dark select {
+    font-size: 16px !important;
+  }
+}

@@ -192,16 +192,18 @@
     flex-direction: column;
   }
 }
-:root.dark .job-card,
-:root.dark .job-card * {
+
+/* ===== PROFESSIONAL DARK MODE - JOB CARDS ===== */
+:root.dark .job-card {
+  background-color: #161B2E !important;
+  border: 1px solid #1F2655 !important;
   box-shadow: none !important;
 }
-:root.dark .job-card{
-  background-color: #0f1115 !important;
-}
 
-:root.dark .job-card {
-  border: 1px solid var(--border-subtle) !important;
+:root.dark .job-card:hover {
+  background-color: #1B2140 !important;
+  border-color: #5B7CFA !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
 }
 
 :root.dark .job-card-header,
@@ -211,9 +213,113 @@
 }
 
 :root.dark .company-logo {
-  border: none !important;
+  background: #1B2140 !important;
+  border: 1px solid #2A316B !important;
+}
+
+:root.dark .job-title {
+  color: #E6E9F2 !important;
+  font-weight: 600 !important;
+}
+
+:root.dark .company-name {
+  color: #5B7CFA !important;
+}
+
+:root.dark .job-description p {
+  color: #B0B6D3 !important;
 }
 
 :root.dark .job-meta span {
-  border-color: rgba(255, 255, 255, 0.06) !important;
+  background: #22296B !important;
+  border: 1px solid #2A316B !important;
+  color: #C7D2FF !important;
+}
+
+:root.dark .job-meta i {
+  color: #8A90B2 !important;
+}
+
+:root.dark .job-posted {
+  color: #8A90B2 !important;
+}
+
+:root.dark .apply-btn {
+  background: transparent !important;
+  border: 1px solid #5B7CFA !important;
+  color: #5B7CFA !important;
+}
+
+:root.dark .apply-btn:hover {
+  background: #5B7CFA !important;
+  color: #FFFFFF !important;
+}
+
+:root.dark .deadline {
+  background: rgba(231, 76, 60, 0.15) !important;
+  color: #E74C3C !important;
+}
+
+
+
+/* ===== RESPONSIVE DARK MODE - JOB CARDS ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root.dark .job-card {
+    padding: 16px !important;
+  }
+
+  :root.dark .job-title {
+    font-size: 1rem !important;
+  }
+
+  :root.dark .company-name {
+    font-size: 0.88rem !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root.dark .job-card {
+    padding: 14px !important;
+    height: auto !important;
+    min-height: 300px !important;
+  }
+
+  :root.dark .job-title {
+    font-size: 0.95rem !important;
+  }
+
+  :root.dark .company-name {
+    font-size: 0.85rem !important;
+  }
+
+  :root.dark .job-meta {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  :root.dark .job-meta span {
+    font-size: 0.7rem !important;
+    padding: 3px 7px !important;
+  }
+
+  :root.dark .apply-btn {
+    width: 100% !important;
+    padding: 10px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  :root.dark .job-card {
+    padding: 12px !important;
+  }
+
+  :root.dark .company-logo {
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
