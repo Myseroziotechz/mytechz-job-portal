@@ -38,6 +38,9 @@ function Login() {
       localStorage.setItem('token', 'demo-recruiter-token');
       localStorage.setItem('user', JSON.stringify(demoUser));
       
+      // Dispatch auth change event
+      window.dispatchEvent(new Event('authChange'));
+      
       window.location.href = '/recruiter';
       return;
     }
@@ -56,6 +59,9 @@ function Login() {
       localStorage.setItem('token', 'demo-candidate-token');
       localStorage.setItem('user', JSON.stringify(demoUser));
       
+      // Dispatch auth change event
+      window.dispatchEvent(new Event('authChange'));
+      
       window.location.href = '/dashboard/user';
       return;
     }
@@ -71,6 +77,9 @@ function Login() {
       
       localStorage.setItem('token', 'demo-admin-token');
       localStorage.setItem('user', JSON.stringify(demoUser));
+      
+      // Dispatch auth change event
+      window.dispatchEvent(new Event('authChange'));
       
       window.location.href = '/dashboard/admin';
       return;
@@ -89,6 +98,9 @@ function Login() {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         console.log('Login successful:', response.data.user);
+        
+        // Dispatch auth change event
+        window.dispatchEvent(new Event('authChange'));
         
         // Redirect based on role
         if (response.data.user.role === 'admin') {

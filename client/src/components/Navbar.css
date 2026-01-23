@@ -1554,3 +1554,36 @@ nav {
     padding: 12px 16px !important;
   }
 }
+
+
+/* ===== MOBILE MENU LINK BUTTONS ===== */
+.nav-link-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+
+.nav-link-btn:hover {
+  background: none;
+}
+
+.dropdown-content li button.nav-link-btn {
+  display: block;
+  padding: 16px 20px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #333;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+:root.dark .dropdown-content li button.nav-link-btn {
+  color: #E6E9F2 !important;
+}
