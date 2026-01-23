@@ -56,13 +56,16 @@ function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  // Handle link click - close menu BEFORE navigation
-  const handleLinkClick = (path) => {
-    handleMobileMenuClose();
-    // Small delay to ensure menu closes before navigation
-    setTimeout(() => {
-      navigate(path);
-    }, 50);
+  // Handle link click - close menu immediately and navigate
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Close menu immediately
+    setMobileMenuOpen(false);
+    
+    // Navigate without delay
+    navigate(path);
   };
 
   // Close mobile menu by clicking outside
@@ -108,29 +111,29 @@ function Navbar() {
           {/* Mobile dropdown menu */}
           <ul className={`dropdown-content ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <li className='color-subnav-box hamburger-item home-nav-h'>
-              <button onClick={() => handleLinkClick('/')} className="nav-link-btn">Home</button>
+              <button onClick={(e) => handleLinkClick(e, '/')} className="nav-link-btn">Home</button>
             </li>
             <li className='color-subnav-box hamburger-item job-nav-h'>
-              <button onClick={() => handleLinkClick('/jobs')} className="nav-link-btn">Jobs</button>
+              <button onClick={(e) => handleLinkClick(e, '/jobs')} className="nav-link-btn">Jobs</button>
             </li>
             <li className='color-subnav-box hamburger-item document-nav-h'>
-              <button onClick={() => handleLinkClick('/documents')} className="nav-link-btn">Resume</button>
+              <button onClick={(e) => handleLinkClick(e, '/documents')} className="nav-link-btn">Resume</button>
             </li>
             <li className='color-subnav-box hamburger-item admission-nav-h'>
-              <button onClick={() => handleLinkClick('/admissions')} className="nav-link-btn">Admissions</button>
+              <button onClick={(e) => handleLinkClick(e, '/admissions')} className="nav-link-btn">Admissions</button>
             </li>
             <li className='color-subnav-box hamburger-item webinar-nav-h'>
-              <button onClick={() => handleLinkClick('/webinars')} className="nav-link-btn">Webinars</button>
+              <button onClick={(e) => handleLinkClick(e, '/webinars')} className="nav-link-btn">Webinars</button>
             </li>
             
             {/* Show login/signup only when NOT logged in */}
             {!isLoggedIn && (
               <>
                 <li className="color-subnav-box hamburger-item register-nav-h">
-                  <button onClick={() => handleLinkClick('/register')} className="nav-link-btn">Sign Up</button>
+                  <button onClick={(e) => handleLinkClick(e, '/register')} className="nav-link-btn">Sign Up</button>
                 </li>
                 <li className="color-subnav-box hamburger-item login-nav-h">
-                  <button onClick={() => handleLinkClick('/login')} className="nav-link-btn">Login</button>
+                  <button onClick={(e) => handleLinkClick(e, '/login')} className="nav-link-btn">Login</button>
                 </li>
               </>
             )}

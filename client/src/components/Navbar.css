@@ -1248,6 +1248,11 @@ nav {
   display: block;
 }
 
+/* Ensure dropdown closes immediately when mobile-open is removed */
+.dropdown-content:not(.mobile-open) {
+  display: none !important;
+}
+
 
 /* ===== PROFESSIONAL DARK MODE - NAVBAR ===== */
 :root.dark nav {
