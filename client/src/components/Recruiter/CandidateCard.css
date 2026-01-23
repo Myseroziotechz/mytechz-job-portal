@@ -1,0 +1,304 @@
+/* Candidate Card Styles - Cloned from JobCard.css */
+.candidate-card {
+  background: var(--bg-surface, var(--bg-page));
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* ===== Header ===== */
+.candidate-card-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.candidate-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-elevated, #f8f9fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.candidate-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.default-avatar {
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.candidate-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.candidate-name {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.candidate-role {
+  margin: 0 0 6px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.experience-badge {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+}
+
+.candidate-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.save-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--accent);
+}
+
+.save-btn.saved {
+  color: var(--accent);
+}
+
+/* ===== Skills Section ===== */
+.candidate-skills {
+  margin-bottom: 12px;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  background: var(--bg-elevated, #f1f5f9);
+  color: var(--text-main);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.skill-tag.more {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* ===== Details Section ===== */
+.candidate-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.detail-item i {
+  color: var(--accent);
+  font-size: 0.9rem;
+  width: 16px;
+}
+
+/* ===== Footer ===== */
+.candidate-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.profile-completion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.completion-bar {
+  width: 60px;
+  height: 4px;
+  background: var(--bg-elevated, #f1f5f9);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.completion-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.completion-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.last-active {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.last-active i {
+  font-size: 0.8rem;
+}
+
+/* ===== Action Buttons ===== */
+.candidate-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.view-profile-btn,
+.contact-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.view-profile-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.contact-btn:hover {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+.view-profile-btn i,
+.contact-btn i {
+  font-size: 0.9rem;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .candidate-card {
+    height: auto;
+    min-height: 380px;
+  }
+  
+  .candidate-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .candidate-actions {
+    align-self: flex-end;
+    margin-top: -40px;
+  }
+  
+  .skills-container {
+    justify-content: flex-start;
+  }
+  
+  .candidate-footer {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .profile-completion {
+    width: 100%;
+  }
+  
+  .completion-bar {
+    width: 80px;
+  }
+}
+
+/* ===== Dark Mode Adjustments ===== */
+:root.dark .skill-tag {
+  background: var(--bg-elevated);
+  border-color: var(--border-subtle);
+}
+
+:root.dark .candidate-card {
+  background: var(--bg-surface);
+}
+
+:root.dark .view-profile-btn,
+:root.dark .contact-btn {
+  background: var(--bg-elevated);
+  border-color: var(--border-subtle);
+}
+
+:root.dark .completion-bar {
+  background: var(--bg-elevated);
+}

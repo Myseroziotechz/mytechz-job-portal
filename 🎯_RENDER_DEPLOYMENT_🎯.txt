@@ -1,0 +1,261 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              🎯 RENDER DEPLOYMENT GUIDE 🎯                                  ║
+║                                                                              ║
+║  Deploy Django Backend to Render (Free & Permanent)                         ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ✅ PREPARATION COMPLETE
+═══════════════════════════════════════════════════════════════════════════════
+
+Files created/updated:
+✅ backend/render.yaml - Render configuration
+✅ backend/requirements.txt - Added gunicorn & whitenoise
+✅ backend/job_portal/settings.py - Production settings
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📋 STEP 1: PUSH TO GITHUB
+═══════════════════════════════════════════════════════════════════════════════
+
+If you don't have a GitHub repo yet:
+
+1. Go to: https://github.com/new
+2. Create new repository: "mytechz-job-portal"
+3. Don't initialize with README
+
+Then run these commands:
+
+cd E:\new\MytechZ_frontend_dark_theme_fixing_bk_working
+git init
+git add .
+git commit -m "Initial commit - ready for Render"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/mytechz-job-portal.git
+git push -u origin main
+
+Replace YOUR_USERNAME with your GitHub username!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🌐 STEP 2: DEPLOY TO RENDER
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Go to: https://render.com
+2. Click "Get Started for Free"
+3. Sign up with GitHub (easiest)
+
+
+STEP 2.1: Create New Web Service
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "New +" → "Web Service"
+2. Connect your GitHub repository
+3. Select "mytechz-job-portal"
+
+
+STEP 2.2: Configure Service
+────────────────────────────────────────────────────────────────────────────────
+
+Name: mytechz-backend
+Region: Choose closest to you (e.g., Singapore)
+Branch: main
+Root Directory: backend
+Runtime: Python 3
+
+Build Command:
+pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+
+Start Command:
+gunicorn job_portal.wsgi:application
+
+Instance Type: Free
+
+
+STEP 2.3: Add Environment Variables
+────────────────────────────────────────────────────────────────────────────────
+
+Click "Advanced" → Add Environment Variables:
+
+Key: SECRET_KEY
+Value: django-insecure-your-secret-key-change-this-in-production
+
+Key: DEBUG
+Value: False
+
+Key: ALLOWED_HOSTS
+Value: .onrender.com,moonlit-elf-6007d5.netlify.app
+
+Key: PYTHON_VERSION
+Value: 3.11.0
+
+
+STEP 2.4: Deploy!
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "Create Web Service"
+2. Wait 5-10 minutes for deployment
+3. You'll get a URL like: https://mytechz-backend.onrender.com
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔄 STEP 3: UPDATE FRONTEND
+═══════════════════════════════════════════════════════════════════════════════
+
+After Render deployment completes, you'll get a URL like:
+https://mytechz-backend.onrender.com
+
+Update frontend to use this URL:
+
+1. Edit: client/.env
+   VITE_API_BASE_URL=https://mytechz-backend.onrender.com
+
+2. Edit: client/.env.production
+   VITE_API_BASE_URL=https://mytechz-backend.onrender.com
+
+3. Rebuild frontend:
+   cd client
+   npm run build
+
+4. Redeploy to Netlify:
+   netlify deploy --prod --dir=dist
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🧪 STEP 4: TEST
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Open: https://moonlit-elf-6007d5.netlify.app
+2. Try logging in: candidate1@test.com / Candidate@123
+3. Browse jobs
+4. Everything should work!
+
+No more ngrok warnings! ✅
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚡ QUICK COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+Push to GitHub:
+git add .
+git commit -m "Update"
+git push
+
+Render auto-deploys! ✅
+
+Update frontend:
+cd client
+npm run build
+netlify deploy --prod --dir=dist
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        💡 BENEFITS OF RENDER
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Completely FREE (750 hours/month)
+✅ No credit card required
+✅ Auto-deploy on git push
+✅ No warning pages (unlike ngrok)
+✅ Permanent URL
+✅ HTTPS automatic
+✅ PostgreSQL database available (if needed)
+✅ Custom domains supported
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚠️ RENDER FREE TIER NOTES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Service spins down after 15 minutes of inactivity
+2. First request after spin-down takes ~30 seconds
+3. Subsequent requests are fast
+4. Perfect for demos and portfolios!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔧 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Problem: Build fails
+Solution:
+   - Check Python version (should be 3.11)
+   - Check requirements.txt has all dependencies
+   - Check build logs in Render dashboard
+
+Problem: Service won't start
+Solution:
+   - Check start command: gunicorn job_portal.wsgi:application
+   - Check ALLOWED_HOSTS includes .onrender.com
+   - Check logs in Render dashboard
+
+Problem: Database errors
+Solution:
+   - SQLite database is created automatically
+   - Run migrations: python manage.py migrate
+   - Check if migrations are in git
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📊 DEPLOYMENT CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+Backend:
+☐ Code pushed to GitHub
+☐ Render service created
+☐ Environment variables set
+☐ Deployment successful
+☐ URL obtained
+
+Frontend:
+☐ .env updated with Render URL
+☐ .env.production updated
+☐ Rebuilt (npm run build)
+☐ Redeployed to Netlify
+
+Testing:
+☐ Login works
+☐ Jobs load
+☐ No errors in console
+☐ All features work
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎯 FINAL ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│  USER                                                                       │
+│    │                                                                        │
+│    ├──► Netlify (Frontend)                                                 │
+│    │    https://moonlit-elf-6007d5.netlify.app                             │
+│    │    - React + Vite                                                     │
+│    │    - Static files                                                     │
+│    │    - Free SSL                                                         │
+│    │                                                                        │
+│    └──► Render (Backend)                                                   │
+│         https://mytechz-backend.onrender.com                               │
+│         - Django + SQLite                                                  │
+│         - REST API                                                         │
+│         - JWT Auth                                                         │
+│         - No warning pages! ✅                                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🚀 READY TO DEPLOY!
+═══════════════════════════════════════════════════════════════════════════════
+
+Follow the steps above to deploy your backend to Render.
+
+This will solve all ngrok issues permanently!
+
+Date: January 23, 2026
+Status: ✅ READY FOR RENDER DEPLOYMENT
+

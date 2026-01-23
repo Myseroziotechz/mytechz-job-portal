@@ -1,0 +1,199 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🎬 DEMO SETUP GUIDE 🎬                                   ║
+║                                                                              ║
+║  Quick setup for demonstrating your website                                 ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🌐 YOUR DEMO URLS
+═══════════════════════════════════════════════════════════════════════════════
+
+Frontend (Netlify):
+https://moonlit-elf-6007d5.netlify.app
+
+Backend (Ngrok):
+https://4f5bf3dc95aa.ngrok-free.app
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚡ QUICK START (3 Steps)
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Start Backend
+────────────────────────────────────────────────────────────────────────────────
+Make sure Django and Ngrok are running:
+
+✅ Django: Already running (Process 10)
+✅ Ngrok: Already running (Process 8)
+
+
+STEP 2: Visit Ngrok URL First (IMPORTANT!)
+────────────────────────────────────────────────────────────────────────────────
+Before showing the demo, YOU must:
+
+1. Open: https://4f5bf3dc95aa.ngrok-free.app
+2. Click "Visit Site" on the ngrok warning page
+3. This authorizes your session
+
+⚠️ This step is REQUIRED for ngrok free plan!
+
+
+STEP 3: Demo Your Website
+────────────────────────────────────────────────────────────────────────────────
+Now share this URL with anyone:
+
+https://moonlit-elf-6007d5.netlify.app
+
+They can:
+✅ Browse the website
+✅ Register accounts
+✅ Login
+✅ Use all features
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔑 DEMO CREDENTIALS
+═══════════════════════════════════════════════════════════════════════════════
+
+Candidate:
+Email: candidate1@test.com
+Password: Candidate@123
+
+Recruiter:
+Email: recruiter1@test.com
+Password: Recruiter@123
+
+Admin:
+Email: admin1@test.com
+Password: Admin@123
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚠️ NGROK LIMITATION (Free Plan)
+═══════════════════════════════════════════════════════════════════════════════
+
+Issue: Ngrok free plan shows warning page before API access
+
+Workaround for Demo:
+1. YOU visit ngrok URL first (click "Visit Site")
+2. This creates a session
+3. Then API calls work for ~2 hours
+4. After 2 hours, repeat step 1
+
+This is normal for ngrok free plan!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎯 DEMO FEATURES TO SHOW
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ New UI Improvements:
+   ✅ Naukri-style Navbar (larger fonts, blue colors)
+   ✅ Profile Page Redesign (completion ring, sections)
+   ✅ Activity Insights Dashboard (metrics, graphs)
+
+✨ Core Features:
+   ✅ User Registration & Login
+   ✅ Profile Management
+   ✅ Job Listings & Search
+   ✅ Job Applications
+   ✅ Resume Upload
+   ✅ Recruiter Dashboard
+   ✅ Admin Panel
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📱 DEMO SCRIPT
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Show Homepage
+   - Modern design
+   - Responsive layout
+
+2. Show Login/Register
+   - Clean UI
+   - Role selection (Candidate/Recruiter/Admin)
+
+3. Login as Candidate
+   - Show new Profile page design
+   - Show Activity Insights dashboard
+   - Browse jobs
+   - Apply for a job
+
+4. Login as Recruiter
+   - Post a job
+   - View applications
+   - Manage candidates
+
+5. Show Mobile Responsive
+   - Resize browser
+   - Show mobile menu
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔧 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Problem: Login fails with 400 error
+Solution:
+   1. Open ngrok URL in YOUR browser
+   2. Click "Visit Site"
+   3. Try login again
+
+Problem: Ngrok URL changed
+Solution:
+   1. Get new URL from ngrok terminal
+   2. Update client/.env
+   3. Rebuild: npm run build
+   4. Redeploy: netlify deploy --prod
+
+Problem: Backend not responding
+Solution:
+   1. Check if Django is running
+   2. Check if ngrok is running
+   3. Restart both if needed
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⏱️ BEFORE DEMO CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+☐ Django running (Process 10)
+☐ Ngrok running (Process 8)
+☐ Visited ngrok URL and clicked "Visit Site"
+☐ Tested login on Netlify URL
+☐ Prepared demo credentials
+☐ Browser ready (clear cache if needed)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        💡 PRO TIPS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Keep ngrok and Django running during entire demo
+2. Visit ngrok URL before starting demo
+3. Have demo credentials ready
+4. Test everything 5 minutes before demo
+5. Use incognito mode for clean demo
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🚀 READY FOR DEMO!
+═══════════════════════════════════════════════════════════════════════════════
+
+Your website is configured for demo purposes!
+
+Frontend: https://moonlit-elf-6007d5.netlify.app
+Backend: https://4f5bf3dc95aa.ngrok-free.app
+
+Just visit the ngrok URL first, then start your demo!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Date: January 23, 2026
+Status: ✅ DEMO READY
+

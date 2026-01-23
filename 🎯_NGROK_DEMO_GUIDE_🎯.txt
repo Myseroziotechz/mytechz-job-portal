@@ -1,0 +1,275 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              🎯 NGROK DEMO GUIDE 🎯                                         ║
+║                                                                              ║
+║  Simple Steps to Make Your Demo Work                                        ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ✅ CURRENT SETUP
+═══════════════════════════════════════════════════════════════════════════════
+
+Frontend (Netlify): https://moonlit-elf-6007d5.netlify.app
+Backend (Ngrok):    https://4f5bf3dc95aa.ngrok-free.app
+
+Status: ✅ Configured and working!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🚀 BEFORE YOUR DEMO (IMPORTANT!)
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Make Sure Backend is Running
+────────────────────────────────────────────────────────────────────────────────
+
+Open Command Prompt and check if backend is running:
+
+cd E:\new\MytechZ_frontend_dark_theme_fixing_bk_working\backend
+python manage.py runserver
+
+✅ You should see: "Starting development server at http://127.0.0.1:8000/"
+
+
+STEP 2: Make Sure Ngrok is Running
+────────────────────────────────────────────────────────────────────────────────
+
+Open another Command Prompt and check if ngrok is running:
+
+C:\ngrok.exe http 8000
+
+✅ You should see: "Forwarding https://4f5bf3dc95aa.ngrok-free.app -> http://localhost:8000"
+
+⚠️ IMPORTANT: If the URL is different, you need to update frontend .env file!
+
+
+STEP 3: Bypass Ngrok Warning Page (CRITICAL!)
+────────────────────────────────────────────────────────────────────────────────
+
+This is the MOST IMPORTANT step!
+
+1. Open a new browser tab
+2. Go to: https://4f5bf3dc95aa.ngrok-free.app
+3. You'll see ngrok warning page
+4. Click the "Visit Site" button
+5. You should see: {"detail":"Not Found"}
+
+✅ This is good! It means the backend is accessible.
+
+⚠️ DO THIS STEP EVERY TIME before your demo!
+⚠️ This "unlocks" the ngrok tunnel for 1-2 hours
+
+
+STEP 4: Now Open Your Demo Site
+────────────────────────────────────────────────────────────────────────────────
+
+After clicking "Visit Site" in Step 3, now open:
+
+https://moonlit-elf-6007d5.netlify.app
+
+✅ Everything should work now!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎬 DEMO WORKFLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+BEFORE Demo (5 minutes before):
+────────────────────────────────────────────────────────────────────────────────
+
+1. ✅ Start backend: python manage.py runserver
+2. ✅ Start ngrok: C:\ngrok.exe http 8000
+3. ✅ Open ngrok URL and click "Visit Site"
+4. ✅ Test login on Netlify site
+
+DURING Demo:
+────────────────────────────────────────────────────────────────────────────────
+
+1. Open: https://moonlit-elf-6007d5.netlify.app
+2. Show features:
+   - Login as candidate
+   - Browse jobs
+   - View profile
+   - Activity dashboard
+   - Apply to job
+3. Login as recruiter:
+   - Post job
+   - View applications
+
+AFTER Demo:
+────────────────────────────────────────────────────────────────────────────────
+
+1. Keep servers running if needed
+2. Or close both command prompts
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔑 TEST CREDENTIALS
+═══════════════════════════════════════════════════════════════════════════════
+
+Candidate:
+Email:    candidate1@test.com
+Password: Candidate@123
+
+Recruiter:
+Email:    recruiter1@test.com
+Password: Recruiter@123
+
+Admin:
+Email:    admin1@test.com
+Password: Admin@123
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚠️ TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Problem: "Error Loading Jobs" or "Failed to connect to server"
+────────────────────────────────────────────────────────────────────────────────
+
+Solution:
+1. Open new tab: https://4f5bf3dc95aa.ngrok-free.app
+2. Click "Visit Site" button
+3. Refresh your demo site
+4. Should work now!
+
+Why? Ngrok free plan requires manual "Visit Site" click to unlock the tunnel.
+
+
+Problem: Ngrok URL changed
+────────────────────────────────────────────────────────────────────────────────
+
+If ngrok shows a different URL (not 4f5bf3dc95aa.ngrok-free.app):
+
+1. Copy the new ngrok URL
+2. Update: client/.env
+   VITE_API_BASE_URL=https://YOUR_NEW_NGROK_URL
+3. Update: client/.env.production
+   VITE_API_BASE_URL=https://YOUR_NEW_NGROK_URL
+4. Rebuild: cd client && npm run build
+5. Redeploy: netlify deploy --prod --dir=dist
+
+
+Problem: Backend not responding
+────────────────────────────────────────────────────────────────────────────────
+
+Solution:
+1. Check if backend is running: http://127.0.0.1:8000
+2. Restart backend: python manage.py runserver
+3. Restart ngrok: C:\ngrok.exe http 8000
+4. Click "Visit Site" again
+
+
+Problem: Login not working
+────────────────────────────────────────────────────────────────────────────────
+
+Solution:
+1. Make sure you clicked "Visit Site" on ngrok URL
+2. Check browser console for errors (F12)
+3. Try clearing browser cache
+4. Use correct credentials (see above)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        💡 PRO TIPS
+═══════════════════════════════════════════════════════════════════════════════
+
+Tip 1: Test Before Demo
+────────────────────────────────────────────────────────────────────────────────
+Always test 5 minutes before your demo:
+1. Click "Visit Site" on ngrok
+2. Try logging in
+3. Browse a few pages
+4. Make sure everything works
+
+
+Tip 2: Keep Ngrok Tab Open
+────────────────────────────────────────────────────────────────────────────────
+Keep the ngrok URL tab open during demo.
+If something breaks, you can quickly click "Visit Site" again.
+
+
+Tip 3: Have Backup Plan
+────────────────────────────────────────────────────────────────────────────────
+If ngrok fails during demo:
+1. Run locally: start-local-demo.bat
+2. Use localhost:5173 instead
+3. Continue demo without issues
+
+
+Tip 4: Explain to Audience
+────────────────────────────────────────────────────────────────────────────────
+If asked about ngrok:
+"For this demo, I'm using ngrok to tunnel my local backend.
+In production, we'd deploy to a proper hosting service like AWS or Render."
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📋 QUICK CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+Before Demo:
+☐ Backend running (python manage.py runserver)
+☐ Ngrok running (C:\ngrok.exe http 8000)
+☐ Opened ngrok URL and clicked "Visit Site"
+☐ Tested login on Netlify site
+☐ All features working
+
+During Demo:
+☐ Demo site open: https://moonlit-elf-6007d5.netlify.app
+☐ Test credentials ready
+☐ Ngrok tab kept open (just in case)
+
+After Demo:
+☐ Servers closed or kept running
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎯 QUICK START COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+Start Backend:
+cd E:\new\MytechZ_frontend_dark_theme_fixing_bk_working\backend
+python manage.py runserver
+
+Start Ngrok:
+C:\ngrok.exe http 8000
+
+Unlock Ngrok:
+Open: https://4f5bf3dc95aa.ngrok-free.app
+Click: "Visit Site"
+
+Open Demo:
+https://moonlit-elf-6007d5.netlify.app
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ✅ YOU'RE READY!
+═══════════════════════════════════════════════════════════════════════════════
+
+Your demo is configured and ready to go!
+
+Just remember:
+1. Start backend
+2. Start ngrok
+3. Click "Visit Site" on ngrok URL
+4. Open demo site
+5. Show your awesome project!
+
+Good luck with your demo! 🚀
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📞 NEED HELP?
+═══════════════════════════════════════════════════════════════════════════════
+
+If something doesn't work:
+1. Check this guide
+2. Follow troubleshooting steps
+3. Use backup plan (local demo)
+
+Date: January 23, 2026
+Status: ✅ READY FOR DEMO WITH NGROK
+
+

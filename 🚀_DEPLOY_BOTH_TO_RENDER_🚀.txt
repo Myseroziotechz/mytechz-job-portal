@@ -1,0 +1,280 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              🚀 DEPLOY BOTH TO RENDER - COMPLETE GUIDE 🚀                   ║
+║                                                                              ║
+║  Deploy Frontend + Backend to Render (Free, No Credit Card)                 ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ✅ WHY RENDER IS BEST
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Completely FREE (no credit card required)
+✅ No ngrok issues (no warning pages)
+✅ Permanent URLs (don't change)
+✅ Auto-deploy from GitHub
+✅ Both frontend and backend on same platform
+✅ HTTPS automatic
+✅ Professional for portfolio
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📋 STEP 1: PUSH TO GITHUB
+═══════════════════════════════════════════════════════════════════════════════
+
+If you don't have a GitHub repo yet:
+
+1. Go to: https://github.com/new
+2. Create repository: "mytechz-job-portal"
+3. Don't initialize with README
+
+Then run these commands:
+
+cd E:\new\MytechZ_frontend_dark_theme_fixing_bk_working
+git init
+git add .
+git commit -m "Initial commit - ready for Render"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/mytechz-job-portal.git
+git push -u origin main
+
+Replace YOUR_USERNAME with your GitHub username!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🌐 STEP 2: DEPLOY BACKEND TO RENDER
+═══════════════════════════════════════════════════════════════════════════════
+
+2.1: Create Render Account
+────────────────────────────────────────────────────────────────────────────────
+
+1. Go to: https://render.com
+2. Click "Get Started for Free"
+3. Sign up with GitHub (easiest)
+
+
+2.2: Create Backend Web Service
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "New +" → "Web Service"
+2. Connect your GitHub repository
+3. Select "mytechz-job-portal"
+
+Configure:
+- Name: mytechz-backend
+- Region: Choose closest (e.g., Singapore)
+- Branch: main
+- Root Directory: backend
+- Runtime: Python 3
+- Build Command: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+- Start Command: gunicorn job_portal.wsgi:application
+- Instance Type: Free
+
+
+2.3: Add Environment Variables
+────────────────────────────────────────────────────────────────────────────────
+
+Click "Advanced" → Add Environment Variables:
+
+SECRET_KEY: django-insecure-your-secret-key-change-this
+DEBUG: False
+ALLOWED_HOSTS: .onrender.com
+PYTHON_VERSION: 3.11.0
+
+
+2.4: Deploy Backend
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "Create Web Service"
+2. Wait 5-10 minutes for deployment
+3. You'll get a URL like: https://mytechz-backend.onrender.com
+
+✅ Backend deployed!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎨 STEP 3: DEPLOY FRONTEND TO RENDER
+═══════════════════════════════════════════════════════════════════════════════
+
+3.1: Create Frontend Static Site
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "New +" → "Static Site"
+2. Connect same GitHub repository
+3. Select "mytechz-job-portal"
+
+Configure:
+- Name: mytechz-frontend
+- Branch: main
+- Root Directory: client
+- Build Command: npm install && npm run build
+- Publish Directory: dist
+
+
+3.2: Add Environment Variables
+────────────────────────────────────────────────────────────────────────────────
+
+Click "Advanced" → Add Environment Variable:
+
+VITE_API_BASE_URL: https://mytechz-backend.onrender.com
+
+(Use the backend URL from Step 2.4)
+
+
+3.3: Deploy Frontend
+────────────────────────────────────────────────────────────────────────────────
+
+1. Click "Create Static Site"
+2. Wait 3-5 minutes for deployment
+3. You'll get a URL like: https://mytechz-frontend.onrender.com
+
+✅ Frontend deployed!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔧 STEP 4: UPDATE BACKEND SETTINGS
+═══════════════════════════════════════════════════════════════════════════════
+
+After both are deployed, update backend ALLOWED_HOSTS:
+
+1. Go to backend service on Render
+2. Click "Environment"
+3. Update ALLOWED_HOSTS:
+   .onrender.com,mytechz-frontend.onrender.com
+
+4. Click "Save Changes"
+5. Service will auto-redeploy
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🧪 STEP 5: TEST YOUR DEPLOYMENT
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Open: https://mytechz-frontend.onrender.com
+2. Try login: candidate1@test.com / Candidate@123
+3. Browse jobs
+4. Test all features
+
+✅ Everything should work!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📊 FINAL ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│  USER                                                                       │
+│    │                                                                        │
+│    ├──► Render (Frontend)                                                  │
+│    │    https://mytechz-frontend.onrender.com                              │
+│    │    - React + Vite                                                     │
+│    │    - Static site                                                      │
+│    │    - Free SSL                                                         │
+│    │                                                                        │
+│    └──► Render (Backend)                                                   │
+│         https://mytechz-backend.onrender.com                               │
+│         - Django + SQLite                                                  │
+│         - REST API                                                         │
+│         - JWT Auth                                                         │
+│         - No warning pages! ✅                                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        💡 BENEFITS
+═══════════════════════════════════════════════════════════════════════════════
+
+vs Netlify + Ngrok:
+✅ No ngrok warning pages
+✅ No "Visit Site" clicks needed
+✅ Permanent URLs
+✅ Both on same platform
+✅ Auto-deploy from GitHub
+✅ Professional setup
+
+vs Local Development:
+✅ Accessible from anywhere
+✅ Can share link with others
+✅ Perfect for portfolio
+✅ No need to keep computer running
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ⚠️ RENDER FREE TIER NOTES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Services spin down after 15 minutes of inactivity
+2. First request after spin-down takes ~30 seconds
+3. Subsequent requests are fast
+4. Perfect for demos and portfolios!
+5. 750 hours/month free (more than enough)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🔄 AUTO-DEPLOY
+═══════════════════════════════════════════════════════════════════════════════
+
+After setup, any changes you push to GitHub will auto-deploy:
+
+git add .
+git commit -m "Update feature"
+git push
+
+✅ Render automatically deploys both frontend and backend!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        📋 QUICK CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+Setup:
+☐ Code pushed to GitHub
+☐ Render account created
+☐ Backend service created
+☐ Backend environment variables set
+☐ Backend deployed successfully
+☐ Frontend static site created
+☐ Frontend environment variable set (backend URL)
+☐ Frontend deployed successfully
+☐ Backend ALLOWED_HOSTS updated
+☐ Both services redeployed
+
+Testing:
+☐ Frontend URL accessible
+☐ Login works
+☐ Jobs page loads
+☐ All features work
+☐ No errors in console
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        🎯 SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+What You Need:
+1. GitHub account (free)
+2. Render account (free, no credit card)
+3. 20 minutes of time
+
+What You Get:
+✅ Professional deployment
+✅ Permanent URLs
+✅ No ngrok issues
+✅ Auto-deploy from GitHub
+✅ Perfect for portfolio
+✅ Completely free
+
+This is the BEST solution for your demo!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Date: January 23, 2026
+Status: ✅ READY TO DEPLOY TO RENDER
+
+Next: Push code to GitHub and follow the steps above!
+

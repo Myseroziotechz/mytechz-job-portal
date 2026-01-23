@@ -1,0 +1,327 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║              🌐 Complete ngrok Setup & Deployment 🌐             ║
+║                                                                   ║
+║                  Get Public URL in 10 Minutes!                   ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  PART 1: Install ngrok (5 minutes, one-time)                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Step 1: Download ngrok
+   → Open browser: https://ngrok.com/download
+   → Click "Download for Windows"
+   → Save the ZIP file
+
+Step 2: Extract ngrok
+   → Right-click the downloaded ZIP
+   → Extract to: C:\ngrok
+   → You should have: C:\ngrok\ngrok.exe
+
+Step 3: Sign up for ngrok (FREE)
+   → Go to: https://dashboard.ngrok.com/signup
+   → Sign up with email or GitHub
+   → Verify your email
+
+Step 4: Get your authtoken
+   → Login to: https://dashboard.ngrok.com
+   → Click "Your Authtoken" in left menu
+   → Copy the token (looks like: 2abc...)
+
+Step 5: Configure ngrok
+   → Open Command Prompt (CMD)
+   → Run these commands:
+   
+   cd C:\ngrok
+   ngrok config add-authtoken YOUR_TOKEN_HERE
+   
+   (Replace YOUR_TOKEN_HERE with your actual token)
+
+Step 6: Test ngrok
+   → In CMD, run:
+   
+   ngrok http 80
+   
+   → You should see ngrok interface
+   → Press Ctrl+C to stop
+   
+   ✅ ngrok is installed!
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  PART 2: Deploy MytechZ (5 minutes)                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+OPTION A: Automated (Recommended)
+──────────────────────────────────
+
+   1. Double-click: start-ngrok-demo.bat
+   
+   2. When prompted, paste your backend ngrok URL
+   
+   3. Done! Share the frontend URL
+   
+
+OPTION B: Manual (Step by step)
+────────────────────────────────
+
+Terminal 1 - Backend Server:
+   cd MytechZ_frontend_dark_theme_fixing_bk_working\backend
+   python manage.py runserver 0.0.0.0:5010
+
+Terminal 2 - Backend ngrok:
+   cd C:\ngrok
+   ngrok http 5010
+   
+   → Copy the URL (e.g., https://abc123.ngrok-free.app)
+
+Terminal 3 - Update Frontend:
+   → Edit: client\.env
+   → Change to: VITE_API_URL=https://abc123.ngrok-free.app
+   → Save file
+
+Terminal 4 - Frontend Server:
+   cd MytechZ_frontend_dark_theme_fixing_bk_working\client
+   npm run dev -- --host
+
+Terminal 5 - Frontend ngrok:
+   cd C:\ngrok
+   ngrok http 5173
+   
+   → Copy the URL (e.g., https://xyz789.ngrok-free.app)
+   → This is your PUBLIC URL!
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  PART 3: Share Your Demo                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Your Public URLs:
+   Frontend: https://xyz789.ngrok-free.app
+   Backend:  https://abc123.ngrok-free.app
+   Admin:    https://abc123.ngrok-free.app/admin
+
+Share the FRONTEND URL with:
+   ✅ Clients
+   ✅ Team members
+   ✅ Anyone with internet
+
+They can access from:
+   ✅ Any computer
+   ✅ Any phone
+   ✅ Any tablet
+   ✅ Anywhere in the world
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  PART 4: Demo Accounts                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+👨‍💼 Admin Account:
+   URL:      https://abc123.ngrok-free.app/admin
+   Email:    admin1@test.com
+   Password: Admin@123
+   
+   Features:
+   - View all college applications
+   - Manage users
+   - Approve/reject applications
+
+👔 Recruiter Account:
+   Email:    sivabalan@test.com
+   Password: Test@123
+   
+   Features:
+   - Post jobs
+   - View applications
+   - Manage company profile
+
+👤 Candidate Account:
+   Email:    candidate1@test.com
+   Password: Test@123
+   
+   Features:
+   - Apply for jobs
+   - Apply to colleges
+   - Build resume
+   - View applications
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  PART 5: Demo Flow (Show these features)                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+1. Homepage
+   → Show landing page
+   → Explain features
+
+2. Jobs Section
+   → Browse jobs
+   → Search and filter
+   → View job details
+
+3. Login as Candidate
+   → Apply for a job
+   → Show LinkedIn-style application
+   → View my applications
+
+4. Admissions
+   → Browse colleges
+   → Click Apply
+   → Fill application form
+   → Submit
+
+5. Login as Recruiter
+   → Post a new job
+   → View applications
+   → Manage posted jobs
+
+6. Admin Panel
+   → Show college applications
+   → Beautiful formatted view
+   → Update application status
+
+7. Dark Mode
+   → Toggle theme
+   → Show responsive design
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⚠️ Important Notes                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+1. Keep all terminal windows open during demo
+
+2. ngrok URLs change when you restart (free tier)
+   → If you restart, update .env and share new URL
+
+3. Visitors see "ngrok warning" page first
+   → Tell them to click "Visit Site"
+   → This is normal for free tier
+
+4. Free tier limits:
+   → 40 connections/minute
+   → 2 hour session timeout
+   → Random URLs each time
+
+5. For permanent URLs:
+   → Upgrade to ngrok paid ($8/month)
+   → Or deploy to Railway + Netlify (free)
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  🔧 Troubleshooting                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Problem: "ngrok not found"
+Solution:
+   → Make sure ngrok.exe is in C:\ngrok
+   → Or add C:\ngrok to Windows PATH
+   → Or use full path: C:\ngrok\ngrok.exe http 5010
+
+Problem: "Failed to start tunnel"
+Solution:
+   → Check if authtoken is configured
+   → Run: ngrok config add-authtoken YOUR_TOKEN
+   → Verify token at: https://dashboard.ngrok.com
+
+Problem: "Port already in use"
+Solution:
+   → Close other apps using port 5010 or 5173
+   → Or use different ports
+
+Problem: CORS errors in browser
+Solution:
+   → Backend settings.py has CORS_ALLOW_ALL_ORIGINS = True ✅
+   → Restart backend server
+   → Clear browser cache
+
+Problem: Can't connect to backend
+Solution:
+   → Check .env has correct backend ngrok URL
+   → Make sure backend ngrok tunnel is running
+   → Restart frontend server
+
+Problem: "Session expired"
+Solution:
+   → Free tier has 2 hour limit
+   → Restart ngrok tunnels
+   → Update .env with new backend URL
+   → Restart frontend
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  📊 What You Get with ngrok                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+✅ Public HTTPS URLs
+✅ Automatic SSL certificate
+✅ Share with anyone, anywhere
+✅ No deployment configuration
+✅ No server setup needed
+✅ Works on any device
+✅ Perfect for demos
+✅ Free tier available
+✅ Web interface at http://localhost:4040
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  🎯 Quick Commands Reference                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Install ngrok:
+   cd C:\ngrok
+   ngrok config add-authtoken YOUR_TOKEN
+
+Start backend:
+   cd backend
+   python manage.py runserver 0.0.0.0:5010
+
+Start backend tunnel:
+   cd C:\ngrok
+   ngrok http 5010
+
+Start frontend:
+   cd client
+   npm run dev -- --host
+
+Start frontend tunnel:
+   cd C:\ngrok
+   ngrok http 5173
+
+View ngrok dashboard:
+   http://localhost:4040
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  📚 Additional Resources                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Documentation:
+   → NGROK_DEPLOYMENT.md - Complete guide
+   → DEPLOYMENT_SUMMARY.md - All options
+   → DEPLOYMENT_GUIDE.md - Full deployment guide
+
+Scripts:
+   → start-ngrok-demo.bat - Automated launcher
+   → start-demo.bat - Local demo
+
+ngrok Resources:
+   → Website: https://ngrok.com
+   → Docs: https://ngrok.com/docs
+   → Dashboard: https://dashboard.ngrok.com
+
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║                  ✅ Setup Complete! Ready to Demo! ✅            ║
+║                                                                   ║
+║              Run: start-ngrok-demo.bat to begin!                 ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+Last Updated: January 21, 2026

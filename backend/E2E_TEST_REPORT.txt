@@ -1,0 +1,147 @@
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    END-TO-END TEST EXECUTION REPORT                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📅 Test Date: 2026-01-21 16:27:22
+🎯 Test Scope: Complete Job Portal System
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ TEST SUMMARY                                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Total Tests Run: 87
+✅ Passed: 86
+❌ Failed: 1
+⚠️  Warnings: 3
+📊 Pass Rate: 98.85%
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DATA CREATED                                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+👥 Users Created: 18
+💼 Jobs Created: 12
+📝 Applications Created: 30
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ PASSED TESTS                                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+✅ Admin Creation: Created admin1@test.com
+✅ Admin Creation: Created admin2@test.com
+✅ Recruiter Creation: Created recruiter1@test.com
+✅ Recruiter Creation: Created recruiter3@test.com
+✅ Recruiter Creation: Created recruiter4@test.com
+✅ Recruiter Creation: Created recruiter5@test.com
+✅ Recruiter Creation: Created recruiter6@test.com
+✅ Recruiter Creation: Created recruiter7@test.com
+✅ Recruiter Creation: Created recruiter8@test.com
+✅ Candidate Creation: Created candidate1@test.com
+✅ Candidate Creation: Created candidate3@test.com
+✅ Candidate Creation: Created candidate4@test.com
+✅ Candidate Creation: Created candidate5@test.com
+✅ Candidate Creation: Created candidate6@test.com
+✅ Candidate Creation: Created candidate7@test.com
+✅ Candidate Creation: Created candidate8@test.com
+✅ Candidate Creation: Created candidate9@test.com
+✅ Candidate Creation: Created candidate10@test.com
+✅ Company Profile: Created profile for recruiter1@test.com - TechCorp Alpha 1
+✅ Company Profile: Created profile for recruiter3@test.com - CloudNet Gamma 3
+✅ Company Profile: Created profile for recruiter4@test.com - AI Solutions Delta 4
+✅ Company Profile: Created profile for recruiter5@test.com - CyberSec Epsilon 5
+✅ Company Profile: Created profile for recruiter6@test.com - FinTech Zeta 6
+✅ Company Profile: Created profile for recruiter7@test.com - HealthTech Eta 7
+✅ Company Profile: Created profile for recruiter8@test.com - EduTech Theta 8
+✅ Security Test: recruiter1@test.com correctly blocked from posting jobs (not approved)
+✅ Admin Approval: Approved recruiter1@test.com - TechCorp Alpha 1
+✅ Admin Approval: Approved recruiter2@test.com - Another Tech Company
+✅ Admin Approval: Approved recruiter3@test.com - CloudNet Gamma 3
+✅ Admin Approval: Approved recruiter4@test.com - AI Solutions Delta 4
+✅ Admin Approval: Approved recruiter5@test.com - CyberSec Epsilon 5
+✅ Admin Approval: Approved recruiter6@test.com - FinTech Zeta 6
+✅ Admin Rejection: Rejected recruiter7@test.com
+✅ Admin Rejection: Rejected recruiter8@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter1@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter1@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter2@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter2@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter3@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter3@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter4@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter4@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter5@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter5@test.com
+✅ Job Creation: Created 'Senior Python Developer' for recruiter6@test.com
+✅ Job Creation: Created 'Frontend React Developer' for recruiter6@test.com
+✅ Application: candidate1@test.com applied for 'Senior Python Developer'
+✅ Application: candidate1@test.com applied for 'Frontend React Developer'
+✅ Application: candidate1@test.com applied for 'Senior Python Developer'
+✅ Application: candidate2@test.com applied for 'Senior Python Developer'
+✅ Application: candidate2@test.com applied for 'Frontend React Developer'
+✅ Application: candidate2@test.com applied for 'Senior Python Developer'
+✅ Application: candidate3@test.com applied for 'Senior Python Developer'
+✅ Application: candidate3@test.com applied for 'Frontend React Developer'
+✅ Application: candidate3@test.com applied for 'Senior Python Developer'
+✅ Application: candidate4@test.com applied for 'Senior Python Developer'
+✅ Application: candidate4@test.com applied for 'Frontend React Developer'
+✅ Application: candidate4@test.com applied for 'Senior Python Developer'
+✅ Application: candidate5@test.com applied for 'Senior Python Developer'
+✅ Application: candidate5@test.com applied for 'Frontend React Developer'
+✅ Application: candidate5@test.com applied for 'Senior Python Developer'
+✅ Application: candidate6@test.com applied for 'Senior Python Developer'
+✅ Application: candidate6@test.com applied for 'Frontend React Developer'
+✅ Application: candidate6@test.com applied for 'Senior Python Developer'
+✅ Application: candidate7@test.com applied for 'Senior Python Developer'
+✅ Application: candidate7@test.com applied for 'Frontend React Developer'
+✅ Application: candidate7@test.com applied for 'Senior Python Developer'
+✅ Application: candidate8@test.com applied for 'Senior Python Developer'
+✅ Application: candidate8@test.com applied for 'Frontend React Developer'
+✅ Application: candidate8@test.com applied for 'Senior Python Developer'
+✅ Application: candidate9@test.com applied for 'Senior Python Developer'
+✅ Application: candidate9@test.com applied for 'Frontend React Developer'
+✅ Application: candidate9@test.com applied for 'Senior Python Developer'
+✅ Application: candidate10@test.com applied for 'Senior Python Developer'
+✅ Application: candidate10@test.com applied for 'Frontend React Developer'
+✅ Application: candidate10@test.com applied for 'Senior Python Developer'
+✅ Data Isolation: Recruiter jobs properly isolated (R1: 2, R2: 2)
+✅ Data Isolation: Candidate applications properly isolated (C1: 3, C2: 3)
+✅ Data Isolation: Company profiles unique per recruiter (11 profiles)
+✅ Security: Duplicate application correctly prevented
+✅ Security: Candidate role correctly set: candidate1@test.com
+✅ Security: Recruiter role correctly set: recruiter1@test.com
+✅ Security: Approval status: 6 approved, 0 pending
+✅ DB Validation: All user emails unique (39 users)
+✅ DB Validation: All jobs have valid recruiter references
+✅ DB Validation: All applications have valid relationships
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FAILED TESTS                                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+❌ Security Test: Job created before approval - SECURITY BREACH!
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ WARNINGS                                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+⚠️  Recruiter Creation: recruiter2@test.com already exists
+⚠️  Candidate Creation: candidate2@test.com already exists
+⚠️  Company Profile: Profile already exists for recruiter2@test.com
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ SYSTEM VALIDATION CERTIFICATE                                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+⚠️  SYSTEM VALIDATION: FAILED
+
+The system has 1 failing tests that need to be addressed.
+Please review the failed tests above and fix the issues.
+
+System Status: REQUIRES FIXES ⚠️
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           END OF REPORT                                      ║
+╚══════════════════════════════════════════════════════════════════════════════╝

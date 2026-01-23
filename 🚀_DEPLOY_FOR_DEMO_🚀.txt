@@ -1,0 +1,145 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║          🚀 MytechZ - Deploy for Demo in 2 Minutes! 🚀           ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  FASTEST WAY - LOCAL DEMO (2 MINUTES)                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   1. Double-click: start-demo.bat
+   
+   2. Wait 10 seconds
+   
+   3. Open browser: http://localhost:5173
+   
+   4. Done! 🎉
+
+   ✅ Both servers start automatically
+   ✅ Shows network IP for other devices
+   ✅ Displays all login credentials
+   ✅ Press any key to stop everything
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  DEMO ACCOUNTS - Ready to Use                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   👨‍💼 Admin Panel:
+      URL:      http://localhost:5010/admin
+      Email:    admin1@test.com
+      Password: Admin@123
+
+   👔 Recruiter Account:
+      Email:    sivabalan@test.com
+      Password: Test@123
+
+   👤 Candidate Account:
+      Email:    candidate1@test.com
+      Password: Test@123
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  WHAT TO SHOW IN DEMO                                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   1. Homepage - Landing page with features
+   
+   2. Jobs Section - Browse and search jobs
+   
+   3. Login as Candidate - Apply for jobs
+   
+   4. Admissions - Apply to colleges
+   
+   5. Login as Recruiter - Post jobs, view applications
+   
+   6. Admin Panel - Manage college applications
+   
+   7. Dark Mode - Toggle theme
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  DEMO FEATURES                                                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   ✅ Job Posting & Applications (LinkedIn-style)
+   ✅ College Admissions with Form
+   ✅ Recruiter Dashboard
+   ✅ Admin Panel with Beautiful UI
+   ✅ User Profiles
+   ✅ Resume Builder
+   ✅ Dark Mode Support
+   ✅ Mobile Responsive
+   ✅ Real-time Updates
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ACCESS FROM OTHER DEVICES                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   When you run start-demo.bat, it will show your IP address.
+   
+   Example: http://192.168.1.100:5173
+   
+   Share this URL with others on the same WiFi network!
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  NEED PUBLIC URL? (For Remote Demo)                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   See: DEPLOYMENT_GUIDE.md
+   
+   Options:
+   - Railway + Netlify (Free, 30 min setup)
+   - Vercel + Render (Free, 30 min setup)
+   - Docker (15 min setup)
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  TROUBLESHOOTING                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   ❌ Port already in use?
+      → Close other apps using port 5010 or 5173
+   
+   ❌ Can't access from other devices?
+      → Check Windows Firewall settings
+      → Make sure devices are on same WiFi
+   
+   ❌ Backend not starting?
+      → cd backend
+      → python manage.py migrate
+   
+   ❌ Frontend not starting?
+      → cd client
+      → npm install
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  FILES CREATED FOR YOU                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   ✅ start-demo.bat              - One-click demo launcher
+   ✅ DEPLOYMENT_GUIDE.md         - Complete deployment guide
+   ✅ DEPLOYMENT_QUICK_START.txt  - Quick reference
+   ✅ docker-compose.yml          - Docker setup
+   ✅ backend/Dockerfile          - Backend container
+   ✅ client/Dockerfile           - Frontend container
+   ✅ backend/Procfile            - Railway/Heroku config
+   ✅ backend/runtime.txt         - Python version
+   ✅ requirements-production.txt - Production dependencies
+
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║                    🎯 READY TO DEMO!                             ║
+║                                                                   ║
+║              Just run: start-demo.bat                            ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+Last Updated: January 21, 2026
