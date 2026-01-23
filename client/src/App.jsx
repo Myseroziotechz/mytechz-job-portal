@@ -14,7 +14,6 @@ import Webinars from './pages/Webinars';
 import AdmissionCards from './pages/AdmissionCards';
 import TestShare from './pages/TestShare';
 import Mentorship from './pages/Mentorship';
-import Portfolio from './pages/Portfolio';
 import Login from './pages/Login';
 import Register from './pages/Register';  
 import RecruiterRegister from './pages/RecruiterRegister';
@@ -82,7 +81,6 @@ function App() {
         <Route path="/test-share" element={<TestShare />} />
         <Route path="/test-share/:shareId" element={<TestShare />} />
         <Route path="/mentorship" element={<Mentorship />} />
-        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recruiter/register" element={<RecruiterRegister />} />

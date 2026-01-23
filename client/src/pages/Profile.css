@@ -525,52 +525,92 @@
 }
 
 /* Resume Section */
+/* Resume Section - Enhanced Premium Design */
 .naukri-resume-upload {
   border: 2px dashed var(--naukri-border);
-  border-radius: 8px;
-  padding: 32px;
+  border-radius: 12px;
+  padding: 40px 32px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 
 .naukri-resume-upload:hover {
   border-color: var(--naukri-blue);
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(74, 144, 226, 0.1);
 }
 
 .naukri-resume-upload i {
-  font-size: 48px;
+  font-size: 56px;
   color: var(--naukri-blue);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.naukri-resume-upload h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.naukri-resume-upload p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 .naukri-resume-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
   margin-top: 16px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.naukri-resume-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border-color: var(--naukri-blue);
 }
 
 .naukri-resume-details {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .naukri-resume-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--naukri-blue);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--naukri-blue) 0%, #5a9ee0 100%);
   color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.naukri-resume-details h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.naukri-resume-details p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
 }
 
 /* Responsive Design */

@@ -97,7 +97,6 @@ function Login() {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        console.log('Login successful:', response.data.user);
         
         // Dispatch auth change event
         window.dispatchEvent(new Event('authChange'));
@@ -113,8 +112,6 @@ function Login() {
       }
 
     } catch (error) {
-      console.error('Login error:', error);
-      
       // Extract detailed error message from backend
       let errorMessage = 'Login failed';
       

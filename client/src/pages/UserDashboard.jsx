@@ -3,7 +3,6 @@ import './UserDashboard.css';
 
 function UserDashboard() {
   const [dashboardData, setDashboardData] = useState(null);
-  const [portfolioRequests, setPortfolioRequests] = useState([]);
   const [govExamApplications, setGovExamApplications] = useState([]);
   const [user, setUser] = useState(null);
 
@@ -11,7 +10,6 @@ function UserDashboard() {
     const userData = JSON.parse(localStorage.getItem('user'));
     setUser(userData);
     fetchDashboardData();
-    fetchPortfolioRequests();
     fetchGovExamApplications();
     
     // Listen for government exam application updates
@@ -22,7 +20,6 @@ function UserDashboard() {
 
       const handleWindowFocus = () => {
       fetchDashboardData();
-      fetchPortfolioRequests();
       fetchGovExamApplications();
     };
 
@@ -60,21 +57,6 @@ function UserDashboard() {
         stats: { total: 0, pending: 0, approved: 0, rejected: 0 },
         applications: []
       });
-    }
-  };
-
-  const fetchPortfolioRequests = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/portfolio/user-requests`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const data = await response.json();
-      if (data.success) {
-        setPortfolioRequests(data.requests);
-      }
-    } catch (error) {
-      console.error('Error fetching portfolio requests:', error);
     }
   };
 
@@ -317,34 +299,6 @@ function UserDashboard() {
                     {app.notes && (
                       <p><strong>Admin Note:</strong> {app.notes}</p>
                     )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-
-        <section className="portfolio-requests">
-          <h2>Portfolio Requests</h2>
-          {portfolioRequests.length === 0 ? (
-            <div className="no-requests">
-              <p>No portfolio requests yet.</p>
-              <a href="/portfolio" className="apply-btn">Create Portfolio</a>
-            </div>
-          ) : (
-            <div className="requests-grid">
-              {portfolioRequests.map(request => (
-                <div key={request._id} className="request-card">
-                  <div className="card-header">
-                    <h3>{request.templateType === 'predefined' ? 'Predefined Template' : 'Customized Template'}</h3>
-                    <span className={`status-badge ${request.status}`}>
-                      {request.status.toUpperCase()}
-                    </span>
-                  </div>
-                  <div className="card-body">
-                    <p><strong>Theme:</strong> {request.theme}</p>
-                    <p><strong>Submitted:</strong> {new Date(request.submittedAt).toLocaleDateString()}</p>
-                    <p><strong>Price:</strong> {request.templateType === 'predefined' ? '₹500/year' : '₹1500/year'}</p>
                   </div>
                 </div>
               ))}

@@ -105,3 +105,30 @@
   text-decoration: underline;
 }
 
+
+
+/* Login CTA Button for Recruiter Register */
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.login-cta-btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #a020f0;
+  border-radius: 8px;
+  color: #a020f0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.login-cta-btn:hover {
+  background-color: #a020f0;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(160, 32, 240, 0.2);
+}

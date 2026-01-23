@@ -3,10 +3,6 @@ import axios from 'axios';
 import './Register.css'; // Reusing existing register styles
 
 function RecruiterRegister() {
-  // Add error boundary and debugging
-  const [debugMode, setDebugMode] = useState(false);
-  const [renderError, setRenderError] = useState(null);
-
   // Form State
   const [formData, setFormData] = useState({
     companyEmail: '',
@@ -33,13 +29,11 @@ function RecruiterRegister() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // Error boundary
-  try {
-    // Input Change Handler
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-    };
+  // Input Change Handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   // Submit Handler
   const handleSubmit = async (e) => {
@@ -69,8 +63,6 @@ function RecruiterRegister() {
         window.location.href = '/login';
       }
     } catch (error) {
-      console.error('Registration error:', error);
-      
       let errorMessage = 'Registration failed';
       
       if (error.response?.data) {
@@ -282,101 +274,15 @@ function RecruiterRegister() {
 
               {/* Login Link */}
               <div className="login-link">
-                Already have an account? <a href="/login">Login here</a>
+                <span style={{ color: '#666', marginRight: '0.5rem' }}>Already have an account?</span>
+                <a href="/login" className="login-cta-btn">Log in</a>
               </div>
-
-              {/* Debug Info */}
-              {debugMode && (
-                <div style={{ 
-                  marginTop: '1rem', 
-                  padding: '1rem', 
-                  backgroundColor: '#f8f9fa', 
-                  border: '1px solid #dee2e6',
-                  borderRadius: '4px',
-                  fontSize: '0.8rem'
-                }}>
-                  <strong>Debug Info:</strong>
-                  <br />Current URL: {window.location.href}
-                  <br />Form Data: {JSON.stringify(formData, null, 2)}
-                </div>
-              )}
-
-              {/* Debug Toggle */}
-              <button 
-                type="button" 
-                onClick={() => setDebugMode(!debugMode)}
-                style={{
-                  marginTop: '1rem',
-                  padding: '0.5rem',
-                  backgroundColor: '#6c757d',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '0.8rem'
-                }}
-              >
-                {debugMode ? 'Hide Debug' : 'Show Debug'}
-              </button>
             </form>
           </div>
         </div>
       </div>
     </div>
   );
-
-  } catch (error) {
-    // Error boundary fallback
-    return (
-      <div style={{ 
-        padding: '2rem', 
-        textAlign: 'center',
-        backgroundColor: '#f8d7da',
-        color: '#721c24',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <h1>⚠️ Component Error</h1>
-        <p>There was an error rendering the Recruiter Registration form.</p>
-        <p><strong>Error:</strong> {error.message}</p>
-        
-        <div style={{ marginTop: '2rem' }}>
-          <button 
-            onClick={() => window.location.reload()} 
-            style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              margin: '0.5rem'
-            }}
-          >
-            Reload Page
-          </button>
-          
-          <a 
-            href="/test" 
-            style={{
-              display: 'inline-block',
-              padding: '0.5rem 1rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '4px',
-              margin: '0.5rem'
-            }}
-          >
-            Go to Test Page
-          </a>
-        </div>
-      </div>
-    );
-  }
 }
 
 export default RecruiterRegister;

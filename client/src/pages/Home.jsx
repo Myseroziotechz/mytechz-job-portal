@@ -193,25 +193,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* portfolio maker */}
-      <div className='portfolio-maker-section' ref={useScrollAnimation('move-in-left')}>
-        <div className="portfolio-maker-content">
-          <div className="portfolio-maker-icon">
-            <i className="ri-briefcase-4-line animated-icon"></i>
-          </div>
-          <h2 className="portfolio-maker-title">Create Your Personal Portfolio</h2>
-          <p className="portfolio-maker-description">
-            Build a stunning personal portfolio or website to showcase your skills and achievements.
-          </p>
-          <button 
-            className="portfolio-cta-btn"
-            onClick={() => window.location.href = '/portfolio'}
-          >
-            <i className="ri-rocket-line"></i>
-            Get Your Own Portfolio
-          </button>
-        </div>
-      </div>
       {/* Resume Section */}
       <div className="resume-section" ref={useScrollAnimation('move-in-right')}>
         <div className="resume-content">
