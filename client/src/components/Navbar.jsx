@@ -201,97 +201,184 @@ useEffect(() => {
         </div>
 
       </div>
-    {/* Sidebar */}
+    {/* Naukri-Style Sidebar */}
     {sidebarOpen && (
-  <div className="sidebar-overlay"> {/* optional: click area to close */}
-    <div className="sidebar" ref={sidebarRef}>
-      <div className="sidebar-header">
-        <div className="user-info">
-          <div className="user-avatar">
+  <div className="naukri-sidebar-overlay" onClick={handleSidebarClose}>
+    <div className="naukri-sidebar" ref={sidebarRef} onClick={(e) => e.stopPropagation()}>
+      {/* Profile Header Section */}
+      <div className="naukri-sidebar-header">
+        <button className="naukri-close-btn" onClick={handleSidebarClose}>
+          <i className="ri-close-line"></i>
+        </button>
+        
+        <div className="naukri-profile-section">
+          <div className="naukri-avatar-wrapper">
             {userInfo?.profilePhoto ? (
-              <>
-                <img 
-                  src={userInfo.profilePhoto} 
-                  alt="User Profile Picture" 
-                  className="sidebar-profile-img"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
-                  }}
-                />
-                <i className="ri-user-line" style={{ display: 'none' }}></i>
-              </>
-            ) : (
+              <img 
+                src={userInfo.profilePhoto} 
+                alt="Profile" 
+                className="naukri-avatar-img"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+            ) : null}
+            <div className="naukri-avatar-placeholder" style={{ display: userInfo?.profilePhoto ? 'none' : 'flex' }}>
               <i className="ri-user-line"></i>
+            </div>
+          </div>
+          
+          <div className="naukri-profile-info">
+            <h3 className="naukri-profile-name">{userInfo?.name || 'User'}</h3>
+            <p className="naukri-profile-email">{userInfo?.email || 'user@example.com'}</p>
+            {userInfo?.role === 'user' && (
+              <Link to="/profile" className="naukri-view-profile" onClick={handleSidebarClose}>
+                View Profile <i className="ri-arrow-right-line"></i>
+              </Link>
             )}
           </div>
-          <div className="user-details">
-            <span className="user-name">{userInfo?.name || 'User'}</span> <br />
-            <span className="user-email">{userInfo?.email || 'user@example.com'}</span>
-          </div>
         </div>
-        <button className="close-btn" onClick={handleSidebarClose}>×</button>
       </div>
 
-      <ul>
-        <div className="sidebar-divider"></div>
-        <li><Link to={userInfo?.role === 'admin' ? '/dashboard/admin' : userInfo?.role === 'recruiter' ? '/recruiter' : '/dashboard/user'} onClick={handleSidebarClose}><i className="ri-dashboard-line"></i>Dashboard</Link></li>
-        <div className="sidebar-divider"></div>
-        
+      {/* Navigation Menu */}
+      <nav className="naukri-sidebar-nav">
         {userInfo?.role === 'admin' ? (
           <>
-            <li><Link to="/admin/jobs" onClick={handleSidebarClose}><i className="ri-briefcase-line"></i>Manage Jobs</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/admin/admissions" onClick={handleSidebarClose}><i className="ri-school-line"></i>Manage Admissions</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/admin/users" onClick={handleSidebarClose}><i className="ri-group-line"></i>Manage Users</Link></li>
-            <div className="sidebar-divider"></div>
+            <Link 
+              to="/dashboard/admin" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </Link>
+            <Link 
+              to="/admin/jobs" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-briefcase-4-line"></i>
+              <span>Manage Jobs</span>
+            </Link>
+            <Link 
+              to="/admin/admissions" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-graduation-cap-line"></i>
+              <span>Manage Admissions</span>
+            </Link>
+            <Link 
+              to="/admin/users" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-team-line"></i>
+              <span>Manage Users</span>
+            </Link>
           </>
         ) : userInfo?.role === 'recruiter' ? (
           <>
-            <li><Link to="/recruiter/search-candidates" onClick={handleSidebarClose}><i className="ri-search-line"></i>Search Candidates</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/recruiter/saved-profiles" onClick={handleSidebarClose}><i className="ri-bookmark-line"></i>Saved Profiles</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/recruiter/posted-jobs" onClick={handleSidebarClose}><i className="ri-briefcase-line"></i>Posted Jobs</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/recruiter/subscription" onClick={handleSidebarClose}><i className="ri-coin-line"></i>Credits & Plans</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/recruiter/messages" onClick={handleSidebarClose}><i className="ri-message-line"></i>Messages</Link></li>
-            <div className="sidebar-divider"></div>
+            <Link 
+              to="/recruiter" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </Link>
+            <Link 
+              to="/recruiter/search-candidates" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-search-2-line"></i>
+              <span>Search Candidates</span>
+            </Link>
+            <Link 
+              to="/recruiter/saved-profiles" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-bookmark-3-line"></i>
+              <span>Saved Profiles</span>
+            </Link>
+            <Link 
+              to="/recruiter/posted-jobs" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-briefcase-4-line"></i>
+              <span>Posted Jobs</span>
+            </Link>
+            <Link 
+              to="/recruiter/subscription" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-vip-crown-line"></i>
+              <span>Credits & Plans</span>
+            </Link>
+            <Link 
+              to="/recruiter/messages" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-message-3-line"></i>
+              <span>Messages</span>
+            </Link>
           </>
         ) : (
           <>
-            <li><Link to="/profile" onClick={handleSidebarClose}><i className="ri-user-line"></i>Profile</Link></li>
-            <div className="sidebar-divider"></div>
-            <li><Link to="/applications" onClick={handleSidebarClose}><i className="ri-file-list-line"></i>My Applications</Link></li>
-            <div className="sidebar-divider"></div>
+            <Link 
+              to="/dashboard/user" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </Link>
+            <Link 
+              to="/profile" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-user-3-line"></i>
+              <span>Profile</span>
+            </Link>
+            <Link 
+              to="/applications" 
+              className="naukri-nav-item"
+              onClick={handleSidebarClose}
+            >
+              <i className="ri-file-list-3-line"></i>
+              <span>My Applications</span>
+            </Link>
           </>
         )}
-        
-        {/* <li><Link to="/settings" onClick={handleSidebarClose}><i className="ri-settings-line"></i>Settings</Link></li>
-        <div className="sidebar-divider"></div> */}
-        <li>
-          <button onClick={() => {
-             // Clear auth data
-                localStorage.removeItem('token');
-                localStorage.removeItem('user');
+      </nav>
 
-                // Update login state
-                setIsLoggedIn(false);
-                setUserInfo(null);
-
-                // Close sidebar
-                handleSidebarClose();
-
-                // Redirect to login or homepage
-            window.location.href = '/login';
-          }}>
-            Logout
-          </button>
-        </li>
-        <div className="sidebar-divider"></div>
-      </ul>
+      {/* Logout Section */}
+      <div className="naukri-sidebar-footer">
+        <div className="naukri-divider"></div>
+        <button 
+          className="naukri-logout-btn"
+          onClick={() => {
+            if (confirm('Are you sure you want to logout?')) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              setIsLoggedIn(false);
+              setUserInfo(null);
+              handleSidebarClose();
+              window.location.href = '/login';
+            }
+          }}
+        >
+          <i className="ri-logout-box-r-line"></i>
+          <span>Logout</span>
+        </button>
+      </div>
     </div>
   </div>
   )}
