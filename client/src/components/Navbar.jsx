@@ -1,14 +1,13 @@
 //./components/Navbar.jsx
 import React,{useRef,useState, useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ProfileDropdown from './ProfileDropdown';
 import './Navbar.css'; 
 
 function Navbar() {
-  const sidebarRef = useRef(null);
   const location = useLocation();
 
-  // function to open and close the sidebar
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  // function to open and close the mobile menu only
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [jobDropdownOpen, setJobDropdownOpen] = useState(false);
 const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -25,17 +24,9 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
 });
 
   
-  const handleSidebarToggle = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
 const handleThemeToggle = () => {
   setIsDarkMode(prev => !prev);
 };
-
-  const handleSidebarClose = () => {
-    setSidebarOpen(false);
-  };
   
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -50,23 +41,19 @@ const handleThemeToggle = () => {
     setJobDropdownOpen(!jobDropdownOpen);
   };
 
-  // close the sidebar by hover on body
+  // close the mobile menu by clicking outside
   useEffect(() => {
   function handleClickOutside(event) {
-    if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-      handleSidebarClose();
-    }
     // Close mobile menu when clicking outside on mobile/tablet
     if (mobileMenuOpen && !event.target.closest('.menu') && !event.target.closest('.dropdown-content')) {
         handleMobileMenuClose();
     }
-
   }
   document.addEventListener("mousedown", handleClickOutside);
   return () => {
     document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [sidebarOpen, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   // login check
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -180,208 +167,25 @@ useEffect(() => {
        )}
         
         <div className="log-icon-div">
-          <div className="login-img" onClick={handleSidebarToggle}>
-            {isLoggedIn && userInfo?.profilePhoto ? (
-              <>
-                <img 
-                  src={userInfo.profilePhoto} 
-                  alt="User Profile Picture" 
-                  className="profile-nav-img"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
-                  }}
-                />
-                <i className="ri-user-line" style={{ display: 'none' }}></i>
-              </>
-            ) : (
+          {isLoggedIn ? (
+            <ProfileDropdown 
+              userInfo={userInfo}
+              onLogout={() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                setIsLoggedIn(false);
+                setUserInfo(null);
+                window.location.href = '/login';
+              }}
+            />
+          ) : (
+            <Link to="/login" className="login-img">
               <i className="ri-user-line"></i>
-            )}
-          </div>
+            </Link>
+          )}
         </div>
 
       </div>
-    {/* Naukri-Style Sidebar */}
-    {sidebarOpen && (
-  <div className="naukri-sidebar-overlay" onClick={handleSidebarClose}>
-    <div className="naukri-sidebar" ref={sidebarRef} onClick={(e) => e.stopPropagation()}>
-      {/* Profile Header Section */}
-      <div className="naukri-sidebar-header">
-        <button className="naukri-close-btn" onClick={handleSidebarClose}>
-          <i className="ri-close-line"></i>
-        </button>
-        
-        <div className="naukri-profile-section">
-          <div className="naukri-avatar-wrapper">
-            {userInfo?.profilePhoto ? (
-              <img 
-                src={userInfo.profilePhoto} 
-                alt="Profile" 
-                className="naukri-avatar-img"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-            ) : null}
-            <div className="naukri-avatar-placeholder" style={{ display: userInfo?.profilePhoto ? 'none' : 'flex' }}>
-              <i className="ri-user-line"></i>
-            </div>
-          </div>
-          
-          <div className="naukri-profile-info">
-            <h3 className="naukri-profile-name">{userInfo?.name || 'User'}</h3>
-            <p className="naukri-profile-email">{userInfo?.email || 'user@example.com'}</p>
-            {userInfo?.role === 'user' && (
-              <Link to="/profile" className="naukri-view-profile" onClick={handleSidebarClose}>
-                View Profile <i className="ri-arrow-right-line"></i>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation Menu */}
-      <nav className="naukri-sidebar-nav">
-        {userInfo?.role === 'admin' ? (
-          <>
-            <Link 
-              to="/dashboard/admin" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-dashboard-3-line"></i>
-              <span>Dashboard</span>
-            </Link>
-            <Link 
-              to="/admin/jobs" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-briefcase-4-line"></i>
-              <span>Manage Jobs</span>
-            </Link>
-            <Link 
-              to="/admin/admissions" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-graduation-cap-line"></i>
-              <span>Manage Admissions</span>
-            </Link>
-            <Link 
-              to="/admin/users" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-team-line"></i>
-              <span>Manage Users</span>
-            </Link>
-          </>
-        ) : userInfo?.role === 'recruiter' ? (
-          <>
-            <Link 
-              to="/recruiter" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-dashboard-3-line"></i>
-              <span>Dashboard</span>
-            </Link>
-            <Link 
-              to="/recruiter/search-candidates" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-search-2-line"></i>
-              <span>Search Candidates</span>
-            </Link>
-            <Link 
-              to="/recruiter/saved-profiles" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-bookmark-3-line"></i>
-              <span>Saved Profiles</span>
-            </Link>
-            <Link 
-              to="/recruiter/posted-jobs" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-briefcase-4-line"></i>
-              <span>Posted Jobs</span>
-            </Link>
-            <Link 
-              to="/recruiter/subscription" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-vip-crown-line"></i>
-              <span>Credits & Plans</span>
-            </Link>
-            <Link 
-              to="/recruiter/messages" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-message-3-line"></i>
-              <span>Messages</span>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link 
-              to="/dashboard/user" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-dashboard-3-line"></i>
-              <span>Dashboard</span>
-            </Link>
-            <Link 
-              to="/profile" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-user-3-line"></i>
-              <span>Profile</span>
-            </Link>
-            <Link 
-              to="/applications" 
-              className="naukri-nav-item"
-              onClick={handleSidebarClose}
-            >
-              <i className="ri-file-list-3-line"></i>
-              <span>My Applications</span>
-            </Link>
-          </>
-        )}
-      </nav>
-
-      {/* Logout Section */}
-      <div className="naukri-sidebar-footer">
-        <div className="naukri-divider"></div>
-        <button 
-          className="naukri-logout-btn"
-          onClick={() => {
-            if (confirm('Are you sure you want to logout?')) {
-              localStorage.removeItem('token');
-              localStorage.removeItem('user');
-              setIsLoggedIn(false);
-              setUserInfo(null);
-              handleSidebarClose();
-              window.location.href = '/login';
-            }
-          }}
-        >
-          <i className="ri-logout-box-r-line"></i>
-          <span>Logout</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  )}
     </nav>
   );
 }
