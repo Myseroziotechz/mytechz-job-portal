@@ -909,3 +909,215 @@ def update_application_status_view(request, application_id):
             'success': False,
             'message': 'Application not found'
         }, status=status.HTTP_404_NOT_FOUND)
+
+
+# ============================================================================
+# CANDIDATE SEARCH & SAVED PROFILES - REAL DATA ONLY
+# ============================================================================
+
+from .models import SavedCandidate
+from authentication.serializers import UserProfileSerializer
+
+
+@api_view(['GET'])
+@permission_classes([IsRecruiter])
+def search_candidates_view(request):
+    """
+    Search real candidate users - NO DUMMY DATA
+    STRICT DATA ISOLATION: Returns only real registered candidates
+    """
+    # Get all candidates (role='candidate')
+    candidates = User.objects.filter(role='candidate', is_active=True)
+    
+    # Apply filters from query params
+    keyword = request.GET.get('keyword', '').strip()
+    location = request.GET.get('location', '').strip()
+    experience = request.GET.get('experience', '').strip()
+    skills = request.GET.get('skills', '').strip()
+    
+    # Keyword search (name, email, skills)
+    if keyword:
+        candidates = candidates.filter(
+            models.Q(first_name__icontains=keyword) |
+            models.Q(last_name__icontains=keyword) |
+            models.Q(email__icontains=keyword)
+        )
+    
+    # Location filter
+    if location:
+        candidates = candidates.filter(
+            models.Q(city__icontains=location) |
+            models.Q(state__icontains=location)
+        )
+    
+    # Experience filter (if profile has experience field)
+    if experience:
+        # This would need to be implemented based on your User model fields
+        pass
+    
+    # Skills filter (if profile has skills field)
+    if skills:
+        # This would need to be implemented based on your User model fields
+        pass
+    
+    # Get saved candidate IDs for this recruiter
+    saved_candidate_ids = SavedCandidate.objects.filter(
+        recruiter=request.user
+    ).values_list('candidate_id', flat=True)
+    
+    # Serialize candidates
+    serializer = UserProfileSerializer(candidates, many=True)
+    
+    # Add is_saved flag to each candidate
+    candidates_data = serializer.data
+    for candidate in candidates_data:
+        candidate['is_saved'] = candidate['id'] in saved_candidate_ids
+    
+    return Response({
+        'success': True,
+        'count': len(candidates_data),
+        'candidates': candidates_data,
+        'filters': {
+            'keyword': keyword,
+            'location': location,
+            'experience': experience,
+            'skills': skills
+        }
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([IsRecruiter])
+def save_candidate_view(request):
+    """
+    Save a candidate profile
+    STRICT DATA ISOLATION: Only saves for logged-in recruiter
+    """
+    candidate_id = request.data.get('candidate_id')
+    
+    if not candidate_id:
+        return Response({
+            'success': False,
+            'message': 'Candidate ID is required'
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Verify candidate exists and is a candidate
+    try:
+        candidate = User.objects.get(id=candidate_id, role='candidate')
+    except User.DoesNotExist:
+        return Response({
+            'success': False,
+            'message': 'Candidate not found'
+        }, status=status.HTTP_404_NOT_FOUND)
+    
+    # Check if already saved
+    if SavedCandidate.objects.filter(recruiter=request.user, candidate=candidate).exists():
+        return Response({
+            'success': False,
+            'message': 'Candidate already saved'
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Save candidate
+    saved_candidate = SavedCandidate.objects.create(
+        recruiter=request.user,
+        candidate=candidate
+    )
+    
+    return Response({
+        'success': True,
+        'message': 'Candidate saved successfully',
+        'saved_at': saved_candidate.saved_at
+    }, status=status.HTTP_201_CREATED)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsRecruiter])
+def unsave_candidate_view(request, candidate_id):
+    """
+    Remove a saved candidate
+    STRICT DATA ISOLATION: Only removes for logged-in recruiter
+    """
+    try:
+        saved_candidate = SavedCandidate.objects.get(
+            recruiter=request.user,
+            candidate_id=candidate_id
+        )
+        saved_candidate.delete()
+        
+        return Response({
+            'success': True,
+            'message': 'Candidate removed from saved list'
+        }, status=status.HTTP_200_OK)
+        
+    except SavedCandidate.DoesNotExist:
+        return Response({
+            'success': False,
+            'message': 'Saved candidate not found'
+        }, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+@permission_classes([IsRecruiter])
+def saved_profiles_view(request):
+    """
+    Get all saved candidates for logged-in recruiter
+    STRICT DATA ISOLATION: Only returns candidates saved by THIS recruiter
+    """
+    # Get saved candidates for this recruiter only
+    saved_candidates = SavedCandidate.objects.filter(
+        recruiter=request.user
+    ).select_related('candidate').order_by('-saved_at')
+    
+    # Build response data
+    profiles = []
+    for saved in saved_candidates:
+        candidate = saved.candidate
+        profile_data = {
+            'id': candidate.id,
+            'name': candidate.full_name,
+            'email': candidate.email,
+            'phone': candidate.phone_number,
+            'location': f"{candidate.city}, {candidate.state}" if candidate.city and candidate.state else '',
+            'skills': [],  # Add from profile if available
+            'experience': '',  # Add from profile if available
+            'education': '',  # Add from profile if available
+            'saved_at': saved.saved_at,
+            'notes': saved.notes or '',
+            'profile_photo': candidate.profile_photo.url if candidate.profile_photo else None
+        }
+        profiles.append(profile_data)
+    
+    return Response({
+        'success': True,
+        'count': len(profiles),
+        'profiles': profiles
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(['PUT'])
+@permission_classes([IsRecruiter])
+def update_candidate_notes_view(request, candidate_id):
+    """
+    Update notes for a saved candidate
+    STRICT DATA ISOLATION: Only updates for logged-in recruiter
+    """
+    notes = request.data.get('notes', '')
+    
+    try:
+        saved_candidate = SavedCandidate.objects.get(
+            recruiter=request.user,
+            candidate_id=candidate_id
+        )
+        saved_candidate.notes = notes
+        saved_candidate.save()
+        
+        return Response({
+            'success': True,
+            'message': 'Notes updated successfully'
+        }, status=status.HTTP_200_OK)
+        
+    except SavedCandidate.DoesNotExist:
+        return Response({
+            'success': False,
+            'message': 'Saved candidate not found'
+        }, status=status.HTTP_404_NOT_FOUND)

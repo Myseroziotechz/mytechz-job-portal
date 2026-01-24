@@ -49,11 +49,6 @@ function RecruiterLayout() {
       label: 'Search Candidates'
     },
     {
-      path: '/recruiter/resume-database',
-      icon: 'ri-database-line',
-      label: 'Resume Database'
-    },
-    {
       path: '/recruiter/saved-profiles',
       icon: 'ri-bookmark-line',
       label: 'Saved Profiles'

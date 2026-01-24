@@ -353,3 +353,42 @@ class JobApplication(models.Model):
     def is_active(self):
         """Check if application is still active"""
         return self.status not in ['rejected', 'withdrawn', 'accepted']
+
+
+class SavedCandidate(models.Model):
+    """
+    Saved Candidate model - Tracks candidates saved by recruiters
+    STRICT DATA ISOLATION: Each recruiter can only see their own saved candidates
+    """
+    
+    # Primary Key and Foreign Keys
+    id = models.AutoField(primary_key=True)
+    recruiter = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={'role': 'recruiter'},
+        related_name='saved_candidates'
+    )
+    candidate = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={'role': 'candidate'},
+        related_name='saved_by_recruiters'
+    )
+    
+    # Recruiter Notes
+    notes = models.TextField(blank=True, null=True, help_text="Private notes about this candidate")
+    
+    # Timestamps
+    saved_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = 'saved_candidates'
+        verbose_name = 'Saved Candidate'
+        verbose_name_plural = 'Saved Candidates'
+        ordering = ['-saved_at']
+        unique_together = ['recruiter', 'candidate']  # Prevent duplicate saves
+    
+    def __str__(self):
+        return f"{self.recruiter.full_name} saved {self.candidate.full_name}"
