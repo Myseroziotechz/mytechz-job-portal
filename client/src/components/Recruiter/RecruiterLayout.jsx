@@ -4,6 +4,7 @@ import './RecruiterLayout.css';
 
 function RecruiterLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [credits, setCredits] = useState(0);
   const [notifications, setNotifications] = useState(3);
@@ -94,8 +95,16 @@ function RecruiterLayout() {
 
   return (
     <div className="recruiter-layout">
+      {/* Mobile Overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="mobile-sidebar-overlay" 
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Left Sidebar */}
-      <div className={`recruiter-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <div className={`recruiter-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
           <div className="logo-section">
             <div className="logo-img"></div>
@@ -116,6 +125,7 @@ function RecruiterLayout() {
               to={item.path}
               className={`nav-item ${isActiveRoute(item.path, item.exact) ? 'active' : ''}`}
               title={sidebarCollapsed ? item.label : ''}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <i className={item.icon}></i>
               {!sidebarCollapsed && <span>{item.label}</span>}
@@ -154,6 +164,13 @@ function RecruiterLayout() {
         {/* Top Bar */}
         <div className="recruiter-topbar">
           <div className="topbar-left">
+            <button 
+              className="mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <i className="ri-menu-line"></i>
+            </button>
+            
             <div className="global-search">
               <i className="ri-search-line"></i>
               <input 
