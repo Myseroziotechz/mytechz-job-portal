@@ -136,7 +136,7 @@ function Navbar() {
         </div>
         
         {/* Logo */}
-        <div className='logo-img-div-nav'>
+        <div className='logo-img-div-nav' style={{ height: '180px', width: '180px', minHeight: '180px', minWidth: '180px' }}>
           <img src="../assets/logo2.png" alt="MytechZ Logo" className="logo-img"/>
         </div>
       </div>

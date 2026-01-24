@@ -55,8 +55,8 @@ nav {
 
 .logo-img-div-nav {
   padding-left: 25px;
-  height: 180px;
-  width: 180px;
+  height: 180px !important;
+  width: 180px !important;
   display: flex;
   align-items: center;
   justify-content: center;
