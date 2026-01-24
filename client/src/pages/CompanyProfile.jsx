@@ -47,6 +47,31 @@ function CompanyProfile() {
       const token = localStorage.getItem('token');
       console.log('Token exists:', !!token);
       
+      // Check if using demo mode
+      if (token === 'demo-recruiter-token') {
+        setDebugInfo('Demo mode detected - using demo data');
+        setProfileExists(true);
+        setFormData({
+          companyName: 'TechCorp Solutions',
+          website: 'https://techcorp.example.com',
+          industry: 'Information Technology',
+          companySize: '50-200',
+          foundedYear: '2015',
+          headOfficeLocation: 'San Francisco, CA',
+          gstCin: 'DEMO123456789',
+          registrationDocument: null,
+          verificationStatus: 'verified',
+          companyDescription: 'Leading technology solutions provider specializing in cloud computing and AI.',
+          missionCulture: 'Innovation-driven culture focused on solving real-world problems.',
+          benefitsPerks: ['Health Insurance', 'Remote Work', 'Learning Budget', 'Flexible Hours'],
+          officeAddress: '123 Tech Street, San Francisco, CA 94105',
+          workMode: 'hybrid',
+          officePhotos: []
+        });
+        setLoading(false);
+        return;
+      }
+      
       if (!token) {
         setDebugInfo('No token found, redirecting to login...');
         window.location.href = '/login';
