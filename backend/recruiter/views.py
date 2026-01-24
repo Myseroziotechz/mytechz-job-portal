@@ -6,7 +6,8 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.db import models
 from authentication.models import User
-from .models import RecruiterCompanyProfile, JobPost
+from authentication.serializers import UserProfileSerializer
+from .models import RecruiterCompanyProfile, JobPost, SavedCandidate, JobApplication
 from .serializers import (
     RecruiterCompanyProfileSerializer,
     RecruiterCompanyProfileUpdateSerializer,
@@ -14,7 +15,9 @@ from .serializers import (
     CompanyVerificationSerializer,
     RecruiterApprovalSerializer,
     RecruiterListSerializer,
-    JobPostSerializer
+    JobPostSerializer,
+    JobApplicationSerializer,
+    JobApplicationCreateSerializer
 )
 from .permissions import IsRecruiter, IsAdmin, IsRecruiterOwner
 
@@ -914,9 +917,6 @@ def update_application_status_view(request, application_id):
 # ============================================================================
 # CANDIDATE SEARCH & SAVED PROFILES - REAL DATA ONLY
 # ============================================================================
-
-from .models import SavedCandidate
-from authentication.serializers import UserProfileSerializer
 
 
 @api_view(['GET'])
