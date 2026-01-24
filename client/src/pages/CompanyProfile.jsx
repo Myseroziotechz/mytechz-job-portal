@@ -173,6 +173,9 @@ function CompanyProfile() {
       }
     }
     
+    console.log('Validation errors:', newErrors);
+    console.log('Form data:', formData);
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -403,6 +406,26 @@ function CompanyProfile() {
               <span style={{ color: '#1565c0', fontWeight: '500' }}>
                 Viewing mode - Click "Edit Profile" button above to make changes
               </span>
+            </div>
+          )}
+          
+          {Object.keys(errors).length > 0 && (
+            <div style={{
+              backgroundColor: '#fee',
+              padding: '1rem',
+              borderRadius: '8px',
+              marginBottom: '1.5rem',
+              border: '1px solid #fcc'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                <i className="ri-error-warning-line" style={{ fontSize: '1.5rem', color: '#d32f2f' }}></i>
+                <strong style={{ color: '#d32f2f' }}>Please fix the following errors:</strong>
+              </div>
+              <ul style={{ margin: '0.5rem 0 0 2.5rem', color: '#c62828' }}>
+                {Object.entries(errors).map(([field, message]) => (
+                  <li key={field}>{message}</li>
+                ))}
+              </ul>
             </div>
           )}
           
