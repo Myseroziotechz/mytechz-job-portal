@@ -37,12 +37,9 @@
 }
 
 .logo-img {
-  width: 50px;
-  height: 50px;
-  background-image: url('../../../assets/logo2.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -84,7 +81,6 @@
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 14px;
   padding: 14px 20px;
   color: var(--text-muted);
   text-decoration: none;
@@ -103,16 +99,6 @@
   background: var(--bg-elevated);
   color: var(--accent);
   border-left-color: var(--accent);
-}
-
-.nav-item i {
-  font-size: 1.2rem;
-  width: 24px;
-  text-align: center;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .nav-item span {
@@ -500,7 +486,6 @@
   .nav-item {
     display: flex !important;
     flex-direction: row !important;
-    gap: 12px;
     padding: 12px 20px;
     text-align: left;
     border-left: 3px solid transparent;

@@ -107,7 +107,11 @@ function RecruiterLayout() {
       <div className={`recruiter-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
           <div className="logo-section">
-            <div className="logo-img"></div>
+            <img 
+              src="../assets/logo2.png" 
+              alt="MytechZ Logo" 
+              className="logo-img"
+            />
             {!sidebarCollapsed && <span className="logo-text">MytechZ</span>}
           </div>
           <button 
@@ -127,7 +131,6 @@ function RecruiterLayout() {
               title={sidebarCollapsed ? item.label : ''}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <i className={item.icon}></i>
               {!sidebarCollapsed && <span>{item.label}</span>}
             </Link>
           ))}

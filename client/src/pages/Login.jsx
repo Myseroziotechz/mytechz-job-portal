@@ -41,7 +41,7 @@ function Login() {
       // Dispatch auth change event
       window.dispatchEvent(new Event('authChange'));
       
-      window.location.href = '/recruiter/dashboard';
+      window.location.href = '/recruiter';
       return;
     }
     
@@ -105,7 +105,7 @@ function Login() {
         if (response.data.user.role === 'admin') {
           window.location.href = '/dashboard/admin';
         } else if (response.data.user.role === 'recruiter') {
-          window.location.href = '/recruiter/dashboard';
+          window.location.href = '/recruiter';
         } else {
           window.location.href = '/dashboard/user';
         }
