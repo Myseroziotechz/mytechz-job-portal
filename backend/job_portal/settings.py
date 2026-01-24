@@ -186,7 +186,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'https://9dce45d1cde6.ngrok-free.app',
-    'https://moonlit-elf-6007d5.netlify.app',  # Your Netlify URL
+    'https://cheery-malasada-331cc2.netlify.app',  # New Netlify URL
 ]
 
 # Allow all Netlify preview URLs
