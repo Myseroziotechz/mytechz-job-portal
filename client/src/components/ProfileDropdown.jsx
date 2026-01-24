@@ -112,7 +112,7 @@ function ProfileDropdown({ userInfo, onLogout }) {
                  userInfo?.role === 'admin' ? 'Administrator' : 'Job Seeker'}
               </p>
               <Link 
-                to="/profile" 
+                to={userInfo?.role === 'recruiter' ? '/recruiter/company-profile' : '/profile'} 
                 className="view-profile-link"
                 onClick={() => setIsOpen(false)}
               >
