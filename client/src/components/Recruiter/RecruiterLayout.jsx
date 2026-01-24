@@ -112,7 +112,6 @@ function RecruiterLayout() {
               alt="MytechZ Logo" 
               className="logo-img"
             />
-            {!sidebarCollapsed && <span className="logo-text">MytechZ</span>}
           </div>
         </div>
 
