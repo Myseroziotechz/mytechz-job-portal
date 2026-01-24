@@ -77,6 +77,8 @@
   flex: 1;
   padding: 20px 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-item {
@@ -484,14 +486,15 @@
   }
   
   .sidebar-nav {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     padding: 20px 0;
     overflow-y: auto;
   }
   
   .nav-item {
-    flex-direction: row;
+    display: flex !important;
+    flex-direction: row !important;
     gap: 12px;
     padding: 12px 20px;
     text-align: left;
@@ -521,11 +524,11 @@
   .recruiter-sidebar .logo-text,
   .recruiter-sidebar .user-info,
   .recruiter-sidebar .logout-btn {
-    display: block;
+    display: block !important;
   }
   
   .recruiter-sidebar .nav-item span {
-    display: block;
+    display: block !important;
   }
   
   .recruiter-main {
