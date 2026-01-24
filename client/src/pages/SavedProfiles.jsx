@@ -29,65 +29,14 @@ function SavedProfiles() {
         const data = await response.json();
         setSavedProfiles(data.profiles || []);
       } else {
-        // Fallback mock data
-        setSavedProfiles(generateMockSavedProfiles());
+        setSavedProfiles([]);
       }
     } catch (error) {
       console.error('Error fetching saved profiles:', error);
-      setSavedProfiles(generateMockSavedProfiles());
+      setSavedProfiles([]);
     } finally {
       setLoading(false);
     }
-  };
-
-  const generateMockSavedProfiles = () => {
-    return [
-      {
-        id: 1,
-        name: 'John Doe',
-        profilePhoto: null,
-        experience: '3 years',
-        skills: ['React', 'Node.js', 'JavaScript', 'MongoDB'],
-        location: 'Mumbai, Maharashtra',
-        expectedSalary: '8-12 LPA',
-        education: 'B.Tech Computer Science',
-        jobRole: 'Frontend Developer',
-        lastActive: '2 days ago',
-        profileCompletion: 85,
-        savedDate: '2024-01-15',
-        notes: 'Strong React skills, good portfolio'
-      },
-      {
-        id: 2,
-        name: 'Jane Smith',
-        profilePhoto: null,
-        experience: '5 years',
-        skills: ['Python', 'Django', 'PostgreSQL', 'AWS'],
-        location: 'Bangalore, Karnataka',
-        expectedSalary: '15-20 LPA',
-        education: 'M.Tech Software Engineering',
-        jobRole: 'Backend Developer',
-        lastActive: '1 day ago',
-        profileCompletion: 92,
-        savedDate: '2024-01-14',
-        notes: 'Excellent backend experience, AWS certified'
-      },
-      {
-        id: 4,
-        name: 'Priya Sharma',
-        profilePhoto: null,
-        experience: '4 years',
-        skills: ['Angular', 'TypeScript', 'Firebase', 'GraphQL'],
-        location: 'Delhi, NCR',
-        expectedSalary: '12-16 LPA',
-        education: 'MCA',
-        jobRole: 'Frontend Developer',
-        lastActive: '3 days ago',
-        profileCompletion: 88,
-        savedDate: '2024-01-12',
-        notes: 'Angular expert, good communication skills'
-      }
-    ];
   };
 
   const applySearch = () => {
@@ -95,10 +44,10 @@ function SavedProfiles() {
 
     if (searchQuery) {
       filtered = filtered.filter(profile =>
-        profile.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        profile.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        profile.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        profile.location.toLowerCase().includes(searchQuery.toLowerCase())
+        profile.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        profile.skills?.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        profile.jobRole?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        profile.location?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -208,9 +157,11 @@ function SavedProfiles() {
               <h2>
                 {filteredProfiles.length} Saved Profile{filteredProfiles.length !== 1 ? 's' : ''}
               </h2>
-              <div className="results-info">
-                Showing {indexOfFirstProfile + 1}-{Math.min(indexOfLastProfile, filteredProfiles.length)} of {filteredProfiles.length}
-              </div>
+              {filteredProfiles.length > 0 && (
+                <div className="results-info">
+                  Showing {indexOfFirstProfile + 1}-{Math.min(indexOfLastProfile, filteredProfiles.length)} of {filteredProfiles.length}
+                </div>
+              )}
             </div>
 
             {currentProfiles.length > 0 ? (

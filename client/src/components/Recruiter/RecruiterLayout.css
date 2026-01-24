@@ -84,8 +84,8 @@
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  gap: 14px;
+  padding: 14px 20px;
   color: var(--text-muted);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -106,15 +106,19 @@
 }
 
 .nav-item i {
-  font-size: 1.1rem;
-  width: 20px;
+  font-size: 1.2rem;
+  width: 24px;
   text-align: center;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-item span {
   white-space: nowrap;
   overflow: hidden;
+  flex: 1;
 }
 
 .recruiter-sidebar.collapsed .nav-item {
@@ -128,8 +132,9 @@
 
 /* ===== Sidebar Footer ===== */
 .sidebar-footer {
-  padding: 20px;
+  padding: 16px 20px;
   border-top: 1px solid var(--border-subtle);
+  background: transparent;
 }
 
 .user-section {
