@@ -5,17 +5,17 @@ function RecruiterDashboard() {
   const [dashboardData, setDashboardData] = useState(null);
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
-  const [isApproved, setIsApproved] = useState(true); // Default to true to avoid blocking UI
+  const [hasCompanyProfile, setHasCompanyProfile] = useState(true); // Check for company profile instead
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
     setUser(userData);
     fetchDashboardData();
-    checkApprovalStatus();
+    checkCompanyProfile();
     
     const handleWindowFocus = () => {
       fetchDashboardData();
-      checkApprovalStatus();
+      checkCompanyProfile();
     };
 
     window.addEventListener('focus', handleWindowFocus);
@@ -25,31 +25,40 @@ function RecruiterDashboard() {
     };
   }, []);
 
-  const checkApprovalStatus = async () => {
+  const checkCompanyProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/auth/profile`, {
+      
+      // Check for demo mode
+      if (token === 'demo-recruiter-token') {
+        setHasCompanyProfile(true);
+        return;
+      }
+      
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/company-profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       if (response.ok) {
         const data = await response.json();
-        const approved = data.approval_status === 'approved';
-        setIsApproved(approved);
+        setHasCompanyProfile(data.success && data.profile !== null);
+      } else if (response.status === 404) {
+        setHasCompanyProfile(false);
       }
     } catch (error) {
-      console.error('Error checking approval status:', error);
+      console.error('Error checking company profile:', error);
+      setHasCompanyProfile(false);
     }
   };
 
   const handlePostJobClick = () => {
-    if (!isApproved) {
+    if (!hasCompanyProfile) {
       if (window.showPopup) {
-        window.showPopup('Your account is pending admin approval. Please wait for admin to approve your account.', 'warning');
+        window.showPopup('Please complete your company profile before posting jobs.', 'warning');
       } else {
-        alert('Your account is pending admin approval. Please wait for admin to approve your account.');
+        alert('Please complete your company profile before posting jobs.');
       }
-      // Stay on dashboard
+      window.location.href = '/recruiter/company-profile';
       return;
     } else {
       window.location.href = '/recruiter/post-job';

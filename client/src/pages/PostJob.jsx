@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './UserDashboard.css'; // Reusing existing dashboard styles
 
 function PostJob() {
-  const [isApproved, setIsApproved] = useState(null); // null = checking, true = approved, false = not approved
+  const [hasCompanyProfile, setHasCompanyProfile] = useState(null); // null = checking, true = has profile, false = no profile
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
   
@@ -48,39 +48,43 @@ function PostJob() {
     jobStatus: 'draft'
   });
 
-  // Check approval status on component mount
+  // Check company profile on component mount
   useEffect(() => {
-    checkApprovalStatus();
+    checkCompanyProfile();
   }, []);
 
-  const checkApprovalStatus = async () => {
+  const checkCompanyProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       if (!token) {
         window.location.href = '/login';
         return;
       }
 
-      // Fetch user's current approval status from backend
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/auth/profile`, {
+      // Check for demo mode
+      if (token === 'demo-recruiter-token') {
+        setHasCompanyProfile(true);
+        setLoading(false);
+        return;
+      }
+
+      // Fetch company profile to check if it exists
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/company-profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       if (response.ok) {
         const data = await response.json();
-        setUserInfo(data);
-        
-        // Check if user is approved (only approval_status matters now)
-        const approved = data.approval_status === 'approved';
-        setIsApproved(approved);
+        setHasCompanyProfile(data.success && data.profile !== null);
+      } else if (response.status === 404) {
+        setHasCompanyProfile(false);
       } else {
-        setIsApproved(false);
+        setHasCompanyProfile(false);
       }
     } catch (error) {
-      console.error('Error checking approval status:', error);
-      setIsApproved(false);
+      console.error('Error checking company profile:', error);
+      setHasCompanyProfile(false);
     } finally {
       setLoading(false);
     }
@@ -92,14 +96,14 @@ function PostJob() {
       <div className="user-dashboard">
         <div className="loading" style={{ padding: '2rem', textAlign: 'center' }}>
           <i className="ri-loader-line spinning" style={{ fontSize: '2rem' }}></i>
-          <p>Checking approval status...</p>
+          <p>Loading...</p>
         </div>
       </div>
     );
   }
 
-  // Show approval pending message
-  if (isApproved === false) {
+  // Show company profile pending message
+  if (hasCompanyProfile === false) {
     return (
       <div className="user-dashboard">
         <div className="approval-pending-container" style={{
@@ -121,11 +125,11 @@ function PostJob() {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <i className="ri-time-line" style={{ fontSize: '2.5rem', color: '#856404' }}></i>
+            <i className="ri-building-line" style={{ fontSize: '2.5rem', color: '#856404' }}></i>
           </div>
           
           <h2 style={{ color: '#333', marginBottom: '1rem' }}>
-            Approval Pending
+            Company Profile Information Pending
           </h2>
           
           <p style={{ 
@@ -134,7 +138,7 @@ function PostJob() {
             lineHeight: '1.6',
             marginBottom: '1.5rem'
           }}>
-            Your account is pending admin approval. Admin will review and approve your account shortly.
+            Please complete your company profile to start posting jobs.
           </p>
 
           <div style={{
@@ -148,10 +152,9 @@ function PostJob() {
               <i className="ri-checkbox-circle-line" style={{ color: '#28a745' }}></i> Next Steps:
             </h3>
             <ol style={{ paddingLeft: '1.5rem', color: '#666', lineHeight: '1.8' }}>
-              <li>Wait for admin approval (usually within 2 hours)</li>
-              <li>You'll receive notification once approved</li>
-              <li>After approval, you can post unlimited jobs</li>
-              <li>Optionally, complete your company profile for better visibility</li>
+              <li>Complete your company profile with basic information</li>
+              <li>Once saved, you can immediately start posting jobs</li>
+              <li>No admin approval required</li>
             </ol>
           </div>
 
@@ -160,7 +163,7 @@ function PostJob() {
               onClick={() => window.location.href = '/recruiter/company-profile'}
               style={{
                 padding: '0.75rem 1.5rem',
-                backgroundColor: '#6c757d',
+                backgroundColor: '#4A90E2',
                 color: 'white',
                 border: 'none',
                 borderRadius: '6px',
@@ -172,7 +175,7 @@ function PostJob() {
               }}
             >
               <i className="ri-building-line"></i>
-              Complete Company Profile (Optional)
+              Complete Company Profile
             </button>
             
             <button
@@ -184,33 +187,12 @@ function PostJob() {
                 border: 'none',
                 borderRadius: '6px',
                 cursor: 'pointer',
-                fontSize: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
+                fontSize: '1rem'
               }}
             >
-              <i className="ri-dashboard-line"></i>
               Back to Dashboard
             </button>
           </div>
-
-          {userInfo && (
-            <div style={{
-              marginTop: '2rem',
-              padding: '1rem',
-              backgroundColor: '#e7f3ff',
-              borderRadius: '6px',
-              fontSize: '0.9rem',
-              color: '#004085'
-            }}>
-              <strong>Current Status:</strong>
-              <br />
-              Profile Completed: {userInfo.profile_completed ? '✅ Yes' : '❌ No'}
-              <br />
-              Approval Status: {userInfo.approval_status || 'pending'}
-            </div>
-          )}
         </div>
       </div>
     );

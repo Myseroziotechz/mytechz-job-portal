@@ -519,20 +519,6 @@ function CompanyProfile() {
                   </label>
                 </div>
               </div>
-
-              <div className="form-group">
-                <label>Verification Status</label>
-                <div className={`verification-status ${formData.verificationStatus}`}>
-                  <i className={
-                    formData.verificationStatus === 'approved' ? 'ri-verified-badge-fill' :
-                    formData.verificationStatus === 'pending' ? 'ri-time-line' : 'ri-close-circle-line'
-                  }></i>
-                  <span>
-                    {formData.verificationStatus === 'approved' ? 'Verified Company' :
-                     formData.verificationStatus === 'pending' ? 'Verification Pending' : 'Not Verified'}
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
 
