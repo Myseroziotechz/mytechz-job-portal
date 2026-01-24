@@ -24,7 +24,7 @@ nav {
   justify-content: space-between;
   background-color: var(--bg-page);
   padding: 0 3vw;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 3px solid #4A90E2;
   flex-wrap: wrap;
   row-gap: 8px;
   min-height: 70px;
