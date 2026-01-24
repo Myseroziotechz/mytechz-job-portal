@@ -27,7 +27,7 @@
   justify-content: space-between;
   padding: 16px 20px;
   border-bottom: 1px solid var(--border-subtle);
-  min-height: 70px;
+  min-height: 64px;
 }
 
 .logo-section {
@@ -37,8 +37,8 @@
 }
 
 .logo-img {
-  width: 120px;
-  height: 120px;
+  width: 40px;
+  height: 40px;
   background-image: url('../../../assets/logo2.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -224,7 +224,7 @@
   padding: 12px 24px;
   background: var(--bg-surface, var(--bg-page));
   border-bottom: 1px solid var(--border-subtle);
-  min-height: 70px;
+  min-height: 64px;
 }
 
 .topbar-left {
