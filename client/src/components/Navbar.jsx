@@ -159,11 +159,16 @@ function Navbar() {
       <div className="log-div">
         <div className="line"></div>
         
-        {/* Show only Login button when NOT logged in */}
+        {/* Show Sign Up and Login buttons only when NOT logged in */}
         {!isLoggedIn && (
-          <div className="login-link tablet-hide-login">
-            <Link to="/login" className="login-btn">Login</Link>
-          </div>
+          <>
+            <div className="register-link tablet-hide-register">
+              <Link to="/register" className="register-btn">Sign Up</Link>
+            </div>
+            <div className="login-link tablet-hide-login">
+              <Link to="/login" className="login-btn">Login</Link>
+            </div>
+          </>
         )}
         
         {/* Profile icon/dropdown - show only when logged in */}
