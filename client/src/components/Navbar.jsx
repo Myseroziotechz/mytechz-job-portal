@@ -126,16 +126,11 @@ function Navbar() {
               <button onClick={(e) => handleLinkClick(e, '/webinars')} className="nav-link-btn">Webinars</button>
             </li>
             
-            {/* Show login/signup only when NOT logged in */}
+            {/* Show login only when NOT logged in */}
             {!isLoggedIn && (
-              <>
-                <li className="color-subnav-box hamburger-item register-nav-h">
-                  <button onClick={(e) => handleLinkClick(e, '/register')} className="nav-link-btn">Sign Up</button>
-                </li>
-                <li className="color-subnav-box hamburger-item login-nav-h">
-                  <button onClick={(e) => handleLinkClick(e, '/login')} className="nav-link-btn">Login</button>
-                </li>
-              </>
+              <li className="color-subnav-box hamburger-item login-nav-h">
+                <button onClick={(e) => handleLinkClick(e, '/login')} className="nav-link-btn">Login</button>
+              </li>
             )}
           </ul>
         </div>
@@ -159,16 +154,11 @@ function Navbar() {
       <div className="log-div">
         <div className="line"></div>
         
-        {/* Show Sign Up and Login buttons only when NOT logged in */}
+        {/* Show ONLY Login button when NOT logged in */}
         {!isLoggedIn && (
-          <>
-            <div className="register-link tablet-hide-register">
-              <Link to="/register" className="register-btn">Sign Up</Link>
-            </div>
-            <div className="login-link tablet-hide-login">
-              <Link to="/login" className="login-btn">Login</Link>
-            </div>
-          </>
+          <div className="login-link tablet-hide-login">
+            <Link to="/login" className="login-btn">Login</Link>
+          </div>
         )}
         
         {/* Profile icon/dropdown - show only when logged in */}

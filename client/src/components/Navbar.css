@@ -24,11 +24,12 @@ nav {
   justify-content: space-between;
   background-color: var(--bg-page);
   padding: 0 3vw;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 2px solid #4A90E2;
   flex-wrap: wrap;
   row-gap: 8px;
-  min-height: 70px;
+  min-height: 64px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
 }
 
 .logo {
@@ -1257,8 +1258,9 @@ nav {
 /* ===== PROFESSIONAL DARK MODE - NAVBAR ===== */
 :root.dark nav {
   background-color: #0E1117 !important;
-  border-bottom: 1px solid #1E254A !important;
+  border-bottom: 2px solid #5B7CFA !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease !important;
 }
 
 :root.dark .sector2 li a {
