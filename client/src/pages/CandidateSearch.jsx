@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CandidateCard from '../components/Recruiter/CandidateCard';
 import CandidateFilters from '../components/Recruiter/CandidateFilters';
-import '../components/Jobs/JobListing.css';
+import '../components/Jobs/JobListing.css'; // Using existing jobs listing styles
 
-function CandidateSearch() {
+function ResumeDatabase() {
   const [candidates, setCandidates] = useState([]);
   const [filteredCandidates, setFilteredCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,11 +12,16 @@ function CandidateSearch() {
     skills: [],
     experience: '',
     location: '',
-    keyword: ''
+    salaryRange: '',
+    education: '',
+    jobRole: '',
+    keyword: '',
+    availability: '',
+    lastActive: ''
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState('relevance');
-  const [viewMode, setViewMode] = useState('grid');
+  const [viewMode, setViewMode] = useState('grid'); // grid or list
   const candidatesPerPage = 12;
 
   useEffect(() => {
@@ -30,23 +35,15 @@ function CandidateSearch() {
   const fetchCandidates = async () => {
     try {
       const token = localStorage.getItem('token');
-      
-      // Build query params
-      const params = new URLSearchParams();
-      if (searchQuery) params.append('keyword', searchQuery);
-      if (filters.location) params.append('location', filters.location);
-      if (filters.experience) params.append('experience', filters.experience);
-      if (filters.skills.length > 0) params.append('skills', filters.skills.join(','));
-      
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/search-candidates?${params}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/resume-database`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       
       if (response.ok) {
         const data = await response.json();
         setCandidates(data.candidates || []);
       } else {
+        // Show empty state if API fails
         setCandidates([]);
         if (window.showPopup) {
           window.showPopup('Unable to load candidates. Please try again later.', 'error');
@@ -66,23 +63,106 @@ function CandidateSearch() {
   const applyFilters = () => {
     let filtered = [...candidates];
 
-    // Client-side search filter
+    // Search query filter
     if (searchQuery) {
       filtered = filtered.filter(candidate =>
-        candidate.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        candidate.email?.toLowerCase().includes(searchQuery.toLowerCase())
+        candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        candidate.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        candidate.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        candidate.currentCompany.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
+    // Apply all filters
+    Object.keys(filters).forEach(filterKey => {
+      const filterValue = filters[filterKey];
+      if (!filterValue || (Array.isArray(filterValue) && filterValue.length === 0)) return;
+
+      switch (filterKey) {
+        case 'skills':
+          if (filterValue.length > 0) {
+            filtered = filtered.filter(candidate =>
+              filterValue.some(skill =>
+                candidate.skills.some(candidateSkill =>
+                  candidateSkill.toLowerCase().includes(skill.toLowerCase())
+                )
+              )
+            );
+          }
+          break;
+        case 'experience':
+          filtered = filtered.filter(candidate => {
+            const exp = parseInt(candidate.experience);
+            switch (filterValue) {
+              case '0-1': return exp <= 1;
+              case '1-3': return exp >= 1 && exp <= 3;
+              case '3-5': return exp >= 3 && exp <= 5;
+              case '5-8': return exp >= 5 && exp <= 8;
+              case '8+': return exp >= 8;
+              default: return true;
+            }
+          });
+          break;
+        case 'location':
+          filtered = filtered.filter(candidate =>
+            candidate.location.toLowerCase().includes(filterValue.toLowerCase())
+          );
+          break;
+        case 'jobRole':
+          filtered = filtered.filter(candidate =>
+            candidate.jobRole.toLowerCase().includes(filterValue.toLowerCase())
+          );
+          break;
+        case 'availability':
+          filtered = filtered.filter(candidate =>
+            candidate.availability.toLowerCase().includes(filterValue.toLowerCase())
+          );
+          break;
+        case 'lastActive':
+          // Filter by last active time
+          const now = new Date();
+          filtered = filtered.filter(candidate => {
+            const lastActive = candidate.lastActive;
+            switch (filterValue) {
+              case '24h':
+                return lastActive.includes('hour') || lastActive.includes('minute');
+              case '7d':
+                return lastActive.includes('day') && parseInt(lastActive) <= 7;
+              case '30d':
+                return lastActive.includes('day') && parseInt(lastActive) <= 30;
+              default:
+                return true;
+            }
+          });
+          break;
+      }
+    });
+
     // Apply sorting
     switch (sortBy) {
-      case 'name':
-        filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+      case 'relevance':
+        filtered.sort((a, b) => (b.matchScore || 0) - (a.matchScore || 0));
         break;
-      case 'recent':
-        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      case 'experience':
+        filtered.sort((a, b) => parseFloat(b.totalExperience) - parseFloat(a.totalExperience));
         break;
-      default:
+      case 'salary':
+        filtered.sort((a, b) => {
+          const aSalary = parseInt(a.expectedSalary.split('-')[1]) || 0;
+          const bSalary = parseInt(b.expectedSalary.split('-')[1]) || 0;
+          return bSalary - aSalary;
+        });
+        break;
+      case 'lastActive':
+        // Sort by last active (most recent first)
+        filtered.sort((a, b) => {
+          const aActive = a.lastActive.includes('hour') ? 1 : a.lastActive.includes('day') ? parseInt(a.lastActive) : 999;
+          const bActive = b.lastActive.includes('hour') ? 1 : b.lastActive.includes('day') ? parseInt(b.lastActive) : 999;
+          return aActive - bActive;
+        });
+        break;
+      case 'profileCompletion':
+        filtered.sort((a, b) => b.profileCompletion - a.profileCompletion);
         break;
     }
 
@@ -92,38 +172,23 @@ function CandidateSearch() {
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
-    fetchCandidates(); // Refetch with new filters
   };
 
   const handleSaveProfile = async (candidateId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/save-candidate`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ candidate_id: candidateId })
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/save-profile`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ candidateId })
+      });
 
-      const data = await response.json();
-      
       if (response.ok) {
-        // Update local state to mark as saved
-        setCandidates(prev => prev.map(c => 
-          c.id === candidateId ? { ...c, is_saved: true } : c
-        ));
-        
         if (window.showPopup) {
           window.showPopup('Profile saved successfully!', 'success');
-        }
-      } else {
-        if (window.showPopup) {
-          window.showPopup(data.message || 'Error saving profile', 'error');
         }
       }
     } catch (error) {
@@ -134,33 +199,12 @@ function CandidateSearch() {
     }
   };
 
-  const handleUnsaveProfile = async (candidateId) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/unsave-candidate/${candidateId}`,
-        {
-          method: 'DELETE',
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+  const handleViewProfile = (candidate) => {
+    window.location.href = `/recruiter/candidate/${candidate.id}`;
+  };
 
-      if (response.ok) {
-        // Update local state to mark as unsaved
-        setCandidates(prev => prev.map(c => 
-          c.id === candidateId ? { ...c, is_saved: false } : c
-        ));
-        
-        if (window.showPopup) {
-          window.showPopup('Profile removed from saved list', 'success');
-        }
-      }
-    } catch (error) {
-      console.error('Error unsaving profile:', error);
-      if (window.showPopup) {
-        window.showPopup('Error removing profile', 'error');
-      }
-    }
+  const handleContactCandidate = (candidate) => {
+    window.location.href = `/recruiter/contact/${candidate.id}`;
   };
 
   // Pagination
@@ -170,7 +214,7 @@ function CandidateSearch() {
   const totalPages = Math.ceil(filteredCandidates.length / candidatesPerPage);
 
   if (loading) {
-    return <div className="loading">Loading candidates...</div>;
+    return <div className="loading">Loading resume database...</div>;
   }
 
   return (
@@ -179,8 +223,8 @@ function CandidateSearch() {
         {/* Header */}
         <div className="jobs-header">
           <div className="header-content">
-            <h1>Search Candidates</h1>
-            <p>Discover talented candidates for your job openings</p>
+            <h1>Resume Database</h1>
+            <p>Search and discover talented candidates for your job openings</p>
           </div>
           
           {/* Search Bar */}
@@ -189,7 +233,7 @@ function CandidateSearch() {
               <i className="ri-search-line"></i>
               <input
                 type="text"
-                placeholder="Search by name or email..."
+                placeholder="Search by name, skills, company, or job role..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -213,8 +257,10 @@ function CandidateSearch() {
                 onChange={(e) => setSortBy(e.target.value)}
               >
                 <option value="relevance">Relevance</option>
-                <option value="name">Name</option>
-                <option value="recent">Recently Joined</option>
+                <option value="experience">Experience</option>
+                <option value="salary">Expected Salary</option>
+                <option value="lastActive">Last Active</option>
+                <option value="profileCompletion">Profile Completion</option>
               </select>
             </div>
             
@@ -255,8 +301,9 @@ function CandidateSearch() {
                     <CandidateCard
                       key={candidate.id}
                       candidate={candidate}
-                      onSave={() => candidate.is_saved ? handleUnsaveProfile(candidate.id) : handleSaveProfile(candidate.id)}
-                      isSaved={candidate.is_saved}
+                      onSave={() => handleSaveProfile(candidate.id)}
+                      onView={() => handleViewProfile(candidate)}
+                      onContact={() => handleContactCandidate(candidate)}
                       viewMode={viewMode}
                     />
                   ))}
@@ -301,10 +348,14 @@ function CandidateSearch() {
                       skills: [],
                       experience: '',
                       location: '',
-                      keyword: ''
+                      salaryRange: '',
+                      education: '',
+                      jobRole: '',
+                      keyword: '',
+                      availability: '',
+                      lastActive: ''
                     });
                     setSearchQuery('');
-                    fetchCandidates();
                   }}
                 >
                   Reset Filters
@@ -318,4 +369,4 @@ function CandidateSearch() {
   );
 }
 
-export default CandidateSearch;
+export default ResumeDatabase;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../components/Jobs/JobListing.css';
-import './SavedProfiles.css';
+import CandidateCard from '../components/Recruiter/CandidateCard';
+import '../components/Jobs/JobListing.css'; // Using existing jobs listing styles
 
 function SavedProfiles() {
   const [savedProfiles, setSavedProfiles] = useState([]);
@@ -21,10 +21,9 @@ function SavedProfiles() {
   const fetchSavedProfiles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/saved-profiles`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/saved-profiles`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       
       if (response.ok) {
         const data = await response.json();
@@ -46,7 +45,8 @@ function SavedProfiles() {
     if (searchQuery) {
       filtered = filtered.filter(profile =>
         profile.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        profile.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        profile.skills?.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        profile.jobRole?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         profile.location?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
@@ -62,13 +62,14 @@ function SavedProfiles() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/unsave-candidate/${profileId}`,
-        {
-          method: 'DELETE',
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/remove-saved-profile`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ profileId })
+      });
 
       if (response.ok) {
         setSavedProfiles(prev => prev.filter(profile => profile.id !== profileId));
@@ -84,20 +85,21 @@ function SavedProfiles() {
     }
   };
 
-  const handleUpdateNotes = async (profileId, notes) => {
+  const handleViewProfile = (profile) => {
+    window.location.href = `/recruiter/candidate/${profile.id}`;
+  };
+
+  const handleAddNotes = async (profileId, notes) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/update-candidate-notes/${profileId}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ notes })
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/update-profile-notes`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ profileId, notes })
+      });
 
       if (response.ok) {
         setSavedProfiles(prev => 
@@ -141,7 +143,7 @@ function SavedProfiles() {
               <i className="ri-search-line"></i>
               <input
                 type="text"
-                placeholder="Search saved profiles by name, email, or location..."
+                placeholder="Search saved profiles by name, skills, or role..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -166,102 +168,58 @@ function SavedProfiles() {
               <>
                 <div className="saved-profiles-grid">
                   {currentProfiles.map(profile => (
-                    <div key={profile.id} className="saved-profile-card">
-                      {/* Profile Header */}
-                      <div className="profile-header">
-                        <div className="profile-avatar">
-                          {profile.profile_photo ? (
-                            <img src={profile.profile_photo} alt={profile.name} />
-                          ) : (
-                            <div className="avatar-placeholder">
-                              {profile.name?.charAt(0)?.toUpperCase() || 'C'}
-                            </div>
-                          )}
+                    <div key={profile.id} className="saved-profile-item">
+                      <CandidateCard
+                        candidate={profile}
+                        onSave={() => handleRemoveProfile(profile.id)}
+                        onView={() => handleViewProfile(profile)}
+                        isSaved={true}
+                      />
+                      
+                      {/* Additional saved profile info */}
+                      <div className="saved-profile-meta">
+                        <div className="saved-date">
+                          <i className="ri-bookmark-line"></i>
+                          Saved on {new Date(profile.savedDate).toLocaleDateString()}
                         </div>
-                        <div className="profile-info">
-                          <h3 className="profile-name">{profile.name || 'Unnamed Candidate'}</h3>
-                          {profile.experience && (
-                            <p className="profile-title">{profile.experience}</p>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Profile Details */}
-                      <div className="profile-details">
-                        {profile.email && (
-                          <div className="detail-item">
-                            <i className="ri-mail-line"></i>
-                            <span>{profile.email}</span>
+                        
+                        {/* Notes Section */}
+                        <div className="profile-notes">
+                          <div className="notes-header">
+                            <i className="ri-sticky-note-line"></i>
+                            <span>Notes</span>
                           </div>
-                        )}
-                        {profile.phone && (
-                          <div className="detail-item">
-                            <i className="ri-phone-line"></i>
-                            <span>{profile.phone}</span>
-                          </div>
-                        )}
-                        {profile.location && (
-                          <div className="detail-item">
-                            <i className="ri-map-pin-line"></i>
-                            <span>{profile.location}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Skills */}
-                      {profile.skills && profile.skills.length > 0 && (
-                        <div className="profile-skills">
-                          {profile.skills.slice(0, 5).map((skill, index) => (
-                            <span key={index} className="skill-badge">{skill}</span>
-                          ))}
-                          {profile.skills.length > 5 && (
-                            <span className="skill-badge more">+{profile.skills.length - 5} more</span>
-                          )}
+                          <textarea
+                            placeholder="Add notes about this candidate..."
+                            value={profile.notes || ''}
+                            onChange={(e) => {
+                              const updatedProfiles = savedProfiles.map(p =>
+                                p.id === profile.id ? { ...p, notes: e.target.value } : p
+                              );
+                              setSavedProfiles(updatedProfiles);
+                            }}
+                            onBlur={(e) => handleAddNotes(profile.id, e.target.value)}
+                            rows="2"
+                          />
                         </div>
-                      )}
-
-                      {/* Saved Date */}
-                      <div className="saved-meta">
-                        <i className="ri-bookmark-line"></i>
-                        <span>Saved on {new Date(profile.saved_at).toLocaleDateString()}</span>
-                      </div>
-
-                      {/* Notes Section */}
-                      <div className="profile-notes">
-                        <div className="notes-header">
-                          <i className="ri-sticky-note-line"></i>
-                          <span>Notes</span>
+                        
+                        {/* Quick Actions */}
+                        <div className="saved-profile-actions">
+                          <button 
+                            className="contact-btn"
+                            onClick={() => window.location.href = `/recruiter/contact/${profile.id}`}
+                          >
+                            <i className="ri-message-line"></i>
+                            Contact
+                          </button>
+                          <button 
+                            className="remove-btn"
+                            onClick={() => handleRemoveProfile(profile.id)}
+                          >
+                            <i className="ri-delete-bin-line"></i>
+                            Remove
+                          </button>
                         </div>
-                        <textarea
-                          placeholder="Add notes about this candidate..."
-                          value={profile.notes || ''}
-                          onChange={(e) => {
-                            const updatedProfiles = savedProfiles.map(p =>
-                              p.id === profile.id ? { ...p, notes: e.target.value } : p
-                            );
-                            setSavedProfiles(updatedProfiles);
-                          }}
-                          onBlur={(e) => handleUpdateNotes(profile.id, e.target.value)}
-                          rows="2"
-                        />
-                      </div>
-
-                      {/* Actions */}
-                      <div className="profile-actions">
-                        <button 
-                          className="action-btn contact-btn"
-                          onClick={() => window.location.href = `mailto:${profile.email}`}
-                        >
-                          <i className="ri-message-line"></i>
-                          Contact
-                        </button>
-                        <button 
-                          className="action-btn remove-btn"
-                          onClick={() => handleRemoveProfile(profile.id)}
-                        >
-                          <i className="ri-delete-bin-line"></i>
-                          Remove
-                        </button>
                       </div>
                     </div>
                   ))}

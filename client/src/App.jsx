@@ -114,6 +114,7 @@ function App() {
         }>
           <Route index element={<RecruiterDashboard />} />
           <Route path="search-candidates" element={<CandidateSearch />} />
+          <Route path="resume-database" element={<CandidateSearch />} />
           <Route path="saved-profiles" element={<SavedProfiles />} />
           <Route path="posted-jobs" element={<PostedJobs />} />
           <Route path="post-job" element={<PostJob />} />

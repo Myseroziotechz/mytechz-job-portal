@@ -30,11 +30,4 @@ urlpatterns = [
     path('applications/my-applications', views.my_applications_view, name='my_applications'),
     path('applications/recruiter', views.recruiter_applications_view, name='recruiter_applications'),
     path('applications/<int:application_id>/update-status', views.update_application_status_view, name='update_application_status'),
-    
-    # Candidate Search & Saved Profiles (REAL DATA ONLY)
-    path('search-candidates', views.search_candidates_view, name='search_candidates'),
-    path('save-candidate', views.save_candidate_view, name='save_candidate'),
-    path('unsave-candidate/<int:candidate_id>', views.unsave_candidate_view, name='unsave_candidate'),
-    path('saved-profiles', views.saved_profiles_view, name='saved_profiles'),
-    path('update-candidate-notes/<int:candidate_id>', views.update_candidate_notes_view, name='update_candidate_notes'),
 ]
