@@ -16,13 +16,10 @@ function Footer() {
           <h4>Quick Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/jobs/government">Government Jobs</a></li>
-            <li><a href="/jobs/private">Private Jobs</a></li>
-            <li><a href="/admit-card">Admit Cards</a></li>
-            <li><a href="/results">Results</a></li>
-            <li><a href="/internships">Internships</a></li>
+            <li><a href="/jobs/government">Jobs</a></li>
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="/admissions">Admissions</a></li>
             <li><a href="/webinars">Webinars</a></li>
-            <li><a href="/mentorship">Mentorship</a></li>
           </ul>
         </div>
         <div className="footer-col">
