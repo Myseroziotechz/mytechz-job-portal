@@ -126,6 +126,15 @@ function RecruiterRegister() {
           </div>
 
           <div className="sector2-login">
+            {/* Close button */}
+            <button 
+              className="form-close-btn" 
+              onClick={() => window.history.back()}
+              aria-label="Close"
+            >
+              <i className="ri-close-line"></i>
+            </button>
+            
             <div className="sector2-job-img-div">
               <div className="logo-img"></div>
               <h3 id="logo-text">MytechZ</h3>
@@ -272,10 +281,9 @@ function RecruiterRegister() {
                 Create Recruiter Account
               </button>
 
-              {/* Login Link */}
-              <div className="login-link">
-                <span style={{ color: '#666', marginRight: '0.5rem' }}>Already have an account?</span>
-                <a href="/login" className="login-cta-btn">Log in</a>
+              {/* Login CTA - Redesigned */}
+              <div className="signup-text">
+                Already have an account? <a href="/login">Log in</a>
               </div>
             </form>
           </div>

@@ -438,3 +438,54 @@
     padding: 16px !important;
   }
 }
+
+/* ===== FORM CLOSE BUTTON ===== */
+.form-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #333;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.form-close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.form-close-btn i {
+  line-height: 1;
+}
+
+/* Dark mode close button */
+:root.dark .form-close-btn {
+  background: rgba(91, 124, 250, 0.08) !important;
+  color: #E6E9F2 !important;
+}
+
+:root.dark .form-close-btn:hover {
+  background: rgba(91, 124, 250, 0.15) !important;
+  transform: scale(1.1);
+}
+
+/* Mobile close button */
+@media (max-width: 767px) {
+  .form-close-btn {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}

@@ -117,6 +117,15 @@ function Register() {
           </div>
 
           <div className="sector2-login">
+            {/* Close button */}
+            <button 
+              className="form-close-btn" 
+              onClick={() => window.history.back()}
+              aria-label="Close"
+            >
+              <i className="ri-close-line"></i>
+            </button>
+            
             <div className="sector2-job-img-div">
               <div className="logo-img"></div>
               <h3 id="logo-text">MytechZ</h3>
