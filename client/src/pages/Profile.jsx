@@ -301,6 +301,47 @@ function Profile() {
               Activity Insights
             </li>
           </ul>
+          
+          {activeTab === 'view-edit' && (
+            <button
+              className="naukri-edit-all-btn"
+              onClick={() => {
+                if (editingSection) {
+                  // If editing, save and exit
+                  setEditingSection(null);
+                } else {
+                  // Enable edit mode for current section
+                  setEditingSection(activeSection);
+                }
+              }}
+              style={{
+                padding: '0.5rem 1.25rem',
+                backgroundColor: editingSection ? '#22c55e' : '#4A90E2',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '0.95rem',
+                fontWeight: '600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                transition: 'all 0.2s'
+              }}
+            >
+              {editingSection ? (
+                <>
+                  <i className="ri-check-line"></i>
+                  Editing Mode
+                </>
+              ) : (
+                <>
+                  <i className="ri-edit-line"></i>
+                  Edit Section
+                </>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Main Content */}

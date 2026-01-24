@@ -2310,3 +2310,52 @@
   background: var(--bg-elevated);
   border-color: var(--border-subtle);
 }
+
+/* Company Profile View/Edit Mode Styles */
+.company-profile-form.view-mode input,
+.company-profile-form.view-mode select,
+.company-profile-form.view-mode textarea {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #666;
+}
+
+.company-profile-form.view-mode .form-group label {
+  color: #666;
+}
+
+.company-profile-form.edit-mode input,
+.company-profile-form.edit-mode select,
+.company-profile-form.edit-mode textarea {
+  background-color: white;
+  cursor: text;
+  pointer-events: auto;
+}
+
+/* Header actions styling */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

@@ -1879,3 +1879,75 @@
     font-size: 16px !important;
   }
 }
+
+/* Enhanced Edit Button Styles */
+.naukri-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.naukri-edit-all-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.naukri-edit-all-btn:active {
+  transform: translateY(0);
+}
+
+/* Make edit buttons more visible */
+.naukri-edit-btn {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  background-color: #4A90E2 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.naukri-edit-btn:hover {
+  background-color: #357ABD !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Save button styling */
+.naukri-btn-primary {
+  background-color: #22c55e !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.95rem !important;
+}
+
+.naukri-btn-primary:hover {
+  background-color: #16a34a !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.naukri-btn-secondary {
+  font-weight: 600 !important;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.95rem !important;
+}
+
+@media (max-width: 768px) {
+  .naukri-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .naukri-edit-all-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

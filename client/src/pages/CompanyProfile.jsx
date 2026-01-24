@@ -32,6 +32,7 @@ function CompanyProfile() {
   const [errors, setErrors] = useState({});
   const [newBenefit, setNewBenefit] = useState('');
   const [debugInfo, setDebugInfo] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false); // Global edit mode
 
   const [profileExists, setProfileExists] = useState(false); // Track if profile exists
 
@@ -118,6 +119,7 @@ function CompanyProfile() {
         } else {
           // No profile exists, use empty form
           setProfileExists(false); // No profile, use POST for creation
+          setIsEditMode(true); // Auto-enable edit mode for new profiles
           setDebugInfo('No profile found - showing empty form');
           const emptyData = generateExistingData();
           setFormData(emptyData);
@@ -125,6 +127,7 @@ function CompanyProfile() {
       } else if (response.status === 404) {
         // Profile doesn't exist yet, use empty form
         setProfileExists(false); // No profile, use POST for creation
+        setIsEditMode(true); // Auto-enable edit mode for new profiles
         setDebugInfo('Profile not found (404) - showing empty form for new profile creation');
         const emptyData = generateExistingData();
         setFormData(emptyData);
@@ -135,6 +138,7 @@ function CompanyProfile() {
       console.error('Error fetching company profile:', error);
       setDebugInfo(`Error: ${error.message} - showing empty form`);
       setProfileExists(false); // On error, assume no profile exists
+      setIsEditMode(true); // Auto-enable edit mode for new profiles
       // On error, show empty form (not demo data)
       const emptyData = generateExistingData();
       setFormData(emptyData);
@@ -292,6 +296,9 @@ function CompanyProfile() {
         // Update profileExists flag for future saves
         setProfileExists(true);
         
+        // Exit edit mode after successful save
+        setIsEditMode(false);
+        
         if (window.showPopup) {
           window.showPopup(`Company profile ${action} successfully!`, 'success');
         }
@@ -369,32 +376,116 @@ function CompanyProfile() {
           <p>Manage your company information and build your employer brand</p>
         </div>
         
-        <div className="stats-overview">
-          <div className="stat-item">
-            <div className="stat-number">
-              {formData.verificationStatus === 'approved' ? (
-                <i className="ri-verified-badge-fill" style={{ color: '#22c55e' }}></i>
-              ) : formData.verificationStatus === 'pending' ? (
-                <i className="ri-time-line" style={{ color: '#f59e0b' }}></i>
-              ) : (
-                <i className="ri-close-circle-line" style={{ color: '#ef4444' }}></i>
-              )}
+        <div className="header-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <div className="stats-overview" style={{ marginRight: '1rem' }}>
+            <div className="stat-item">
+              <div className="stat-number">
+                {formData.verificationStatus === 'approved' ? (
+                  <i className="ri-verified-badge-fill" style={{ color: '#22c55e' }}></i>
+                ) : formData.verificationStatus === 'pending' ? (
+                  <i className="ri-time-line" style={{ color: '#f59e0b' }}></i>
+                ) : (
+                  <i className="ri-close-circle-line" style={{ color: '#ef4444' }}></i>
+                )}
+              </div>
+              <div className="stat-label">
+                {formData.verificationStatus === 'approved' ? 'Verified' : 
+                 formData.verificationStatus === 'pending' ? 'Pending' : 'Not Verified'}
+              </div>
             </div>
-            <div className="stat-label">
-              {formData.verificationStatus === 'approved' ? 'Verified' : 
-               formData.verificationStatus === 'pending' ? 'Pending' : 'Not Verified'}
+            <div className="stat-item">
+              <div className="stat-number">{Math.round((Object.values(formData).filter(v => v && v !== '').length / Object.keys(formData).length) * 100)}%</div>
+              <div className="stat-label">Profile Complete</div>
             </div>
           </div>
-          <div className="stat-item">
-            <div className="stat-number">{Math.round((Object.values(formData).filter(v => v && v !== '').length / Object.keys(formData).length) * 100)}%</div>
-            <div className="stat-label">Profile Complete</div>
-          </div>
+          
+          {!isEditMode ? (
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setIsEditMode(true)}
+              style={{
+                padding: '0.75rem 1.5rem',
+                fontSize: '1rem',
+                fontWeight: '600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              <i className="ri-edit-line"></i>
+              Edit Profile
+            </button>
+          ) : (
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => {
+                  setIsEditMode(false);
+                  fetchCompanyProfile(); // Reload data to discard changes
+                }}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600'
+                }}
+              >
+                <i className="ri-close-line"></i>
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={handleSaveProfile}
+                disabled={saving}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                {saving ? (
+                  <>
+                    <i className="ri-loader-line spinning"></i>
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <i className="ri-save-line"></i>
+                    Save All Changes
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Form Content */}
       <div className="dashboard-main">
-        <form className="company-profile-form">
+        <form className={`company-profile-form ${!isEditMode ? 'view-mode' : 'edit-mode'}`}>
+          
+          {!isEditMode && (
+            <div style={{
+              backgroundColor: '#e3f2fd',
+              padding: '1rem',
+              borderRadius: '8px',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              border: '1px solid #90caf9'
+            }}>
+              <i className="ri-information-line" style={{ fontSize: '1.5rem', color: '#1976d2' }}></i>
+              <span style={{ color: '#1565c0', fontWeight: '500' }}>
+                Viewing mode - Click "Edit Profile" button above to make changes
+              </span>
+            </div>
+          )}
           
           {/* Company Information Section */}
           <div className="status-bars">
@@ -407,6 +498,7 @@ function CompanyProfile() {
                   value={formData.companyName}
                   onChange={(e) => handleInputChange('companyName', e.target.value)}
                   placeholder="Enter company name"
+                  disabled={!isEditMode}
                   className={errors.companyName ? 'error' : ''}
                 />
                 {errors.companyName && <span className="error-message">{errors.companyName}</span>}
