@@ -136,25 +136,11 @@ function Navbar() {
         </div>
         
         {/* Logo */}
-        <div style={{ 
-          paddingLeft: '25px',
-          height: '200px',
-          width: '200px',
-          minHeight: '200px',
-          minWidth: '200px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0
-        }}>
+        <div className="logo-img-div-nav">
           <img 
             src="../assets/logo2.png" 
             alt="MytechZ Logo" 
-            style={{
-              height: '100%',
-              width: '100%',
-              objectFit: 'contain'
-            }}
+            className="logo-img"
           />
         </div>
       </div>

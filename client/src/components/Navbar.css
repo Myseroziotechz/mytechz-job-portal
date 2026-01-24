@@ -55,20 +55,18 @@ nav {
 
 .logo-img-div-nav {
   padding-left: 25px;
-  height: 180px !important;
-  width: 180px !important;
+  height: 180px;
+  width: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo-img {
-  height: 800px;
-  width: 800px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 #logo-text {
@@ -1137,7 +1135,7 @@ nav {
 
   nav {
     padding: 0 2vw;
-    min-height: 60px;
+    min-height: 56px;
   }
 
   .menu {
@@ -1149,19 +1147,19 @@ nav {
 
   .dropdown-content {
     position: fixed;
-    top: 60px;
+    top: 56px;
     left: 0;
     right: 0;
     width: 100vw;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - 56px);
     overflow-y: auto;
     border-radius: 0;
   }
 
   .logo-img-div-nav {
     padding-left: 10px;
-    height: 120px;
-    width: 120px;
+    height: 50px;
+    width: 50px;
   }
 
   .sector2 {
@@ -1173,8 +1171,9 @@ nav {
   }
 
   .login-img {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 
   .theme-toggle-btn {
@@ -1220,6 +1219,12 @@ nav {
 
   .user-email {
     font-size: 13px;
+  }
+
+  .menu-icondiv {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 }
 
@@ -1437,14 +1442,14 @@ nav {
 /* Mobile */
 @media (max-width: 767px) {
   :root.dark nav {
-    min-height: 60px !important;
-    padding: 0 4vw !important;
+    min-height: 56px !important;
+    padding: 0 2vw !important;
   }
 
   :root.dark .logo-img-div-nav {
     padding-left: 10px !important;
-    height: 120px !important;
-    width: 120px !important;
+    height: 50px !important;
+    width: 50px !important;
   }
 
   :root.dark #logo-text {
@@ -1472,17 +1477,23 @@ nav {
     height: 36px !important;
     font-size: 18px !important;
   }
+
+  :root.dark .login-img {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px !important;
+  }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
   :root.dark nav {
-    padding: 0 3vw !important;
+    padding: 0 2vw !important;
   }
 
   :root.dark .logo-img-div-nav {
-    height: 120px !important;
-    width: 120px !important;
+    height: 50px !important;
+    width: 50px !important;
   }
 
   :root.dark #logo-text {
