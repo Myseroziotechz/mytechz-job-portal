@@ -1,0 +1,84 @@
+═══════════════════════════════════════════════════════════════════
+🔧 FIX: "Failed to connect to server" Error
+═══════════════════════════════════════════════════════════════════
+
+ISSUE:
+------
+Frontend shows "Failed to connect to server" error on:
+- Search Candidates page
+- Jobs page
+- Other recruiter pages
+
+ROOT CAUSE:
+-----------
+The backend on Render (https://mytechz-job-portal.onrender.com) needs to be 
+redeployed with the new code changes for candidate search functionality.
+
+IMMEDIATE SOLUTION:
+-------------------
+
+OPTION 1: Redeploy Backend on Render (5 minutes)
+-------------------------------------------------
+1. Go to: https://dashboard.render.com
+2. Login with your account
+3. Find service: "mytechz-backend" or "mytechz-job-portal"
+4. Click "Manual Deploy" → "Deploy latest commit"
+5. Wait 5-10 minutes for deployment
+6. Test: Visit https://mytechz-job-portal.onrender.com/admin/
+
+OPTION 2: Wake Up Sleeping Service (30 seconds)
+------------------------------------------------
+If backend is just sleeping (Render free tier):
+1. Visit: https://mytechz-job-portal.onrender.com
+2. Wait 30-60 seconds for service to wake up
+3. Refresh your frontend page
+4. Try again
+
+OPTION 3: Use Local Backend (Immediate)
+----------------------------------------
+For testing/development:
+
+1. Open terminal in backend folder
+2. Run: python manage.py runserver 0.0.0.0:5010
+3. Update frontend .env:
+   VITE_API_BASE_URL=http://localhost:5010
+4. Rebuild frontend: npm run build
+5. Test locally
+
+VERIFICATION:
+-------------
+After deploying, test these:
+
+✅ Backend Health:
+   https://mytechz-job-portal.onrender.com/admin/
+   (Should show Django admin with CSS)
+
+✅ Frontend Connection:
+   https://cheery-malasada-331cc2.netlify.app/recruiter/search-candidates
+   (Should load without error)
+
+WHAT WAS FIXED:
+---------------
+✅ Added missing imports in backend/recruiter/views.py
+✅ Fixed UserProfileSerializer import
+✅ Fixed SavedCandidate model import
+✅ Fixed JobApplication serializer imports
+✅ Code committed and pushed to GitHub (commit: 9da525f)
+
+NEXT STEPS:
+-----------
+1. Deploy backend to Render (see RENDER_DEPLOYMENT_STEPS.md)
+2. Verify all endpoints work
+3. Test candidate search functionality
+4. Test saved profiles functionality
+
+TECHNICAL DETAILS:
+------------------
+- Backend URL: https://mytechz-job-portal.onrender.com
+- Frontend URL: https://cheery-malasada-331cc2.netlify.app
+- GitHub Repo: https://github.com/siva-dataworker/mytechz-job-portal
+- Latest Commit: 9da525f
+
+═══════════════════════════════════════════════════════════════════
+For detailed deployment instructions, see: RENDER_DEPLOYMENT_STEPS.md
+═══════════════════════════════════════════════════════════════════
