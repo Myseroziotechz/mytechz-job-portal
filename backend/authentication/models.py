@@ -127,10 +127,18 @@ class User(AbstractUser):
         return []
     
     def can_post_jobs(self):
-        """Check if recruiter can post jobs (must be approved by admin)"""
+        """Check if recruiter can post jobs (must have completed company profile)"""
         if self.role != 'recruiter':
             return False
-        return self.approval_status == 'approved'
+        
+        # Check if recruiter has a company profile
+        try:
+            from recruiter.models import RecruiterCompanyProfile
+            company_profile = RecruiterCompanyProfile.objects.filter(recruiter=self).first()
+            # Recruiter can post jobs if they have filled company information
+            return company_profile is not None
+        except:
+            return False
     
     def mark_profile_completed(self):
         """Mark recruiter profile as completed"""

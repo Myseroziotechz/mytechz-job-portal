@@ -553,15 +553,14 @@ def create_job_view(request):
     print(f"Can post jobs: {request.user.can_post_jobs()}")
     print(f"Request data: {request.data}")
     
-    # Check if recruiter can post jobs
+    # Check if recruiter can post jobs (has company profile)
     if not request.user.can_post_jobs():
         return Response({
             'success': False,
-            'message': 'Access denied. You need admin approval to post jobs.',
+            'message': 'Please complete your company profile before posting jobs.',
             'errors': {
-                'approval': ['Your account is not approved yet. Please wait for admin approval.'],
-                'profile_completed': request.user.profile_completed,
-                'approval_status': request.user.approval_status
+                'company_profile': ['You must fill out your company information before posting jobs.'],
+                'redirect_to': '/recruiter/company-profile'
             }
         }, status=status.HTTP_403_FORBIDDEN)
     

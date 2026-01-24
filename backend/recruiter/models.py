@@ -288,13 +288,12 @@ class JobPost(models.Model):
             self.required_skills = ''
     
     def save(self, *args, **kwargs):
-        """Override save to enforce approval check"""
-        # Security check: Only approved recruiters can create/update jobs
+        """Override save to enforce company profile check"""
+        # Security check: Only recruiters with company profile can create/update jobs
         if not self.recruiter.can_post_jobs():
             from django.core.exceptions import PermissionDenied
             raise PermissionDenied(
-                f"Recruiter {self.recruiter.email} is not approved to post jobs. "
-                f"Approval status: {self.recruiter.approval_status}"
+                f"Recruiter {self.recruiter.email} must complete company profile before posting jobs."
             )
         super().save(*args, **kwargs)
 
