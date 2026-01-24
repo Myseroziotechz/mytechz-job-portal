@@ -114,12 +114,6 @@ function RecruiterLayout() {
             />
             {!sidebarCollapsed && <span className="logo-text">MytechZ</span>}
           </div>
-          <button 
-            className="sidebar-toggle"
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          >
-            <i className={sidebarCollapsed ? 'ri-menu-unfold-line' : 'ri-menu-fold-line'}></i>
-          </button>
         </div>
 
         <nav className="sidebar-nav">
