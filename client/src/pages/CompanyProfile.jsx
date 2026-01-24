@@ -189,9 +189,10 @@ function CompanyProfile() {
     
     try {
       const token = localStorage.getItem('token');
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
       
-      // Demo mode
-      if (token === 'demo-recruiter-token') {
+      // Demo mode - check both token and email
+      if (token === 'demo-recruiter-token' || user.email === 'demo@recruiter.com') {
         await new Promise(resolve => setTimeout(resolve, 1000));
         setOriginalData(JSON.parse(JSON.stringify(formData))); // Update original
         setProfileExists(true);
@@ -210,13 +211,13 @@ function CompanyProfile() {
         company_size: formData.companySize,
         founded_year: formData.foundedYear ? parseInt(formData.foundedYear) : null,
         head_office_location: formData.headOfficeLocation,
-        gst_cin: formData.gstCin,
-        company_description: formData.companyDescription,
-        mission_and_culture: formData.missionCulture,
-        benefits_list: formData.benefitsPerks,
-        office_address: formData.officeAddress,
-        work_mode: formData.workMode,
-        office_photos_list: formData.officePhotos
+        gst_cin: formData.gstCin || '',
+        company_description: formData.companyDescription || '',
+        mission_and_culture: formData.missionCulture || '',
+        benefits_list: formData.benefitsPerks || [],
+        office_address: formData.officeAddress || '',
+        work_mode: formData.workMode || 'hybrid',
+        office_photos_list: formData.officePhotos || []
       };
       
       if (formData.website && formData.website.trim()) {
@@ -224,19 +225,22 @@ function CompanyProfile() {
       }
       
       const method = profileExists ? 'PUT' : 'POST';
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/company-profile`,
-        {
-          method,
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(backendData)
-        }
-      );
+      const url = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5010'}/api/recruiter/company-profile`;
+      
+      console.log('Saving company profile:', { method, url, data: backendData });
+      
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(backendData)
+      });
 
       const responseData = await response.json();
+      
+      console.log('Save response:', { status: response.status, data: responseData });
 
       if (response.ok && responseData.success) {
         setOriginalData(JSON.parse(JSON.stringify(formData))); // Update original
@@ -247,12 +251,15 @@ function CompanyProfile() {
         }
         fetchCompanyProfile(); // Refresh data
       } else {
-        throw new Error(responseData.message || 'Failed to save profile');
+        const errorMsg = responseData.message || responseData.error || 'Failed to save profile';
+        throw new Error(errorMsg);
       }
     } catch (error) {
       console.error('Error saving profile:', error);
       if (window.showPopup) {
         window.showPopup(`Error saving company profile: ${error.message}`, 'error');
+      } else {
+        alert(`Error saving company profile: ${error.message}`);
       }
     } finally {
       setSaving(false);
