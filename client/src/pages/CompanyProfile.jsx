@@ -156,6 +156,15 @@ function CompanyProfile() {
     if (!formData.headOfficeLocation || !formData.headOfficeLocation.trim()) {
       newErrors.headOfficeLocation = 'Head office location is required';
     }
+    if (!formData.companyDescription || !formData.companyDescription.trim()) {
+      newErrors.companyDescription = 'Company description is required';
+    }
+    if (!formData.officeAddress || !formData.officeAddress.trim()) {
+      newErrors.officeAddress = 'Office address is required';
+    }
+    if (!formData.workMode) {
+      newErrors.workMode = 'Work mode is required';
+    }
     if (formData.website && formData.website.trim()) {
       try {
         new URL(formData.website);
@@ -452,12 +461,12 @@ function CompanyProfile() {
                   className={errors.companySize ? 'error' : ''}
                 >
                   <option value="">Select Size</option>
-                  <option value="1-10 employees">1-10 employees</option>
-                  <option value="11-50 employees">11-50 employees</option>
-                  <option value="51-200 employees">51-200 employees</option>
-                  <option value="201-500 employees">201-500 employees</option>
-                  <option value="501-1000 employees">501-1000 employees</option>
-                  <option value="1000+ employees">1000+ employees</option>
+                  <option value="1-10">1-10 employees</option>
+                  <option value="11-50">11-50 employees</option>
+                  <option value="51-200">51-200 employees</option>
+                  <option value="201-500">201-500 employees</option>
+                  <option value="501-1000">501-1000 employees</option>
+                  <option value="1000+">1000+ employees</option>
                 </select>
                 {errors.companySize && <span className="error-message">{errors.companySize}</span>}
               </div>
@@ -500,7 +509,7 @@ function CompanyProfile() {
           <div className="status-bars">
             <h2>About Company</h2>
             <div className="form-group">
-              <label>Company Description</label>
+              <label>Company Description *</label>
               <textarea
                 value={formData.companyDescription}
                 onChange={(e) => handleInputChange('companyDescription', e.target.value)}
@@ -550,25 +559,30 @@ function CompanyProfile() {
           <div className="status-bars">
             <h2>Office & Work Mode</h2>
             <div className="form-group">
-              <label>Office Address</label>
+              <label>Office Address *</label>
               <textarea
                 value={formData.officeAddress}
                 onChange={(e) => handleInputChange('officeAddress', e.target.value)}
                 placeholder="Enter complete office address..."
                 rows="3"
+                className={errors.officeAddress ? 'error' : ''}
               />
+              {errors.officeAddress && <span className="error-message">{errors.officeAddress}</span>}
             </div>
 
             <div className="form-group">
-              <label>Work Mode</label>
+              <label>Work Mode *</label>
               <select
                 value={formData.workMode}
                 onChange={(e) => handleInputChange('workMode', e.target.value)}
+                className={errors.workMode ? 'error' : ''}
               >
+                <option value="">Select Work Mode</option>
                 <option value="remote">Remote</option>
-                <option value="onsite">On-site</option>
+                <option value="office">On-site</option>
                 <option value="hybrid">Hybrid</option>
               </select>
+              {errors.workMode && <span className="error-message">{errors.workMode}</span>}
             </div>
           </div>
         </form>
