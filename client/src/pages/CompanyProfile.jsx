@@ -200,11 +200,11 @@ function CompanyProfile() {
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.companyName.trim()) {
+    if (!formData.companyName || !formData.companyName.trim()) {
       newErrors.companyName = 'Company name is required';
     }
     
-    if (!formData.industry.trim()) {
+    if (!formData.industry || !formData.industry.trim()) {
       newErrors.industry = 'Industry is required';
     }
     
@@ -212,17 +212,18 @@ function CompanyProfile() {
       newErrors.companySize = 'Company size is required';
     }
     
-    if (!formData.headOfficeLocation.trim()) {
+    if (!formData.headOfficeLocation || !formData.headOfficeLocation.trim()) {
       newErrors.headOfficeLocation = 'Head office location is required';
     }
     
-    if (formData.website && !isValidUrl(formData.website)) {
+    if (formData.website && formData.website.trim() && !isValidUrl(formData.website)) {
       newErrors.website = 'Please enter a valid website URL';
     }
     
-    if (!formData.companyDescription.trim()) {
-      newErrors.companyDescription = 'Company description is required';
-    }
+    // Make company description optional for now
+    // if (!formData.companyDescription || !formData.companyDescription.trim()) {
+    //   newErrors.companyDescription = 'Company description is required';
+    // }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -249,6 +250,22 @@ function CompanyProfile() {
     
     try {
       const token = localStorage.getItem('token');
+      
+      // Handle demo mode
+      if (token === 'demo-recruiter-token') {
+        // Simulate save delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        setProfileExists(true);
+        setIsEditMode(false);
+        
+        if (window.showPopup) {
+          window.showPopup('Company profile saved successfully! (Demo Mode)', 'success');
+        }
+        
+        setSaving(false);
+        return;
+      }
       
       // Map frontend data to backend format
       const backendData = {
