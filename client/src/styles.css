@@ -57,6 +57,8 @@ body,
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -64,6 +66,8 @@ body {
   background-color: var(--bg-page);
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  position: relative;
 }
 
 /* Dark mode typography improvements */
