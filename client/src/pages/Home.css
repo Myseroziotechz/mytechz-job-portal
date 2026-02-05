@@ -1754,3 +1754,472 @@
     transform: translateY(0);
   }
 }
+
+/* ===== COMPREHENSIVE MOBILE RESPONSIVENESS ===== */
+
+/* Extra Small Devices (320px - 480px) */
+@media (max-width: 480px) {
+  /* Hero Section */
+  .hero-section {
+    padding: 1.5rem 0;
+    min-height: auto;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-image img {
+    max-width: 80%;
+  }
+
+  /* Quick Links */
+  .quick-links-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .quick-links-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .quick-links-list {
+    gap: 0.8rem;
+  }
+
+  .quick-link-card {
+    min-width: 100px;
+    min-height: 85px;
+    font-size: 1.2rem;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .quick-link-card span {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Featured Jobs */
+  .featured-jobs-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .featured-jobs-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .integrated-search-section {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .search-with-filters {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .search-input-container {
+    height: 44px;
+  }
+
+  .job-search-input {
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .job-search-icon {
+    font-size: 18px;
+  }
+
+  .inline-filters {
+    gap: 10px;
+  }
+
+  .filter-select {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .jobs-grid {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  /* Service Highlights */
+  .service-highlights-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .service-highlights-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-highlights-list {
+    gap: 0.8rem;
+  }
+
+  .service-card {
+    min-width: 100px;
+    min-height: 85px;
+    font-size: 1.2rem;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .service-card span {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Categories */
+  .categories-section {
+    padding: 1.5rem 1rem;
+    margin: 2rem auto;
+  }
+
+  .categories-title {
+    font-size: 1.3rem;
+  }
+
+  .categories-list {
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .categories-list li {
+    min-width: 100px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .testimonials-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1rem;
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .testimonial-quote {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .testimonial-user {
+    font-size: 0.85rem;
+  }
+
+  /* Portfolio Maker */
+  .portfolio-maker-section {
+    padding: 2rem 1rem;
+  }
+
+  .portfolio-maker-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-maker-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .portfolio-maker-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .portfolio-cta-btn {
+    padding: 0.8rem 1.3rem;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  /* Facility Section */
+  .facility-section {
+    padding: 2rem 1rem;
+  }
+
+  .facility-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .facility-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .facility-features {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .facility-features .feature-icon i {
+    font-size: 1.3rem;
+  }
+
+  .facility-features .feature-icon span {
+    font-size: 0.85rem;
+  }
+
+  .facility-cta-btn {
+    padding: 0.8rem 1.3rem;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  /* Newsletter */
+  .newsletter-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .newsletter-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-form {
+    gap: 0.8rem;
+  }
+
+  .newsletter-input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding: 2rem 1rem;
+  }
+
+  .faq-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-list {
+    gap: 0.8rem;
+  }
+
+  .faq-item {
+    padding: 0.9rem 1rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+  }
+
+  .faq-question i {
+    font-size: 1.1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small Devices (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  /* Hero Section */
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.05rem;
+  }
+
+  .hero-buttons button {
+    padding: 0.75rem 1.4rem;
+  }
+
+  /* Quick Links & Service Cards */
+  .quick-link-card,
+  .service-card {
+    min-width: 120px;
+    min-height: 95px;
+    font-size: 1.5rem;
+  }
+
+  /* Search */
+  .search-input-container {
+    height: 48px;
+  }
+
+  .job-search-input {
+    font-size: 15px;
+  }
+
+  /* Categories */
+  .categories-list li {
+    min-width: 140px;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Tablet Devices (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+
+  /* Quick Links */
+  .quick-links-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .quick-link-card {
+    min-width: 130px;
+    min-height: 100px;
+    font-size: 1.6rem;
+  }
+
+  /* Featured Jobs */
+  .integrated-search-section {
+    max-width: 900px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Service Highlights */
+  .service-card {
+    min-width: 130px;
+    min-height: 100px;
+    font-size: 1.6rem;
+  }
+
+  /* Categories */
+  .categories-list li {
+    min-width: 160px;
+  }
+
+  /* Portfolio & Facility */
+  .portfolio-maker-section,
+  .facility-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .portfolio-maker-title,
+  .facility-title {
+    font-size: 1.8rem;
+  }
+
+  .portfolio-maker-description,
+  .facility-description {
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape Mobile Devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtext {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-buttons {
+    gap: 0.5rem;
+  }
+
+  .hero-buttons button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-image img {
+    max-width: 200px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  .quick-link-card,
+  .service-card,
+  .hero-buttons button,
+  .newsletter-btn,
+  .portfolio-cta-btn,
+  .facility-cta-btn {
+    min-height: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .quick-link-card:hover,
+  .service-card:hover,
+  .categories-list li:hover {
+    transform: none;
+  }
+
+  /* Add active states instead */
+  .quick-link-card:active,
+  .service-card:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-image img,
+  .logo-img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}

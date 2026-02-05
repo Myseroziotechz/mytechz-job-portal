@@ -1398,6 +1398,34 @@ nav::after {
   display: none !important;
 }
 
+/* Nav link button styling for mobile menu */
+.nav-link-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 16px 20px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-link-btn:hover {
+  background: rgba(74, 144, 226, 0.08);
+  color: #4A90E2;
+}
+
+:root.dark .nav-link-btn {
+  color: #E6E9F2;
+}
+
+:root.dark .nav-link-btn:hover {
+  background: rgba(91, 124, 250, 0.08);
+  color: #5B7CFA;
+}
+
 
 /* ===== PROFESSIONAL DARK MODE - NAVBAR ===== */
 :root.dark nav {
