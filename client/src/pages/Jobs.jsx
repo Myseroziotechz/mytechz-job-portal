@@ -238,7 +238,7 @@ function Jobs() {
 
               {(job.min_salary || job.max_salary) && (
                 <div style={{ marginBottom: '1rem' }}>
-                  <span style={{ color: '#28a745', fontWeight: '600' }}>
+                  <span style={{ color: '#4A90E2', fontWeight: '600' }}>
                     {job.currency === 'INR' ? '₹' : job.currency === 'USD' ? '$' : '€'}
                     {job.min_salary && job.max_salary 
                       ? `${parseInt(job.min_salary).toLocaleString()} - ${parseInt(job.max_salary).toLocaleString()}`
@@ -303,7 +303,7 @@ function Jobs() {
                   style={{
                     flex: 1,
                     padding: '0.75rem',
-                    backgroundColor: '#28a745',
+                    backgroundColor: 'linear-gradient(235deg, #2a42f8 26.05%, #7fa3ff 72.27%)',
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',

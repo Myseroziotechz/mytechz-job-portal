@@ -363,13 +363,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
   padding: 10px 20px;
   border-radius: 24px;
   font-weight: 600;
   font-size: 0.95rem;
-  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
 }
 
 .deadline-badge i {
@@ -415,7 +415,7 @@
 }
 
 .btn-applied {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
   cursor: not-allowed;
   opacity: 0.9;

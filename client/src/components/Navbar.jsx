@@ -147,25 +147,26 @@ function Navbar() {
 
       {/* Desktop navigation */}
       <ul className="sector2">
-        <li className="color-nav-box home-nav"><Link to="/">Home</Link></li>
-        <li className="color-nav-box job-nav"><Link to="/jobs">Jobs</Link></li>
-        <li className="color-nav-box document-nav"><Link to="/documents">Resume</Link></li>
-        <li className="color-nav-box admission-nav"><Link to="/admissions">Admissions</Link></li>
-        <li className="color-nav-box webinar-nav"><Link to="/webinars">Webinars</Link></li>
+        <li className={`color-nav-box home-nav ${location.pathname === '/' ? 'active' : ''}`}>
+          <Link to="/">Home</Link>
+        </li>
+        <li className={`color-nav-box job-nav ${location.pathname.startsWith('/jobs') ? 'active' : ''}`}>
+          <Link to="/jobs">Jobs</Link>
+        </li>
+        <li className={`color-nav-box document-nav ${location.pathname === '/documents' ? 'active' : ''}`}>
+          <Link to="/documents">Resume</Link>
+        </li>
+        <li className={`color-nav-box admission-nav ${location.pathname.startsWith('/admissions') ? 'active' : ''}`}>
+          <Link to="/admissions">Admissions</Link>
+        </li>
+        <li className={`color-nav-box webinar-nav ${location.pathname === '/webinars' ? 'active' : ''}`}>
+          <Link to="/webinars">Webinars</Link>
+        </li>
       </ul>
       
-      {/* Right side - Auth buttons or profile */}
+      {/* Right side - Profile icon only */}
       <div className="log-div">
-        <div className="line"></div>
-        
-        {/* Show ONLY Login button when NOT logged in */}
-        {!isLoggedIn && (
-          <div className="login-link tablet-hide-login">
-            <Link to="/login" className="login-btn">Login</Link>
-          </div>
-        )}
-        
-        {/* Profile icon/dropdown - show only when logged in */}
+        {/* Profile icon/dropdown */}
         <div className="log-icon-div">
           {isLoggedIn ? (
             <ProfileDropdown 

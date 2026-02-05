@@ -137,7 +137,7 @@ function MyJobs() {
                 backgroundColor: '#fff',
                 borderRadius: '8px',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                border: job.is_published ? '2px solid #28a745' : '2px solid #ffc107'
+                border: job.is_published ? '2px solid #4A90E2' : '2px solid #ffc107'
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
@@ -150,7 +150,7 @@ function MyJobs() {
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <span style={{
                     padding: '0.25rem 0.75rem',
-                    backgroundColor: job.is_published ? '#28a745' : '#ffc107',
+                    backgroundColor: job.is_published ? '#4A90E2' : '#ffc107',
                     color: job.is_published ? 'white' : '#000',
                     borderRadius: '12px',
                     fontSize: '0.75rem',

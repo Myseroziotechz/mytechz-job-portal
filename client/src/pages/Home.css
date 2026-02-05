@@ -649,15 +649,15 @@
 
 
 .categories-section {
-  margin: -1.3rem auto 0 auto;
+  margin: 3rem auto;
   max-width: auto;
-  background: var(--bg-page);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
   
   background-position: center;
   background-size: cover;
   
   box-shadow: 0 2px 16px rgba(160,32,240,0.07);
-  padding: 0rem 1.5rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   
 }

@@ -8,7 +8,7 @@ function LoadingSpinner({ message = 'Loading opportunities for you...' }) {
         {/* Logo/Brand Section */}
         <div className="loading-brand">
           <div className="loading-icon">
-            <i className="ri-briefcase-4-fill"></i>
+            <img src="../assets/logo2.png" alt="MytechZ Logo" className="loading-logo-img" />
           </div>
           <h2 className="loading-brand-name">MytechZ</h2>
           <p className="loading-tagline">Your Career Partner</p>

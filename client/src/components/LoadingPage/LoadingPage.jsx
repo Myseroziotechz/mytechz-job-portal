@@ -8,7 +8,7 @@ function LoadingPage() {
         {/* Logo Section */}
         <div className="mytechz-logo-section">
           <div className="mytechz-logo-icon">
-            <i className="ri-briefcase-4-fill"></i>
+            <img src="../assets/logo2.png" alt="MytechZ Logo" className="mytechz-logo-img" />
           </div>
           <h1 className="mytechz-brand-name">MytechZ</h1>
           <p className="mytechz-tagline">Your Career Partner</p>

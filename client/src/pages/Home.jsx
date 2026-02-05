@@ -10,7 +10,7 @@ import ResumeManager from '../components/Resume/ResumeManager';
 
 
 
-const industries = ["All", "IT & Software", "Education", "Engineering", "Healthcare", "Private", "Government"];
+const industries = ["All", "IT & Software", "Education", "Engineering", "Private", "Government"];
 const experiences = ["All", "Entry", "Mid", "Senior"];
 const locations = ["All", "Bangalore, India", "Chennai, India", "Delhi, India", "Hyderabad, India", "Mumbai, India", "Pune, India"];
 
@@ -198,7 +198,7 @@ export default function Home() {
         <div className="resume-content">
           <h2 className="resume-title">Build Your Professional Resume</h2>
           <p className="resume-description">
-            Create a standout resume with our professional templates and get noticed by top employers.
+            Create a standout resume with our professional templates and get noticed by companies.
           </p>
           <div className="resume-features">
             <div className="feature-icon">
@@ -220,32 +220,6 @@ export default function Home() {
           >
             <i className="ri-rocket-line"></i>
             Get Ready My First Resume
-          </button>
-        </div>
-      </div>
-
-      {/* Facility Management Section */}
-      <div className="facility-section" ref={useScrollAnimation('move-in-left')}>
-        <div className="facility-content">
-          <h2 className="facility-title">Professional Facility Management</h2>
-          <p className="facility-description">
-            "Excellence in facility management is not just about maintaining spaces, it's about creating environments where success thrives."
-          </p>
-          <div className="facility-features">
-            <div className="feature-icon">
-              <i className="ri-building-line"></i>
-              <span>Infrastructure Management</span>
-            </div>
-            <div className="feature-icon">
-              <i className="ri-shield-check-line"></i>
-              <span>Security & Safety</span>
-            </div>
-            <div className="feature-icon">
-              <i className="ri-tools-line"></i>
-              <span>Maintenance Services</span>
-            </div>
-          </div>
-          <button>
           </button>
         </div>
       </div>
@@ -335,9 +309,6 @@ export default function Home() {
           <div className="service-card" onClick={() => window.showNotification('Interview preparation service coming soon!', 'info')}>
             <i className="ri-mic-line"></i><span>Interview Preparation</span>
           </div>
-          <div className="service-card" onClick={() => window.showNotification('Document services coming soon!', 'info')}>
-            <i className="ri-file-list-line"></i><span>Document Services<br/>(PAN, Aadhaar, etc.)</span>
-          </div>
           <div className="service-card" onClick={() => window.location.href = '/admissions'}>
             <i className="ri-school-line"></i><span>College Admission Help</span>
           </div>
@@ -355,9 +326,7 @@ export default function Home() {
           <li><i className="ri-computer-line"></i> IT & Software</li>
           <li><i className="ri-book-line"></i> Education & Teaching</li>
           <li><i className="ri-settings-line"></i> Engineering</li>
-          <li><i className="ri-hospital-line"></i> Healthcare</li>
         </ul>
-        <a href="/categories" className="view-all-categories">→ View All Categories</a>
       </div>
 
       {/* Testimonials Section */}
