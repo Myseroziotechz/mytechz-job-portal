@@ -76,7 +76,7 @@
   font-size: 0.75rem;
   padding: 4px 10px;
   border-radius: 12px;
-  background: rgba(239, 68, 68, 0.12);
+  background: transparent;
   color: var(--danger);
   white-space: nowrap;
 }
@@ -256,7 +256,7 @@
 }
 
 :root.dark .deadline {
-  background: rgba(231, 76, 60, 0.15) !important;
+  background: transparent !important;
   color: #E74C3C !important;
 }
 
