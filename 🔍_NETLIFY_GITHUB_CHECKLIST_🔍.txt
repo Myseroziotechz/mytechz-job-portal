@@ -1,0 +1,139 @@
+═══════════════════════════════════════════════════════════════
+🔍 NETLIFY + GITHUB CONNECTION CHECKLIST 🔍
+═══════════════════════════════════════════════════════════════
+
+Use this checklist to ensure everything is configured correctly!
+
+═══════════════════════════════════════════════════════════════
+✅ PRE-CONNECTION CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ Logged into GitHub with: myseroziotechz@gmail.com
+□ Repository exists: Myseroziotechz/mytechz-job-portal
+□ Code is pushed to main branch
+□ Logged into Netlify
+□ Have access to site: cheery-malasada-331cc2
+
+═══════════════════════════════════════════════════════════════
+✅ CONNECTION CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ Netlify → Site settings → Build & deploy
+□ Clicked "Link repository"
+□ Selected GitHub
+□ Authorized Netlify on GitHub
+□ Selected: Myseroziotechz/mytechz-job-portal
+□ Confirmed connection
+
+═══════════════════════════════════════════════════════════════
+✅ BUILD SETTINGS CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ Branch to deploy: main
+□ Base directory: client
+□ Build command: npm run build
+□ Publish directory: client/dist
+□ Settings saved
+
+═══════════════════════════════════════════════════════════════
+✅ ENVIRONMENT VARIABLE CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ Environment variables section opened
+□ Added variable: VITE_API_BASE_URL
+□ Value set to: https://mytechz-job-portal-2.onrender.com
+□ Variable saved
+
+═══════════════════════════════════════════════════════════════
+✅ DEPLOYMENT CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ First deployment triggered
+□ Build started successfully
+□ No build errors in logs
+□ Deployment completed
+□ Site is live
+
+═══════════════════════════════════════════════════════════════
+✅ VERIFICATION CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+□ Site loads: https://cheery-malasada-331cc2.netlify.app
+□ Homepage displays correctly
+□ Can navigate to pages
+□ Login/Signup works
+□ API calls work (no CORS errors)
+□ Backend connection successful
+
+═══════════════════════════════════════════════════════════════
+✅ AUTO-DEPLOYMENT TEST
+═══════════════════════════════════════════════════════════════
+
+□ Made a small change locally
+□ Committed: git commit -m "test"
+□ Pushed: git push origin main
+□ Netlify detected the push
+□ Build started automatically
+□ Deployment completed
+□ Changes visible on live site
+
+═══════════════════════════════════════════════════════════════
+🔧 TROUBLESHOOTING CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+IF BUILD FAILS:
+□ Check base directory is "client" (not empty)
+□ Check publish directory is "client/dist"
+□ Check build command is "npm run build"
+□ Check package.json exists in client folder
+□ Check environment variable is set
+
+IF CAN'T SEE REPOSITORY:
+□ Go to: https://github.com/settings/installations
+□ Find Netlify
+□ Click Configure
+□ Grant access to repository
+□ Save
+
+IF WRONG GITHUB ACCOUNT:
+□ Go to: https://github.com/settings/applications
+□ Find Netlify in OAuth Apps
+□ Click Revoke
+□ Reconnect with correct account
+
+IF API CALLS FAIL:
+□ Check VITE_API_BASE_URL is set
+□ Check backend URL is correct
+□ Check Render backend is running
+□ Check CORS settings in Render
+
+═══════════════════════════════════════════════════════════════
+📊 FINAL VERIFICATION
+═══════════════════════════════════════════════════════════════
+
+After everything is set up:
+
+□ Netlify shows "Connected to GitHub"
+□ Repository: Myseroziotechz/mytechz-job-portal
+□ Branch: main
+□ Build settings correct
+□ Environment variable set
+□ Site deploys automatically on push
+□ No manual uploads needed
+
+═══════════════════════════════════════════════════════════════
+🎯 SUCCESS CRITERIA
+═══════════════════════════════════════════════════════════════
+
+✅ Push to GitHub → Netlify auto-deploys
+✅ Build logs available
+✅ Site updates automatically
+✅ No errors in deployment
+✅ Frontend connects to backend
+✅ All features work
+
+═══════════════════════════════════════════════════════════════
+
+If all checkboxes are checked, you're all set! 🎉
+
+═══════════════════════════════════════════════════════════════

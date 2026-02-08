@@ -1,0 +1,99 @@
+═══════════════════════════════════════════════════════════════
+⚡ NETLIFY + GITHUB AUTO-DEPLOY - QUICK SETUP ⚡
+═══════════════════════════════════════════════════════════════
+
+🎯 GOAL: Connect Netlify to GitHub for automatic deployments
+
+═══════════════════════════════════════════════════════════════
+📋 5 SIMPLE STEPS
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Open Netlify
+────────────────────────────────────────────────────────────
+→ https://app.netlify.com
+→ Click: cheery-malasada-331cc2
+→ Click: "Site settings"
+
+STEP 2: Connect GitHub
+────────────────────────────────────────────────────────────
+→ Left sidebar: "Build & deploy"
+→ Find: "Repository" section
+→ Click: "Link repository" or "Link to a different repository"
+→ Choose: GitHub
+→ Login: myseroziotechz@gmail.com
+→ Select: Myseroziotechz/mytechz-job-portal
+→ Click: "Save"
+
+STEP 3: Configure Build
+────────────────────────────────────────────────────────────
+Still in "Build & deploy" → "Build settings":
+
+Base directory: client
+Build command: npm run build
+Publish directory: client/dist
+Production branch: main
+
+Click "Save"
+
+STEP 4: Add Environment Variable
+────────────────────────────────────────────────────────────
+→ Left sidebar: "Environment variables"
+→ Click: "Add a variable"
+
+Key: VITE_API_BASE_URL
+Value: https://mytechz-job-portal-2.onrender.com
+
+Scopes: ✅ All (Production, Deploy previews, Branch deploys)
+
+Click "Create variable"
+
+STEP 5: Deploy!
+────────────────────────────────────────────────────────────
+→ Top menu: "Deploys" tab
+→ Click: "Trigger deploy"
+→ Select: "Deploy site"
+→ Wait 2-5 minutes
+→ Done! ✅
+
+═══════════════════════════════════════════════════════════════
+✅ AFTER SETUP
+═══════════════════════════════════════════════════════════════
+
+Every time you push to GitHub:
+1. git add .
+2. git commit -m "Your changes"
+3. git push origin main
+4. Netlify automatically builds and deploys! 🚀
+
+No more manual uploads!
+
+═══════════════════════════════════════════════════════════════
+🔗 YOUR SETUP
+═══════════════════════════════════════════════════════════════
+
+GitHub Repo: Myseroziotechz/mytechz-job-portal
+Netlify Site: cheery-malasada-331cc2
+Backend: https://mytechz-job-portal-2.onrender.com
+
+═══════════════════════════════════════════════════════════════
+💡 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+Can't connect GitHub?
+→ Revoke Netlify access on GitHub settings
+→ Try again with myseroziotechz@gmail.com
+
+Build fails?
+→ Check base directory is "client"
+→ Check build command is "npm run build"
+
+Site loads but API fails?
+→ Check environment variable VITE_API_BASE_URL is set
+
+═══════════════════════════════════════════════════════════════
+
+Time: 10 minutes
+Difficulty: Easy
+Result: Automatic deployments! 🎉
+
+═══════════════════════════════════════════════════════════════
