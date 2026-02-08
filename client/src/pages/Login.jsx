@@ -146,6 +146,15 @@ function Login() {
       <div className="back-box">
         <div className="inbox-div" onClick={(e) => e.stopPropagation()}>
 
+          {/* Close button */}
+          <button 
+            className="form-close-btn" 
+            onClick={() => window.history.back()}
+            aria-label="Close"
+          >
+            <i className="ri-close-line"></i>
+          </button>
+
           {/* Left section image */}
           <div className="sector1">
             <div className="sector1-job-img" />
@@ -153,15 +162,6 @@ function Login() {
 
           {/* Right section - login form */}
           <div className="sector2-login">
-            {/* Close button */}
-            <button 
-              className="form-close-btn" 
-              onClick={() => window.history.back()}
-              aria-label="Close"
-            >
-              <i className="ri-close-line"></i>
-            </button>
-            
             <div className="sector2-job-img-div">
               <div className="logo-img" />
               <h3 id="logo-text">MytechZ</h3>
