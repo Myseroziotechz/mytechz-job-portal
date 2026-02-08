@@ -114,7 +114,7 @@ function Navbar() {
               <button onClick={(e) => handleLinkClick(e, '/')} className="nav-link-btn">Home</button>
             </li>
             <li className='color-subnav-box hamburger-item job-nav-h'>
-              <button onClick={(e) => handleLinkClick(e, '/jobs')} className="nav-link-btn">Jobs</button>
+              <button onClick={(e) => handleLinkClick(e, '/jobs')} className="nav-link-btn">Job</button>
             </li>
             <li className='color-subnav-box hamburger-item document-nav-h'>
               <button onClick={(e) => handleLinkClick(e, '/documents')} className="nav-link-btn">Resume</button>
@@ -151,7 +151,7 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li className={`color-nav-box job-nav ${location.pathname.startsWith('/jobs') ? 'active' : ''}`}>
-          <Link to="/jobs">Jobs</Link>
+          <Link to="/jobs">Job</Link>
         </li>
         <li className={`color-nav-box document-nav ${location.pathname === '/documents' ? 'active' : ''}`}>
           <Link to="/documents">Resume</Link>
