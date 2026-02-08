@@ -25,7 +25,7 @@ function Footer() {
         <div className="footer-col">
           <h4>Contact</h4>
           <p>
-            <strong>Phone:</strong> <a href="tel:+911234567890">+91 6361718992</a><br />
+            <strong>Phone:</strong> <a href="tel:+918618659319">+91 8618659319</a><br />
             <strong>Address:</strong><br />
             <br />
             Bangalore, India

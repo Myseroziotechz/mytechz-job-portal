@@ -322,6 +322,7 @@ export default function Home() {
       <div className="categories-section">
         <h2 className="categories-title">Explore Job Sectors</h2>
         <ul className="categories-list" ref={useScrollAnimation('move-in-left')}>
+          <li><i className="ri-government-line"></i> Government Jobs</li>
           <li><i className="ri-briefcase-line"></i> Private Company Roles</li>
           <li><i className="ri-computer-line"></i> IT & Software</li>
           <li><i className="ri-book-line"></i> Education & Teaching</li>

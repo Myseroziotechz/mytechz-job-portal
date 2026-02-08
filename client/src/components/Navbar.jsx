@@ -151,7 +151,7 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li className={`color-nav-box job-nav ${location.pathname.startsWith('/jobs') ? 'active' : ''}`}>
-          <Link to="/jobs">Job</Link>
+          <Link to="/jobs">Jobs</Link>
         </li>
         <li className={`color-nav-box document-nav ${location.pathname === '/documents' ? 'active' : ''}`}>
           <Link to="/documents">Resume</Link>
