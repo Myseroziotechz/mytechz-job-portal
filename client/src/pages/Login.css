@@ -36,7 +36,7 @@
   width: 45%;
   min-height: 100%;
   max-height: 90vh;
-  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   border-radius: 15px 60px 15px 60px;
   display: flex;
   justify-content: center;
@@ -56,8 +56,8 @@
     45deg,
     transparent,
     transparent 10px,
-    rgba(255, 255, 255, 0.03) 10px,
-    rgba(255, 255, 255, 0.03) 20px
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.05) 20px
   );
   pointer-events: none;
 }
@@ -82,6 +82,7 @@
   justify-content: flex-start;
   overflow-y: auto;
   max-height: 90vh;
+  position: relative;
 }
 
 .sector2-job-img-div {
@@ -101,6 +102,7 @@
 .input-group {
   position: relative;
   margin-bottom: 1.2rem;
+  margin-top: 1.5rem;
   width: 100%;
 }
 
@@ -179,16 +181,23 @@
   background: rgba(160, 32, 240, 0.05);
   border-radius: 8px;
   border: 2px dashed rgba(160, 32, 240, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .signup-text a {
   color: #a020f0;
   font-weight: 600;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   text-decoration: none;
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.2s ease;
+  display: inline;
 }
 
 .signup-text a:hover {
@@ -294,7 +303,7 @@
 }
 
 :root.dark .sector1 {
-  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%) !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
   opacity: 1 !important;
 }
 
@@ -468,8 +477,8 @@
 /* ===== FORM CLOSE BUTTON ===== */
 .form-close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
