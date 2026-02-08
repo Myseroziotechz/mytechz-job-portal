@@ -153,26 +153,20 @@ nav::after {
 }
 
 .sector2 li a::before {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, #4A90E2, #357ABD);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
+  display: none;
 }
 
 .sector2 li a:hover {
   background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
   color: #4A90E2;
   transform: translateY(-2px);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .sector2 li a:hover::before {
-  transform: translateX(-50%) scaleX(1);
+  display: none;
 }
 
 /* Active state with underline */
