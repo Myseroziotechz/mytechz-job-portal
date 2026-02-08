@@ -139,6 +139,7 @@ nav::after {
   font-weight: 500;
   transition: all 0.2s ease;
   position: relative;
+  white-space: nowrap;
 }
 
 .sector2 li a {
