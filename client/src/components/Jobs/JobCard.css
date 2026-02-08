@@ -1,5 +1,5 @@
 .job-card {
-  background: var(--bg-surface, var(--bg-page));
+  background: transparent;
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 18px;
@@ -195,7 +195,7 @@
 
 /* ===== PROFESSIONAL DARK MODE - JOB CARDS ===== */
 :root.dark .job-card {
-  background-color: #161B2E !important;
+  background-color: transparent !important;
   border: 1px solid #1F2655 !important;
   box-shadow: none !important;
 }

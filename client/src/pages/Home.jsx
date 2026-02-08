@@ -304,7 +304,7 @@ export default function Home() {
             <i className="ri-lightbulb-line"></i><span>Career Guidance</span>
           </div>
           <div className="service-card" onClick={() => window.location.href = '/documents'}>
-            <i className="ri-file-text-line"></i><span>Resume Writing</span>
+            <i className="ri-file-text-line"></i><span>Resume Building</span>
           </div>
           <div className="service-card" onClick={() => window.showNotification('Interview preparation service coming soon!', 'info')}>
             <i className="ri-mic-line"></i><span>Interview Preparation</span>
@@ -313,7 +313,7 @@ export default function Home() {
             <i className="ri-school-line"></i><span>College Admission Help</span>
           </div>
           <div className="service-card" onClick={() => window.location.href = '/webinars'}>
-            <i className="ri-global-line"></i><span>Webinars & Events</span>
+            <i className="ri-global-line"></i><span>Webinars & Workshops</span>
           </div>
         </div>
       </div>
