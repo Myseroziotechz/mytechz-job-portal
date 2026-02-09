@@ -1,37 +1,59 @@
-:root.dark {
-  /* Page & surfaces */
-  --bg-page: #0b1120; 
-}
 .webinar-listing-container {
   min-height: 100vh;
   background: var(--bg-page);
 }
+
 :root.dark .webinar-listing-container {
   background: var(--bg-page);
 }
-.search-section h1{
-  color: #111;
+
+/* Search Section - Consistent with Jobs and Admissions */
+.search-section {
+  background: white;
+  padding: 24px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+  text-align: center;
 }
-:root.dark .search-section h1{
-  color: #fff;
+
+.search-section h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
 }
+
+:root.dark .search-section {
+  background: #0E1117;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark .search-section h1 {
+  color: #E6E9F2;
+}
+
 .search-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .search-header p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-bottom: 40px;
+  font-size: 15px;
+  opacity: 0.8;
+  margin-bottom: 24px;
+  color: #666;
+}
+
+:root.dark .search-header p {
+  color: #8A90B2;
 }
 
 .search-form {
   display: flex;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
-  gap: 15px;
+  gap: 0;
   align-items: center;
 }
 
@@ -39,15 +61,40 @@
   flex: 1;
   position: relative;
   min-width: 0;
+  display: flex;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+}
+
+:root.dark .search-input-group {
+  background: #161B2E;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .search-input {
-  width: 100%;
-  padding: 15px 50px 15px 50px;
+  flex: 1;
+  padding: 12px 16px 12px 40px;
   border: none;
-  border-radius: 50px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 14px;
   outline: none;
+  color: #333;
+  font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+:root.dark .search-input {
+  background: #161B2E;
+  color: #E6E9F2;
+}
+
+:root.dark .search-input::placeholder {
+  color: #8A90B2;
 }
 
 .search-icon {
@@ -56,6 +103,11 @@
   top: 50%;
   transform: translateY(-50%);
   color: #666;
+  font-size: 20px;
+}
+
+:root.dark .search-icon {
+  color: #8A90B2;
 }
 
 .clear-btn {
@@ -67,6 +119,24 @@
   border: none;
   cursor: pointer;
   color: #666;
+  font-size: 20px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.clear-btn:hover {
+  color: #4A90E2;
+}
+
+:root.dark .clear-btn {
+  color: #8A90B2;
+}
+
+:root.dark .clear-btn:hover {
+  color: #5B7CFA;
 }
 
 .webinar-content {
@@ -570,14 +640,37 @@
   }
   
   .search-section {
-    padding: 30px 15px;
+    padding: 20px 15px;
   }
   
   .search-header h1 {
-    font-size: 1.8rem;
+    font-size: 24px;
     margin-bottom: 8px;
   }
   
+  .search-header p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .search-form {
+    max-width: 100%;
+  }
+  
+  .search-input {
+    padding: 10px 14px 10px 36px;
+    font-size: 13px;
+  }
+  
+  .search-icon {
+    left: 16px;
+    font-size: 18px;
+  }
+  
+  .clear-btn {
+    right: 12px;
+    font-size: 18px;
+  }
   .search-header p {
     font-size: 1rem;
     margin-bottom: 25px;
