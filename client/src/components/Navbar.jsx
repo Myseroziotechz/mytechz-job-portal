@@ -110,7 +110,7 @@ function Navbar() {
     <nav>
       <div className="logo">
         {/* Mobile menu toggle */}
-        <div className="menu dropdown">
+        <div className={`menu dropdown ${mobileMenuOpen ? 'open' : ''}`}>
           <div className="menu-icondiv color-nav-box" onClick={handleMobileMenuToggle}>
             <i className="ri-menu-2-line"></i>
           </div>

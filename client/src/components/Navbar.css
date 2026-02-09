@@ -1408,6 +1408,19 @@ nav::after {
     border-radius: 8px !important;
     background: linear-gradient(235deg, #7fa3ff 29.41%, #2a42f8 64.29%) !important;
     color: white !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .menu-icondiv:active {
+    transform: scale(0.95);
+  }
+  
+  .menu-icondiv i {
+    transition: transform 0.3s ease;
+  }
+  
+  .menu.dropdown.open .menu-icondiv i {
+    transform: rotate(90deg);
   }
 
   .dropdown-content {
@@ -1422,6 +1435,10 @@ nav::after {
     z-index: 9999 !important;
     background: var(--bg-page) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .logo-img-div-nav {
@@ -1532,11 +1549,38 @@ nav::after {
 /* Mobile dropdown open state */
 .dropdown-content.mobile-open {
   display: block;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* Ensure dropdown closes immediately when mobile-open is removed */
+/* Ensure dropdown closes smoothly when mobile-open is removed */
 .dropdown-content:not(.mobile-open) {
-  display: none !important;
+  display: block;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Smooth scrolling for mobile menu */
+@media (max-width: 767px) {
+  .dropdown-content {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Add backdrop blur effect when menu is open */
+  .dropdown-content.mobile-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    backdrop-filter: blur(2px);
+  }
 }
 
 /* Nav link button styling for mobile menu */
