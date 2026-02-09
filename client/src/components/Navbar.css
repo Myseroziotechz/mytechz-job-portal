@@ -118,6 +118,11 @@ nav::after {
   white-space: nowrap;
 }
 
+/* Dropdown parent positioning */
+.sector2 li.dropdown {
+  position: relative;
+}
+
 .sector2 li a {
   padding: 8px 16px;
   border-radius: 8px;
@@ -203,23 +208,42 @@ nav::after {
   background: var(--bg-page);
   min-width: 200px;
   border-radius: 12px;
-  z-index: 1000;
+  z-index: 10000;
   padding: 8px 0;
   border: 1px solid #e1e5e9;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: block !important;
 }
 
 /* Jobs dropdown specific styling */
 .jobs-dropdown {
+  display: none;
+  position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 8px;
   min-width: 180px;
+  background: white;
+  border-radius: 12px;
+  z-index: 10000;
+  padding: 8px 0;
+  border: 1px solid #e1e5e9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Show dropdown on hover */
+.job-nav.dropdown:hover .jobs-dropdown,
+.job-nav:hover .jobs-dropdown {
+  display: block !important;
+}
+
+/* Keep dropdown visible when hovering over it */
+.jobs-dropdown:hover {
+  display: block !important;
 }
 
 .jobs-dropdown li {
