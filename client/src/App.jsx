@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppFloat from './components/WhatsAppFloat';
 import Home from './pages/Home';
 import NaukriJobs from './pages/NaukriJobs';
 import GovernmentJobs from './pages/GovernmentJobs';
@@ -128,6 +129,7 @@ function App() {
         <Route path="/settings" element={<div>Settings Page</div>} />
       </Routes>
       <Footer /> {/* Footer component for additional information */}
+      <WhatsAppFloat /> {/* Floating WhatsApp button */}
       <NotificationSystem />
       <PopupNotification 
         message={notification.message}
