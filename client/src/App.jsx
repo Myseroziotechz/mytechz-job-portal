@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import NaukriJobs from './pages/NaukriJobs';
+import GovernmentJobs from './pages/GovernmentJobs';
 import GovExams from './pages/GovExams';
 
 import AdmitCard from './pages/AdmitCard';
@@ -65,6 +66,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<NaukriJobs />} />
+        <Route path="/jobs/private" element={<NaukriJobs />} />
+        <Route path="/jobs/government" element={<GovernmentJobs />} />
         <Route path="/jobs/:jobId" element={<NaukriJobDetail />} />
         <Route path="/jobs/:jobId/apply" element={<JobApply />} />
         <Route path="/gov-exams" element={<GovExams />} />

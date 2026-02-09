@@ -1,0 +1,144 @@
+═══════════════════════════════════════════════════════════════
+🧪 TESTING GUIDE - JOBS CATEGORY DROPDOWN 🧪
+═══════════════════════════════════════════════════════════════
+
+## QUICK TEST STEPS
+
+1. START LOCAL SERVER
+─────────────────────────────────────────────────────────────
+cd client
+npm run dev
+
+Server should start on: http://localhost:5173
+
+2. TEST DESKTOP VIEW (Screen > 1024px)
+─────────────────────────────────────────────────────────────
+□ Open browser at http://localhost:5173
+□ Look at navbar - you should see: Home | Jobs | Resume | Admissions | Webinars
+□ Hover mouse over "Jobs"
+□ Dropdown should appear with:
+  - Private Jobs
+  - Government Jobs
+□ Click "Private Jobs" → should go to jobs listing page
+□ Go back, hover "Jobs" again
+□ Click "Government Jobs" → should show "Coming Soon" page with:
+  - Government building icon
+  - "Coming Soon" title
+  - Description
+  - 4 feature boxes
+
+3. TEST MOBILE VIEW (Screen < 768px)
+─────────────────────────────────────────────────────────────
+□ Open Chrome DevTools (F12)
+□ Click device toolbar icon (Ctrl+Shift+M)
+□ Select "iPhone 12 Pro" or any mobile device
+□ Click hamburger menu (☰) on left side
+□ Menu should open showing:
+  - Home
+  - Jobs (with down arrow →)
+  - Resume
+  - Admissions
+  - Webinars
+  - Login (if not logged in)
+□ Click on "Jobs"
+□ Submenu should expand showing:
+  - Private Jobs (indented)
+  - Government Jobs (indented)
+□ Arrow should rotate to up (↑)
+□ Click "Private Jobs" → menu closes, goes to jobs page
+□ Open menu again, click "Jobs", click "Government Jobs"
+□ Should show Coming Soon page
+
+4. TEST DARK MODE
+─────────────────────────────────────────────────────────────
+□ Toggle dark mode (if available)
+□ Check dropdown colors are visible
+□ Check Coming Soon page looks good in dark mode
+□ Colors should be blue/purple theme
+
+5. TEST DIFFERENT SCREEN SIZES
+─────────────────────────────────────────────────────────────
+Test these widths in DevTools:
+□ 320px (Small phone)
+□ 375px (iPhone SE)
+□ 768px (Tablet)
+□ 1024px (Small laptop)
+□ 1920px (Desktop)
+
+All should work smoothly!
+
+═══════════════════════════════════════════════════════════════
+✅ EXPECTED RESULTS
+═══════════════════════════════════════════════════════════════
+
+DESKTOP:
+✓ Jobs dropdown appears on hover
+✓ Dropdown has white background with shadow
+✓ Items have hover effect (light blue background)
+✓ Clicking navigates correctly
+✓ Dropdown closes when mouse leaves
+
+MOBILE:
+✓ Jobs item has arrow icon
+✓ Clicking Jobs expands submenu
+✓ Arrow rotates when expanded
+✓ Submenu items are indented
+✓ Clicking item navigates and closes menu
+
+GOVERNMENT JOBS PAGE:
+✓ Large icon at top
+✓ "Government Jobs" title in gradient
+✓ "Coming Soon" subtitle
+✓ Description text
+✓ 4 feature boxes in 2x2 grid
+✓ Responsive on all sizes
+
+═══════════════════════════════════════════════════════════════
+🐛 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+ISSUE: Dropdown doesn't appear
+FIX: Clear browser cache (Ctrl+Shift+Delete)
+     Hard refresh (Ctrl+F5)
+
+ISSUE: Styles look wrong
+FIX: Make sure dev server restarted after CSS changes
+     Check browser console for errors
+
+ISSUE: Navigation doesn't work
+FIX: Check browser console for JavaScript errors
+     Make sure all files saved
+
+ISSUE: Mobile menu doesn't open
+FIX: Check if hamburger icon is visible
+     Try clicking directly on the icon
+
+═══════════════════════════════════════════════════════════════
+📸 SCREENSHOTS TO TAKE
+═══════════════════════════════════════════════════════════════
+
+1. Desktop - Jobs dropdown open
+2. Mobile - Hamburger menu with Jobs expanded
+3. Government Jobs Coming Soon page (desktop)
+4. Government Jobs Coming Soon page (mobile)
+5. Dark mode version of above
+
+═══════════════════════════════════════════════════════════════
+🎯 SUCCESS CRITERIA
+═══════════════════════════════════════════════════════════════
+
+✓ Jobs dropdown works on desktop
+✓ Jobs submenu works on mobile
+✓ Private Jobs goes to correct page
+✓ Government Jobs shows Coming Soon
+✓ No console errors
+✓ Responsive on all screen sizes
+✓ Dark mode works
+✓ Animations are smooth
+✓ No layout breaks
+
+═══════════════════════════════════════════════════════════════
+
+Ready to test! 🚀
+
+═══════════════════════════════════════════════════════════════

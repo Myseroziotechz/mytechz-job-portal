@@ -11,6 +11,9 @@ function Navbar() {
   // Mobile menu state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
+  // Jobs dropdown state
+  const [jobsDropdownOpen, setJobsDropdownOpen] = useState(false);
+  
   // Auth state - reactive to localStorage changes
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
@@ -54,6 +57,10 @@ function Navbar() {
   
   const handleMobileMenuClose = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleJobsDropdownToggle = () => {
+    setJobsDropdownOpen(!jobsDropdownOpen);
   };
 
   // Handle link click - close menu immediately and navigate
@@ -113,9 +120,23 @@ function Navbar() {
             <li className='color-subnav-box hamburger-item home-nav-h'>
               <button onClick={(e) => handleLinkClick(e, '/')} className="nav-link-btn">Home</button>
             </li>
-            <li className='color-subnav-box hamburger-item job-nav-h'>
-              <button onClick={(e) => handleLinkClick(e, '/jobs')} className="nav-link-btn">Job</button>
+            
+            {/* Jobs with submenu */}
+            <li className={`color-subnav-box hamburger-item job-nav-h dropdown-hidden ${jobsDropdownOpen ? 'jobs-open' : ''}`}>
+              <span onClick={handleJobsDropdownToggle} className="nav-link-btn dropbtn-hidden">
+                Jobs
+                <i className={`ri-arrow-${jobsDropdownOpen ? 'up' : 'down'}-s-line`}></i>
+              </span>
+              <ul className={`dropdown-content-hidden ${jobsDropdownOpen ? 'show' : ''}`}>
+                <li className='color-subnav-box'>
+                  <button onClick={(e) => handleLinkClick(e, '/jobs/private')} className="nav-link-btn">Private Jobs</button>
+                </li>
+                <li className='color-subnav-box'>
+                  <button onClick={(e) => handleLinkClick(e, '/jobs/government')} className="nav-link-btn">Government Jobs</button>
+                </li>
+              </ul>
             </li>
+            
             <li className='color-subnav-box hamburger-item document-nav-h'>
               <button onClick={(e) => handleLinkClick(e, '/documents')} className="nav-link-btn">Resume</button>
             </li>
@@ -150,9 +171,20 @@ function Navbar() {
         <li className={`color-nav-box home-nav ${location.pathname === '/' ? 'active' : ''}`}>
           <Link to="/">Home</Link>
         </li>
-        <li className={`color-nav-box job-nav ${location.pathname.startsWith('/jobs') ? 'active' : ''}`}>
+        
+        {/* Jobs with dropdown */}
+        <li className={`color-nav-box job-nav dropdown ${location.pathname.startsWith('/jobs') ? 'active' : ''}`}>
           <Link to="/jobs">Jobs</Link>
+          <ul className="dropdown-content jobs-dropdown">
+            <li>
+              <Link to="/jobs/private">Private Jobs</Link>
+            </li>
+            <li>
+              <Link to="/jobs/government">Government Jobs</Link>
+            </li>
+          </ul>
         </li>
+        
         <li className={`color-nav-box document-nav ${location.pathname === '/documents' ? 'active' : ''}`}>
           <Link to="/documents">Resume</Link>
         </li>

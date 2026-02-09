@@ -213,6 +213,36 @@ nav::after {
   display: block;
 }
 
+/* Jobs dropdown specific styling */
+.jobs-dropdown {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  min-width: 180px;
+}
+
+.jobs-dropdown li {
+  margin: 0;
+  padding: 0;
+}
+
+.jobs-dropdown li a {
+  display: block;
+  padding: 12px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #333;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 4px 8px;
+}
+
+.jobs-dropdown li a:hover {
+  background: rgba(74, 144, 226, 0.08);
+  color: #4A90E2;
+}
+
 .dropdown-content li a {
   display: block;
   padding: 16px 20px;
@@ -972,6 +1002,21 @@ nav::after {
   background: rgba(74, 144, 226, 0.15);
   color: #6ba3ff;
 }
+
+/* Dark mode for jobs dropdown */
+:root.dark .jobs-dropdown {
+  background: #161B2E;
+  border-color: #1F2655;
+}
+
+:root.dark .jobs-dropdown li a {
+  color: #E6E9F2;
+}
+
+:root.dark .jobs-dropdown li a:hover {
+  background: rgba(91, 124, 250, 0.12);
+  color: #5B7CFA;
+}
  
 :root.dark .sidebar {
   background: #0f1115;
@@ -1142,23 +1187,77 @@ nav::after {
 .dropdown-content-hidden {
   display: none;
   position: relative;
-  padding-left: 16px;
+  padding-left: 0;
+  background: rgba(74, 144, 226, 0.03);
+  margin: 4px 0;
+  border-radius: 8px;
 }
 
 .dropdown-content-hidden.show {
   display: block;
 }
 
+.dropdown-hidden > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-hidden > span i {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content-hidden li {
+  margin: 0 !important;
+}
+
+.dropdown-content-hidden .nav-link-btn {
+  padding-left: 40px !important;
+  font-size: 15px !important;
+  color: #555 !important;
+}
+
+.dropdown-content-hidden .nav-link-btn:hover {
+  background: rgba(74, 144, 226, 0.12) !important;
+  color: #4A90E2 !important;
+}
+
 .dropbtn-hidden {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 12px 16px;
-  font-size: 1rem;
+  padding: 16px 20px;
+  font-size: 17px;
   font-weight: 500;
   cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #333;
 }
+
+:root.dark .dropbtn-hidden {
+  color: #E6E9F2;
+}
+
+:root.dark .dropdown-content-hidden {
+  background: rgba(91, 124, 250, 0.05);
+}
+
+:root.dark .dropdown-content-hidden .nav-link-btn {
+  color: #8A90B2 !important;
+}
+
+:root.dark .dropdown-content-hidden .nav-link-btn:hover {
+  background: rgba(91, 124, 250, 0.15) !important;
+  color: #5B7CFA !important;
+}
+
 :root.dark .close-btn{
   background: none;
   border: none;
@@ -1404,28 +1503,6 @@ nav::after {
   .user-email {
     font-size: 13px;
   }
-}
-
-/* Jobs submenu – global (outside media queries) */
-.dropdown-content-hidden {
-  display: none;
-  position: relative;
-  padding-left: 16px;
-}
-
-.dropdown-content-hidden.show {
-  display: block;
-}
-
-.dropbtn-hidden {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
 }
 
 /* Mobile dropdown open state */
@@ -1811,4 +1888,10 @@ nav::after {
 
 :root.dark .dropdown-content li button.nav-link-btn {
   color: #E6E9F2 !important;
+}
+
+
+/* Rotate arrow icon when jobs dropdown is open */
+.dropdown-hidden.jobs-open > span i {
+  transform: rotate(180deg);
 }
