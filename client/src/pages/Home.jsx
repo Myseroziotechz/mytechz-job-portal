@@ -376,7 +376,7 @@ export default function Home() {
           {[
               {
                 q: "What is MytechZ?",
-                a: "MytechZ is a platform that provides government and private jobs, internships, results, admit cards, and career resources in one place."
+                a: "MytechZ is a platform that provides government and private jobs, internships, results, and career resources in one place."
               },
               {
                 q: "Is MytechZ free to use?",
