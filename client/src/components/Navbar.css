@@ -235,14 +235,40 @@ nav::after {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Employer dropdown specific styling */
+.employer-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  min-width: 200px;
+  background: white;
+  border-radius: 12px;
+  z-index: 10000;
+  padding: 8px 0;
+  border: 1px solid #e1e5e9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Show dropdown on hover */
 .job-nav.dropdown:hover .jobs-dropdown,
 .job-nav:hover .jobs-dropdown {
   display: block !important;
 }
 
+.employer-nav.dropdown:hover .employer-dropdown,
+.employer-nav:hover .employer-dropdown {
+  display: block !important;
+}
+
 /* Keep dropdown visible when hovering over it */
 .jobs-dropdown:hover {
+  display: block !important;
+}
+
+.employer-dropdown:hover {
   display: block !important;
 }
 
@@ -263,6 +289,27 @@ nav::after {
 }
 
 .jobs-dropdown li a:hover {
+  background: rgba(74, 144, 226, 0.08);
+  color: #4A90E2;
+}
+
+.employer-dropdown li {
+  margin: 0;
+  padding: 0;
+}
+
+.employer-dropdown li a {
+  display: block;
+  padding: 12px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #333;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 4px 8px;
+}
+
+.employer-dropdown li a:hover {
   background: rgba(74, 144, 226, 0.08);
   color: #4A90E2;
 }
@@ -1038,6 +1085,21 @@ nav::after {
 }
 
 :root.dark .jobs-dropdown li a:hover {
+  background: rgba(91, 124, 250, 0.12);
+  color: #5B7CFA;
+}
+
+/* Dark mode for employer dropdown */
+:root.dark .employer-dropdown {
+  background: #161B2E;
+  border-color: #1F2655;
+}
+
+:root.dark .employer-dropdown li a {
+  color: #E6E9F2;
+}
+
+:root.dark .employer-dropdown li a:hover {
   background: rgba(91, 124, 250, 0.12);
   color: #5B7CFA;
 }
@@ -1961,5 +2023,10 @@ nav::after {
 
 /* Rotate arrow icon when jobs dropdown is open */
 .dropdown-hidden.jobs-open > span i {
+  transform: rotate(180deg);
+}
+
+/* Rotate arrow icon when employers dropdown is open */
+.dropdown-hidden.employers-open > span i {
   transform: rotate(180deg);
 }

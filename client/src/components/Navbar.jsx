@@ -14,6 +14,9 @@ function Navbar() {
   // Jobs dropdown state
   const [jobsDropdownOpen, setJobsDropdownOpen] = useState(false);
   
+  // Employers dropdown state
+  const [employersDropdownOpen, setEmployersDropdownOpen] = useState(false);
+  
   // Auth state - reactive to localStorage changes
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
@@ -61,6 +64,10 @@ function Navbar() {
 
   const handleJobsDropdownToggle = () => {
     setJobsDropdownOpen(!jobsDropdownOpen);
+  };
+
+  const handleEmployersDropdownToggle = () => {
+    setEmployersDropdownOpen(!employersDropdownOpen);
   };
 
   // Handle link click - close menu immediately and navigate
@@ -147,6 +154,27 @@ function Navbar() {
               <button onClick={(e) => handleLinkClick(e, '/webinars')} className="nav-link-btn">Webinars</button>
             </li>
             
+            {/* For Employers with submenu - Only show for recruiters */}
+            {isLoggedIn && userInfo?.role === 'recruiter' && (
+              <li className={`color-subnav-box hamburger-item employer-nav-h dropdown-hidden ${employersDropdownOpen ? 'employers-open' : ''}`}>
+                <span onClick={handleEmployersDropdownToggle} className="nav-link-btn dropbtn-hidden">
+                  For Employers
+                  <i className={`ri-arrow-${employersDropdownOpen ? 'up' : 'down'}-s-line`}></i>
+                </span>
+                <ul className={`dropdown-content-hidden ${employersDropdownOpen ? 'show' : ''}`}>
+                  <li className='color-subnav-box'>
+                    <button onClick={(e) => handleLinkClick(e, '/recruiter/subscription')} className="nav-link-btn">Buy Online</button>
+                  </li>
+                  <li className='color-subnav-box'>
+                    <button onClick={(e) => handleLinkClick(e, '/recruiter/resume-database')} className="nav-link-btn">Talent Cloud</button>
+                  </li>
+                  <li className='color-subnav-box'>
+                    <button onClick={(e) => handleLinkClick(e, '/recruiter')} className="nav-link-btn">Employer Dashboard</button>
+                  </li>
+                </ul>
+              </li>
+            )}
+            
             {/* Show login only when NOT logged in */}
             {!isLoggedIn && (
               <li className="color-subnav-box hamburger-item login-nav-h">
@@ -194,6 +222,24 @@ function Navbar() {
         <li className={`color-nav-box webinar-nav ${location.pathname === '/webinars' ? 'active' : ''}`}>
           <Link to="/webinars">Webinars</Link>
         </li>
+        
+        {/* For Employers dropdown - Only show for recruiters */}
+        {isLoggedIn && userInfo?.role === 'recruiter' && (
+          <li className={`color-nav-box employer-nav dropdown ${location.pathname.startsWith('/recruiter') ? 'active' : ''}`}>
+            <Link to="/recruiter">For Employers</Link>
+            <ul className="dropdown-content employer-dropdown">
+              <li>
+                <Link to="/recruiter/subscription">Buy Online</Link>
+              </li>
+              <li>
+                <Link to="/recruiter/resume-database">Talent Cloud</Link>
+              </li>
+              <li>
+                <Link to="/recruiter">Employer Dashboard</Link>
+              </li>
+            </ul>
+          </li>
+        )}
       </ul>
       
       {/* Right side - Profile icon only */}
