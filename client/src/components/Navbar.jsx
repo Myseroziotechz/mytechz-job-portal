@@ -300,7 +300,7 @@ function Navbar() {
             />
           ) : (
             <Link to="/login" className="login-img">
-              <img src="../assets/photo.webp" alt="Login" className="login-icon-img" />
+              <i className="ri-user-line login-icon"></i>
             </Link>
           )}
         </div>
