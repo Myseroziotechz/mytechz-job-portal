@@ -210,6 +210,11 @@ def test_job_posting_before_approval(recruiters):
     
     test_recruiter = recruiters[0]
     
+    # Reset approval status to pending for testing
+    original_status = test_recruiter.approval_status
+    test_recruiter.approval_status = 'pending'
+    test_recruiter.save()
+    
     # Check if recruiter can post jobs
     can_post = test_recruiter.can_post_jobs()
     
@@ -234,6 +239,10 @@ def test_job_posting_before_approval(recruiters):
         job.delete()  # Clean up
     except Exception as e:
         log_pass("Security Test", f"Job creation blocked as expected: {str(e)[:50]}")
+    
+    # Restore original status
+    test_recruiter.approval_status = original_status
+    test_recruiter.save()
 
 # ============================================================================
 # STEP 4: ADMIN APPROVAL FLOW

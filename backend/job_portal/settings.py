@@ -10,20 +10,13 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here-change-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-# Allow ngrok and local hosts
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '9dce45d1cde6.ngrok-free.app',
-    '.ngrok-free.app',  # Allow all ngrok domains
-    '*'  # Allow all for demo
-]
-# ALLOWED_HOSTS = ['yourdomain.com', 'localhost', '127.0.0.1']
+# Production-ready allowed hosts
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
 INSTALLED_APPS = [
@@ -78,12 +71,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'job_portal.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use PostgreSQL in production, SQLite in development
+if config('DATABASE_URL', default=None):
+    # Production database (PostgreSQL on Render)
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.parse(config('DATABASE_URL'))
     }
-}
+else:
+    # Development database (SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # Relaxed for development/testing - only enforce minimum length
@@ -177,20 +179,20 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-# CORS Settings - Allow Netlify and ngrok
-CORS_ALLOW_ALL_ORIGINS = True  # Allow all for demo (ngrok compatibility)
+# CORS Settings - Production ready
+CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
 CORS_ALLOW_CREDENTIALS = True
 
-# Specify exact origins (for reference)
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://9dce45d1cde6.ngrok-free.app',
-    'https://cheery-malasada-331cc2.netlify.app',  # New Netlify URL
-]
+# Specify exact origins for production
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS', 
+    default='http://localhost:5173,http://127.0.0.1:5173',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)
 
-# Allow all Netlify preview URLs
+# Allow Render and Netlify domains
 CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.onrender\.com$",
     r"^https://.*\.netlify\.app$",
     r"^https://.*\.ngrok-free\.app$",
 ]

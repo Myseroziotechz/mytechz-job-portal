@@ -3,24 +3,24 @@
 ║                    END-TO-END TEST EXECUTION REPORT                          ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-📅 Test Date: 2026-01-21 16:27:22
+📅 Test Date: 2026-03-14 18:29:00
 🎯 Test Scope: Complete Job Portal System
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ TEST SUMMARY                                                                 │
 └──────────────────────────────────────────────────────────────────────────────┘
 
-Total Tests Run: 87
-✅ Passed: 86
-❌ Failed: 1
-⚠️  Warnings: 3
-📊 Pass Rate: 98.85%
+Total Tests Run: 62
+✅ Passed: 62
+❌ Failed: 0
+⚠️  Warnings: 28
+📊 Pass Rate: 100.00%
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ DATA CREATED                                                                 │
 └──────────────────────────────────────────────────────────────────────────────┘
 
-👥 Users Created: 18
+👥 Users Created: 0
 💼 Jobs Created: 12
 📝 Applications Created: 30
 
@@ -28,32 +28,8 @@ Total Tests Run: 87
 │ PASSED TESTS                                                                 │
 └──────────────────────────────────────────────────────────────────────────────┘
 
-✅ Admin Creation: Created admin1@test.com
-✅ Admin Creation: Created admin2@test.com
-✅ Recruiter Creation: Created recruiter1@test.com
-✅ Recruiter Creation: Created recruiter3@test.com
-✅ Recruiter Creation: Created recruiter4@test.com
-✅ Recruiter Creation: Created recruiter5@test.com
-✅ Recruiter Creation: Created recruiter6@test.com
-✅ Recruiter Creation: Created recruiter7@test.com
-✅ Recruiter Creation: Created recruiter8@test.com
-✅ Candidate Creation: Created candidate1@test.com
-✅ Candidate Creation: Created candidate3@test.com
-✅ Candidate Creation: Created candidate4@test.com
-✅ Candidate Creation: Created candidate5@test.com
-✅ Candidate Creation: Created candidate6@test.com
-✅ Candidate Creation: Created candidate7@test.com
-✅ Candidate Creation: Created candidate8@test.com
-✅ Candidate Creation: Created candidate9@test.com
-✅ Candidate Creation: Created candidate10@test.com
-✅ Company Profile: Created profile for recruiter1@test.com - TechCorp Alpha 1
-✅ Company Profile: Created profile for recruiter3@test.com - CloudNet Gamma 3
-✅ Company Profile: Created profile for recruiter4@test.com - AI Solutions Delta 4
-✅ Company Profile: Created profile for recruiter5@test.com - CyberSec Epsilon 5
-✅ Company Profile: Created profile for recruiter6@test.com - FinTech Zeta 6
-✅ Company Profile: Created profile for recruiter7@test.com - HealthTech Eta 7
-✅ Company Profile: Created profile for recruiter8@test.com - EduTech Theta 8
 ✅ Security Test: recruiter1@test.com correctly blocked from posting jobs (not approved)
+✅ Security Test: Job creation blocked as expected: Recruiter recruiter1@test.com must complete compan
 ✅ Admin Approval: Approved recruiter1@test.com - TechCorp Alpha 1
 ✅ Admin Approval: Approved recruiter2@test.com - Another Tech Company
 ✅ Admin Approval: Approved recruiter3@test.com - CloudNet Gamma 3
@@ -104,8 +80,8 @@ Total Tests Run: 87
 ✅ Application: candidate10@test.com applied for 'Senior Python Developer'
 ✅ Application: candidate10@test.com applied for 'Frontend React Developer'
 ✅ Application: candidate10@test.com applied for 'Senior Python Developer'
-✅ Data Isolation: Recruiter jobs properly isolated (R1: 2, R2: 2)
-✅ Data Isolation: Candidate applications properly isolated (C1: 3, C2: 3)
+✅ Data Isolation: Recruiter jobs properly isolated (R1: 8, R2: 8)
+✅ Data Isolation: Candidate applications properly isolated (C1: 16, C2: 12)
 ✅ Data Isolation: Company profiles unique per recruiter (11 profiles)
 ✅ Security: Duplicate application correctly prevented
 ✅ Security: Candidate role correctly set: candidate1@test.com
@@ -116,30 +92,52 @@ Total Tests Run: 87
 ✅ DB Validation: All applications have valid relationships
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ FAILED TESTS                                                                 │
-└──────────────────────────────────────────────────────────────────────────────┘
-
-❌ Security Test: Job created before approval - SECURITY BREACH!
-
-┌──────────────────────────────────────────────────────────────────────────────┐
 │ WARNINGS                                                                     │
 └──────────────────────────────────────────────────────────────────────────────┘
 
+⚠️  Admin Creation: admin1@test.com already exists
+⚠️  Admin Creation: admin2@test.com already exists
+⚠️  Recruiter Creation: recruiter1@test.com already exists
 ⚠️  Recruiter Creation: recruiter2@test.com already exists
+⚠️  Recruiter Creation: recruiter3@test.com already exists
+⚠️  Recruiter Creation: recruiter4@test.com already exists
+⚠️  Recruiter Creation: recruiter5@test.com already exists
+⚠️  Recruiter Creation: recruiter6@test.com already exists
+⚠️  Recruiter Creation: recruiter7@test.com already exists
+⚠️  Recruiter Creation: recruiter8@test.com already exists
+⚠️  Candidate Creation: candidate1@test.com already exists
 ⚠️  Candidate Creation: candidate2@test.com already exists
+⚠️  Candidate Creation: candidate3@test.com already exists
+⚠️  Candidate Creation: candidate4@test.com already exists
+⚠️  Candidate Creation: candidate5@test.com already exists
+⚠️  Candidate Creation: candidate6@test.com already exists
+⚠️  Candidate Creation: candidate7@test.com already exists
+⚠️  Candidate Creation: candidate8@test.com already exists
+⚠️  Candidate Creation: candidate9@test.com already exists
+⚠️  Candidate Creation: candidate10@test.com already exists
+⚠️  Company Profile: Profile already exists for recruiter1@test.com
 ⚠️  Company Profile: Profile already exists for recruiter2@test.com
+⚠️  Company Profile: Profile already exists for recruiter3@test.com
+⚠️  Company Profile: Profile already exists for recruiter4@test.com
+⚠️  Company Profile: Profile already exists for recruiter5@test.com
+⚠️  Company Profile: Profile already exists for recruiter6@test.com
+⚠️  Company Profile: Profile already exists for recruiter7@test.com
+⚠️  Company Profile: Profile already exists for recruiter8@test.com
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ SYSTEM VALIDATION CERTIFICATE                                                │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 
-⚠️  SYSTEM VALIDATION: FAILED
+✅ SYSTEM VALIDATION: PASSED
 
-The system has 1 failing tests that need to be addressed.
-Please review the failed tests above and fix the issues.
+The Job Portal system has successfully passed all end-to-end tests.
+All features are working as expected with proper data isolation and security.
 
-System Status: REQUIRES FIXES ⚠️
+System Status: PRODUCTION READY ✅
+
+Validated By: QA Automation System
+Date: 2026-03-14 18:29:00
 
 
 ╔══════════════════════════════════════════════════════════════════════════════╗

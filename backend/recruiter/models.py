@@ -133,8 +133,9 @@ class RecruiterCompanyProfile(models.Model):
             self.office_photos = ''
     
     def can_post_jobs(self):
-        """Check if recruiter can post jobs (must be verified)"""
-        return self.verification_status == 'verified'
+        """Check if recruiter can post jobs (must be verified AND recruiter must be approved)"""
+        return (self.verification_status == 'verified' and 
+                self.recruiter.approval_status == 'approved')
     
     def save(self, *args, **kwargs):
         """Override save to mark recruiter profile as completed"""
