@@ -243,7 +243,7 @@ function Register() {
                 <label>
                   <input type="checkbox" />
                   <span className="checkbox-text">
-                    Stay in the loop – Get relevant updates curated just for <em>you!</em>
+                    Stay in the loop – Get relevant updates curated just for you!
                   </span>
                 </label>
               </div>
